@@ -20,6 +20,11 @@
         <servlet-class>PAAS.Servlets.VmStudentServlet</servlet-class>
     </servlet>
     
+    <servlet>
+        <servlet-name>DeconnexionStudentServlet</servlet-name>
+        <servlet-class>PAAS.Servlets.DeconnexionStudentServlet</servlet-class>
+    </servlet>
+    
     
     
     
@@ -41,5 +46,10 @@
     <servlet-mapping>
         <servlet-name>VmStudentServlet</servlet-name>
         <url-pattern>/vm</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>DeconnexionStudentServlet</servlet-name>
+        <url-pattern>/connexion</url-pattern>
     </servlet-mapping>
 </web-app>
