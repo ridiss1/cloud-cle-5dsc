@@ -6,18 +6,40 @@
     </servlet>
     
     <servlet>
-        <servlet-name>AccueilStudentServlet</servlet-name>
-        <servlet-class>PAAS.Servlets.AccueilStudentServlet</servlet-class>
+        <servlet-name>ContactStudentServlet</servlet-name>
+        <servlet-class>PAAS.Servlets.ContactStudentServlet</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>ProfilStudentServlet</servlet-name>
+        <servlet-class>PAAS.Servlets.ProfilStudentServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>VmStudentServlet</servlet-name>
+        <servlet-class>PAAS.Servlets.VmStudentServlet</servlet-class>
+    </servlet>
+    
+    
+    
     
     <servlet-mapping>
         <servlet-name>AuthentificationServlet</servlet-name>
-        <url-pattern>/AuthentificationServlet</url-pattern>
+        <url-pattern>/accueil</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>
-        <servlet-name>AccueilStudentServlet</servlet-name>
-        <url-pattern>/AccueilStudentServlet</url-pattern>
+        <servlet-name>ProfilStudentServlet</servlet-name>
+        <url-pattern>/profil</url-pattern>
     </servlet-mapping>
     
+    <servlet-mapping>
+        <servlet-name>ContactStudentServlet</servlet-name>
+        <url-pattern>/contact</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>VmStudentServlet</servlet-name>
+        <url-pattern>/vm</url-pattern>
+    </servlet-mapping>
 </web-app>

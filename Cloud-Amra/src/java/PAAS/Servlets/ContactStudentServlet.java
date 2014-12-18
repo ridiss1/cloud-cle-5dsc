@@ -15,12 +15,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author camara
  */
-public class AccueilStudentServlet extends HttpServlet{
-     private static final String VUE = "/WEB-INF/Student/accueil.jsp";
+public class ContactStudentServlet extends HttpServlet{
+     private static final String VUE = "/WEB-INF/Student/contact.jsp";
     
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 
     }
-    
 }

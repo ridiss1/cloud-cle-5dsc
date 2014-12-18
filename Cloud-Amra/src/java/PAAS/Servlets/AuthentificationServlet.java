@@ -55,7 +55,9 @@ public class AuthentificationServlet extends HttpServlet{
             
         }
         else {
-            nextPage=VUE_ACCUEIL_STUDENT;
+            if (form.getType()==3) {
+                nextPage=VUE_ACCUEIL_STUDENT;
+            }
         }
         
         request.setAttribute(ATTR_MESSAGE, message);

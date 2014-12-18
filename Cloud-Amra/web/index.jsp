@@ -8,7 +8,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+        <link href="css/styles_login.css" rel="stylesheet" type="text/css"/>
+        <link href="css/my_style.css" rel="stylesheet" type="text/css"/>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/jquery-min.js" type="text/javascript"></script>
         <script src="js/jquery.js" type="text/javascript"></script>
@@ -24,7 +25,7 @@
                         <h1 class="text-center">Login</h1>
                     </div>
                     <div class="modal-body">
-                        <form class="form col-md-12 center-block" action="AuthentificationServlet" method="post">
+                        <form class="form col-md-12 center-block" action="accueil" method="post">
                             <div class="form-group">
                                 <input type="text" name="login" class="form-control input-lg" placeholder="Login">
                                 <span class="erreur">${Message['login']}</span>
