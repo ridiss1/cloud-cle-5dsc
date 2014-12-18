@@ -40,9 +40,10 @@
 
                     <ul>
                         <li><a href="accueil" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Accueil</span></a></li>
-                        <li><a href="profil" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Profil</span></a></li>
-                        <li><a href="vm" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Virtuel Machine</span></a></li>
+                        <li><a href="profil" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Profil</span></a></li>
+                        <li><a href="vm" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Virtuel Machine</span></a></li>
                         <li><a href="contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contact</span></a></li>
+                        <li><a href="connexion" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-power-off">Deconnexion</span></a></li>
                     </ul>
                 </nav>
 
