@@ -9,13 +9,14 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -23,37 +24,30 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author camara
  */
 @Entity
-@Table(name = "VM")
+@Table(name = "Vm", catalog = "Cloud", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Vm.findAll", query = "SELECT v FROM Vm v"),
-    @NamedQuery(name = "Vm.findById", query = "SELECT v FROM Vm v WHERE v.id = :id"),
-    @NamedQuery(name = "Vm.findByUser", query = "SELECT v FROM Vm v WHERE v.user = :user")})
+    @NamedQuery(name = "Vm.findById", query = "SELECT v FROM Vm v WHERE v.id = :id")})
 public class Vm implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "user")
-    private int user;
-    @JoinColumn(name = "groupe", referencedColumnName = "id")
+    @JoinColumn(name = "groupe", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private Groupe groupe;
+    @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false)
+    private User user;
 
     public Vm() {
     }
 
     public Vm(Integer id) {
         this.id = id;
-    }
-
-    public Vm(Integer id, int user) {
-        this.id = id;
-        this.user = user;
     }
 
     public Integer getId() {
@@ -64,20 +58,20 @@ public class Vm implements Serializable {
         this.id = id;
     }
 
-    public int getUser() {
-        return user;
-    }
-
-    public void setUser(int user) {
-        this.user = user;
-    }
-
     public Groupe getGroupe() {
         return groupe;
     }
 
     public void setGroupe(Groupe groupe) {
         this.groupe = groupe;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

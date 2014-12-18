@@ -9,13 +9,14 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -23,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author camara
  */
 @Entity
-@Table(name = "TemplateProf")
+@Table(name = "TemplateProf", catalog = "Cloud", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TemplateProf.findAll", query = "SELECT t FROM TemplateProf t"),
@@ -31,16 +32,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class TemplateProf implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
-    @JoinColumn(name = "prof", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private User prof;
-    @JoinColumn(name = "template", referencedColumnName = "id")
+    @JoinColumn(name = "template", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private Template template;
+    @JoinColumn(name = "prof", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false)
+    private User prof;
 
     public TemplateProf() {
     }
@@ -57,20 +58,20 @@ public class TemplateProf implements Serializable {
         this.id = id;
     }
 
-    public User getProf() {
-        return prof;
-    }
-
-    public void setProf(User prof) {
-        this.prof = prof;
-    }
-
     public Template getTemplate() {
         return template;
     }
 
     public void setTemplate(Template template) {
         this.template = template;
+    }
+
+    public User getProf() {
+        return prof;
+    }
+
+    public void setProf(User prof) {
+        this.prof = prof;
     }
 
     @Override
