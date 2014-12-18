@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="CLOUDAMRAPU" transaction-type="RESOURCE_LOCAL">
-      <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-      <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <persistence-unit name="CLOUDAMRAPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+       
       
-<!--      <class> PAAS.Models.User </class>
-      <class> PAAS.Models.Template </class>    
-      <class> PAAS.Models.Groupe </class>     
-      <class> PAAS.Models.TemplateProf </class>     
-      <class> PAAS.Models.UserGroupe </class>
-      <class> PAAS.Models.Vm </class>-->
+        <class> PAAS.Models.User </class>
+        <class> PAAS.Models.Template </class>    
+        <class> PAAS.Models.Groupe </class>     
+        <class> PAAS.Models.TemplateProf </class>     
+        <class> PAAS.Models.UserGroupe </class>
+        <class> PAAS.Models.Vm </class>
   
-    <properties>
-        <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://92.222.37.244:8080/Cloud"/>
-        <property name="javax.persistence.jdbc.user" value="Cloud"/>
-        <property name="javax.persistence.jdbc.password" value="Cloud"/>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://92.222.37.244:8080/Cloud"/>
+            <property name="javax.persistence.jdbc.user" value="Cloud"/>
+            <property name="javax.persistence.jdbc.password" value="Cloud"/>
         
-    </properties>
-  </persistence-unit>
+        </properties>
+    </persistence-unit>
 </persistence>

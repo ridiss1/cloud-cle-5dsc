@@ -18,14 +18,14 @@ public class Main {
         factory.open();
         if (factory.getEntityManager().isOpen()) {
             System.out.println ("Ouvert");
-//            List <User> listUser = factory.userFindAll();
-//            for (User user : listUser) {
-//                System.out.println (user.getUsername());
-//                
-//                
-//            }
-           User user = factory.userFindByUserNamePassword("Christophe", "Chassot"); 
-           System.out.println (user.getType());
+            List <User> listUser = factory.userFindAll();
+            for (User user : listUser) {
+                System.out.println (user.getNom());
+                
+                
+            }
+//           User user = factory.userFindByUserNamePassword("Christophe", "Chassot"); 
+//           System.out.println (user.getType());
             
         }
         
