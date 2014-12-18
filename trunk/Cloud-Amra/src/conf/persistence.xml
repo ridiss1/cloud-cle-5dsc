@@ -4,12 +4,12 @@
       <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
       <exclude-unlisted-classes>false</exclude-unlisted-classes>
       
-      <class>PAAS.Models.User</class>
-      <class>PAAS.Models.Template</class>    
-      <class>PAAS.Models.Groupe</class>     
-      <class>PAAS.Models.TemplateProf</class>     
-      <class>PAAS.Models.UserGroupe</class>
-      <class>PAAS.Models.Vm</class>
+      <class> PAAS.Models.User </class>
+      <class> PAAS.Models.Template </class>    
+      <class> PAAS.Models.Groupe </class>     
+      <class> PAAS.Models.TemplateProf </class>     
+      <class> PAAS.Models.UserGroupe </class>
+      <class> PAAS.Models.Vm </class>
   
     <properties>
         <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
