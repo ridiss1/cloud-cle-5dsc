@@ -9,7 +9,7 @@
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/styles_login.css" rel="stylesheet" type="text/css"/>
-        <link href="css/my_style.css" rel="stylesheet" type="text/css"/>
+<!--        <link href="css/my_style.css" rel="stylesheet" type="text/css"/>-->
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/jquery-min.js" type="text/javascript"></script>
         <script src="js/jquery.js" type="text/javascript"></script>
