@@ -37,10 +37,10 @@ public class Factory {
     }
     
     
-    public User userFindByUsername (String userName) {
+    public User userFindByLogin (String login) {
         User user = null;
-        Query query = em.createNamedQuery("User.findByUsername");
-        query.setParameter("username", userName);
+        Query query = em.createNamedQuery("User.findByLogin");
+        query.setParameter("login", login);
         user = (User) query.getSingleResult();
         return user;
         
@@ -49,17 +49,17 @@ public class Factory {
     public User userFindByPassword (String password) {
         User user = null;
         Query query = em.createNamedQuery("User.findByPassword");
-        query.setParameter("username", password);
+        query.setParameter("password", password);
         user = (User) query.getSingleResult();
         return user;
         
     }
     
-    public User userFindByUserNamePassword (String username, String password) {
+    public User userFindByLoginPassword (String login, String password) {
         User user = null;
-        String requete= "SELECT u FROM User u WHERE u.username = :username AND u.password = :password";
+        String requete= "SELECT u FROM User u WHERE u.login = :login AND u.password = :password";
         Query query = em.createQuery(requete);
-        query.setParameter("username", username);
+        query.setParameter("login", login);
         query.setParameter("password", password);
         user = (User) query.getSingleResult();
         return user;

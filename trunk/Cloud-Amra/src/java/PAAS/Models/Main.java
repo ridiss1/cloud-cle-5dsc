@@ -6,6 +6,7 @@
 package PAAS.Models;
 
 import java.util.List;
+import PAAS.Servlets.*;
 
 /**
  *
@@ -14,24 +15,31 @@ import java.util.List;
 public class Main {
     
     public static void main (String [] args) {
-        Factory factory = new Factory ();
-        factory.open();
-        if (factory.getEntityManager().isOpen()) {
-            System.out.println ("Ouvert");
-            List <User> listUser = factory.userFindAll();
-            for (User user : listUser) {
-                System.out.println (user.getNom());
-                
-                
-            }
-//           User user = factory.userFindByUserNamePassword("Christophe", "Chassot"); 
-//           System.out.println (user.getType());
-            
-        }
         
-        else {
-            System.out.println ("Erreur");
-        }
+        Form form = new Form ();
+        form.validation("atcamara", "passer");
+        //System.out.println (form.getError().get("login"));
+        System.out.println (form.getError().get("password"));
+       // System.out.println (form.getError().get("connexion"));
+        
+       // Factory factory = new Factory ();
+       // factory.open();
+       // if (factory.getEntityManager().isOpen()) {
+         //   System.out.println ("Ouvert");
+//            List <User> listUser = factory.userFindAll();
+//            for (User user : listUser) {
+//                System.out.println (user.getNom());
+//                
+//                
+//            }
+//           User user = factory.userFindByUserNamePassword("atcamara", "passer"); 
+//           System.out.println (user.getPrenom());
+            
+       // }
+        
+       // else {
+         //   System.out.println ("Erreur");
+       // }
     }
     
 }
