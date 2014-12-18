@@ -15,13 +15,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author camara
  */
-public class Dispatcher extends HttpServlet {
-
-    private static final String VUE_STUDENT_ACCUEIL = "/WEB-INF/Student/accueil.jsp";
-
+public class AccueilStudentServlet extends HttpServlet{
+     private static final String VUE = "/WEB-INF/Student/accueil.jsp";
+    
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher(VUE_STUDENT_ACCUEIL).forward(request, response);
+        this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 
     }
-
+    
 }
