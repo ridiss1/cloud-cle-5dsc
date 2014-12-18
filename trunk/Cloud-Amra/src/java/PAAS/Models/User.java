@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -26,37 +28,51 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author camara
  */
 @Entity
-@Table(name = "User")
+@Table(name = "User", catalog = "Cloud", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
-    @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
+    @NamedQuery(name = "User.findByLogin", query = "SELECT u FROM User u WHERE u.login = :login"),
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
+    @NamedQuery(name = "User.findByNom", query = "SELECT u FROM User u WHERE u.nom = :nom"),
+    @NamedQuery(name = "User.findByPrenom", query = "SELECT u FROM User u WHERE u.prenom = :prenom"),
     @NamedQuery(name = "User.findByType", query = "SELECT u FROM User u WHERE u.type = :type")})
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "username")
-    private String username;
+    @Column(name = "login", nullable = false, length = 255)
+    private String login;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "password")
+    @Column(name = "password", nullable = false, length = 255)
     private String password;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "type")
+    @Size(min = 1, max = 255)
+    @Column(name = "nom", nullable = false, length = 255)
+    private String nom;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "prenom", nullable = false, length = 255)
+    private String prenom;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "type", nullable = false)
     private int type;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserGroupe> userGroupeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Vm> vmList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "prof")
     private List<TemplateProf> templateProfList;
 
@@ -67,10 +83,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String username, String password, int type) {
+    public User(Integer id, String login, String password, String nom, String prenom, int type) {
         this.id = id;
-        this.username = username;
+        this.login = login;
         this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
         this.type = type;
     }
 
@@ -82,12 +100,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
@@ -96,6 +114,22 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public int getType() {
@@ -113,6 +147,15 @@ public class User implements Serializable {
 
     public void setUserGroupeList(List<UserGroupe> userGroupeList) {
         this.userGroupeList = userGroupeList;
+    }
+
+    @XmlTransient
+    public List<Vm> getVmList() {
+        return vmList;
+    }
+
+    public void setVmList(List<Vm> vmList) {
+        this.vmList = vmList;
     }
 
     @XmlTransient

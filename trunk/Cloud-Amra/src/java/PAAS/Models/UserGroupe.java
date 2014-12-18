@@ -9,13 +9,14 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -23,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author camara
  */
 @Entity
-@Table(name = "UserGroupe")
+@Table(name = "UserGroupe", catalog = "Cloud", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UserGroupe.findAll", query = "SELECT u FROM UserGroupe u"),
@@ -31,16 +32,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class UserGroupe implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
-    @JoinColumn(name = "user", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private User user;
-    @JoinColumn(name = "groupe", referencedColumnName = "id")
+    @JoinColumn(name = "groupe", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private Groupe groupe;
+    @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false)
+    private User user;
 
     public UserGroupe() {
     }
@@ -57,20 +58,20 @@ public class UserGroupe implements Serializable {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Groupe getGroupe() {
         return groupe;
     }
 
     public void setGroupe(Groupe groupe) {
         this.groupe = groupe;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
