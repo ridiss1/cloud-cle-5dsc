@@ -15,6 +15,7 @@ import java.util.HashMap;
 public class Form {
 
     private HashMap<String, String> error = new HashMap<String, String>();
+    private int type;
 
     public Form() {
 
@@ -68,6 +69,9 @@ public class Form {
             if (user == null) {
                 error.put("connexion", "Connexion impossible");
             }
+            else {
+                type=user.getType();
+            }
             factory.close();
             // errorLogin=null;
         } catch (Exception e) {
@@ -78,6 +82,9 @@ public class Form {
 
     public HashMap<String, String> getError() {
         return this.error;
+    }
+    public int getType() {
+        return this.type;
     }
 
 }
