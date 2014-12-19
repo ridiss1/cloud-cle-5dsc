@@ -1,5 +1,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,8 +32,8 @@
                 <!-- Logo -->
                 <div id="logo">
                     <span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
-                    <h1 id="title">Jane Doe</h1>
-                    <p>Hyperspace Engineer</p>
+                    <h1 id="title">${sessionScope.sessionUser.prenom} ${sessionScope.sessionUser.nom}</h1>
+                    <p>Etudiant</p>
                 </div>
 
                 <!-- Nav -->

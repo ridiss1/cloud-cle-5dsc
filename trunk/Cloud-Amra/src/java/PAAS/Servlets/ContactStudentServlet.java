@@ -17,8 +17,23 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ContactStudentServlet extends HttpServlet{
      private static final String VUE = "/WEB-INF/Student/contact.jsp";
+     private static final String ATTR_MAIL="email";
+     private static final String ATTR_ERROR="error";
     
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+
+    }
+    
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        String email=request.getParameter(ATTR_MAIL);
+        Form form = new Form ();
+        form.validationEmail(email);
+        
+        String error= form.getErrorMail();
+        request.setAttribute(ATTR_ERROR, error);
+        
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 
     }
