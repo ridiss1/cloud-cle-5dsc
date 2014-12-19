@@ -27,6 +27,7 @@
                     <div class="modal-body">
                         <form class="form col-md-12 center-block" action="accueil" method="post">
                             <div class="form-group">
+                                
                                 <input type="text" name="login" class="form-control input-lg" placeholder="Login">
                                 <span class="erreur">${Message['login']}</span>
                             </div>

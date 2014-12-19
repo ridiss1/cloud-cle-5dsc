@@ -1,5 +1,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,8 +32,8 @@
                 <!-- Logo -->
                 <div id="logo">
                     <span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
-                    <h1 id="title">Jane Doe</h1>
-                    <p>Hyperspace Engineer</p>
+                    <h1 id="title">${sessionScope.sessionUser.prenom} ${sessionScope.sessionUser.nom}</h1>
+                    <p>Etudiant</p>
                 </div>
 
                 <!-- Nav -->
@@ -61,8 +62,10 @@
                         <h2>Contact</h2>
                     </header>
 
-                    <form method="post" action="#">
+                    <form method="post" action="contact" enctype="text/plain">
+                        <span class="erreur">${error}</span>
                         <div class="row 50%">
+                            
                             <div class="6u"><input type="text" name="name" placeholder="Name" /></div>
                             <div class="6u"><input type="text" name="email" placeholder="Email" /></div>
                         </div>
