@@ -68,7 +68,7 @@ public class Iaas {
         
         String result=null;
         try {        
-            Container container = this.getContainer(100);
+            Container container = this.getContainer(vmid);
             if ( "running".equals(container.getStatus())){
                 pve.shutdownOpenvz("proxmox", vmid);
             }
@@ -113,17 +113,13 @@ public class Iaas {
     
     public String getConsole(int vmid){
         
-       String result=null;
-       try {
-           VncData vnc = pve.consoleOpenvz("proxmox",vmid);
-           result =  pve.openConsole("proxmox", vmid, vnc);
-        } catch (LoginException | JSONException | IOException ex) {
-            Logger.getLogger(Iaas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       return result;
+       // retourne url de la console 
+       Container container = this.getContainer(vmid);
+       String url ="https://"+pve.getPve_hostname()+":8006/?console=openvz&novnc=1&vmid="+vmid+"&vmname="+container.getHostname()+"&node=proxmox";
+       return url;
     }
     
-     public String getStatistics(int vmid,String param){
+    public String getStatistics(int vmid,String param){
          
        String result=null;
        try {
@@ -133,7 +129,5 @@ public class Iaas {
         }
        return result;
      }
-    
-    
     
 }
