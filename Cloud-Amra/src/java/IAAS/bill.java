@@ -27,6 +27,8 @@ public class bill {
         
         //System.out.println(ias.deleteContainer(100));
         
+        System.out.println(ias.getConsole(101));
+        
         //System.out.println(ias.getStatistics(101,"hour"));
         
     }

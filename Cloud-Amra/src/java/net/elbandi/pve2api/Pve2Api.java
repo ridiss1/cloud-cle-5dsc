@@ -536,6 +536,8 @@ public class Pve2Api {
 
 	public VncData consoleOpenvz(String node, int vmid) throws LoginException, JSONException,
 			IOException {
+                /*HashMap<String, Boolean> data = new HashMap<String, Boo>();
+                data.put("websocket", true);*/
 		JSONObject jObj = pve_action("/nodes/" + node + "/openvz/" + vmid + "/vncproxy",
 				RestClient.RequestMethod.POST, null);
 		return new VncData(jObj.getJSONObject("data"));
@@ -544,9 +546,10 @@ public class Pve2Api {
         public String openConsole(String node, int vmid,VncData vnc) throws LoginException, JSONException,
 			IOException {
             HashMap<String, String> data = new HashMap<String, String>();
-            data.put("port", Integer.toString(vnc.getPort())); data.put("vncticket", vnc.getTicket());
-		JSONObject jObj = pve_action("/nodes/" + node + "/openvz/" + vmid + "/vncwebsocket",
-				RestClient.RequestMethod.GET, data);
+            System.out.println(vnc.getTicket());
+		JSONObject jObj = pve_action("/nodes/" + node + "/openvz/" + vmid + "/vncwebsocket?port="+
+                        Integer.toString(vnc.getPort())+"&vncticket="+vnc.getTicket().toString(),
+				RestClient.RequestMethod.GET, null);
             
             return jObj.getString("data");
 	}
@@ -669,4 +672,10 @@ public class Pve2Api {
 			return this;
 		}
 	}
+
+    public String getPve_hostname() {
+        return pve_hostname;
+    }
+        
+        
 }
