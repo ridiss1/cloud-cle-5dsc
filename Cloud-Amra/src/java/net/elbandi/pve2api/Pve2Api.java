@@ -12,6 +12,7 @@ import javax.security.auth.login.LoginException;
 
 import net.elbandi.pve2api.data.AplInfo;
 import net.elbandi.pve2api.data.ClusterLog;
+import net.elbandi.pve2api.data.Container;
 import net.elbandi.pve2api.data.Network;
 import net.elbandi.pve2api.data.Node;
 import net.elbandi.pve2api.data.Resource;
@@ -467,11 +468,11 @@ public class Pve2Api {
 		return res;
 	}
         
-	public VmOpenvz getOpenvzCT(String node, int vmid) throws JSONException, LoginException,
+	public Container getOpenvzCT(String node, int vmid) throws JSONException, LoginException,
 			IOException {
 		JSONObject jObj = pve_action("/nodes/" + node + "/openvz/" + vmid + "/status/current",
 				RestClient.RequestMethod.GET, null);
-		return new VmOpenvz(jObj.getJSONObject("data"));
+		return new Container(jObj.getJSONObject("data"));
 	}
 
 	public void getOpenvzConfig(String node, int vmid, VmOpenvz vm) throws JSONException,
@@ -484,10 +485,16 @@ public class Pve2Api {
 	// TODO: createOpenvz
 	// TODO: updateOpenvz
 
-        public void createOpenvz( String node,Map<String, String> data) throws JSONException,
+        public void updateOpenvz(String node,Container container) throws JSONException,
                 LoginException, IOException{
-            
-            pve_action("/nodes/" + node + "/openvz", RestClient.RequestMethod.POST, data);
+                Map<String, String> data = container.getUpdateParams();
+		pve_action("/nodes/" +node +"/openvz/"+container.getVmid()+"/config", RestClient.RequestMethod.PUT, data);       
+        }
+        
+        public void createOpenvz(String node ,Container container) throws JSONException,
+                LoginException, IOException{
+            Map<String, String> data = container.getCreateParams();
+            pve_action("/nodes/" +node +"/openvz", RestClient.RequestMethod.POST, data);
         }
         
         
@@ -520,7 +527,7 @@ public class Pve2Api {
 		return initlogOpenvz(node, vmid, new PveParams("start", start).Add("limit", limit));
 	}
 
-	protected String deleteOpenvz(String node, int vmid) throws LoginException, JSONException,
+	public String deleteOpenvz(String node, int vmid) throws LoginException, JSONException,
 			IOException {
 		JSONObject jObj = pve_action("/nodes/" + node + "/openvz/" + vmid,
 				RestClient.RequestMethod.DELETE, null);
@@ -533,6 +540,27 @@ public class Pve2Api {
 				RestClient.RequestMethod.POST, null);
 		return new VncData(jObj.getJSONObject("data"));
 	}
+        
+        public String openConsole(String node, int vmid,VncData vnc) throws LoginException, JSONException,
+			IOException {
+            HashMap<String, String> data = new HashMap<String, String>();
+            data.put("port", Integer.toString(vnc.getPort())); data.put("vncticket", vnc.getTicket());
+		JSONObject jObj = pve_action("/nodes/" + node + "/openvz/" + vmid + "/vncwebsocket",
+				RestClient.RequestMethod.GET, data);
+            
+            return jObj.getString("data");
+	}
+        
+        public String getStatistics(String node, int vmid,String param) throws JSONException,
+                LoginException, IOException{
+            HashMap<String, String> data = new HashMap<String, String>();
+            data.put("timeframe", param);
+            JSONObject jObj = pve_action("/nodes/" + node + "/openvz/" + vmid + "/rrddata",
+				RestClient.RequestMethod.GET, data);
+            
+            return jObj.getString("data");
+        }
+        
 
 	// TODO: status/ubc, ???
 
@@ -544,10 +572,10 @@ public class Pve2Api {
 		return jObj.getString("data");
 	}
 
-	protected String stopOpenvz(String node, int vmid, Map<String, String> data)
+	public String stopOpenvz(String node, int vmid)
 			throws LoginException, JSONException, IOException {
 		JSONObject jObj = pve_action("/nodes/" + node + "/openvz/" + vmid + "/status/stop",
-				RestClient.RequestMethod.POST, data);
+				RestClient.RequestMethod.POST, null);
 		return jObj.getString("data");
 	}
 
