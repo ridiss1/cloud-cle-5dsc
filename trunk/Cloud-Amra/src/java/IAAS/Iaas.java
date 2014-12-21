@@ -26,7 +26,13 @@ public class Iaas {
     
     public  Iaas(){
         
-        // Connexion au serveur Proxmox
+        /**
+         * Connexion au serveur Proxmox
+         * param1 = adresse IP Proxmox
+         * param2 = login
+         * param3 = "pam"
+         * param4 = mot de passe
+         */
         pve = new Pve2Api("10.201.2.5","root","pam","iaas2014");
         try {
             pve.login();
@@ -39,6 +45,12 @@ public class Iaas {
         }
     }
     
+    /**
+     * 
+     * @param container : objet container 
+     * @param nbrectainer : utilisé pour numéroter la machine de façcon unique
+     * via son IP = 192.168.1.nbreContainer
+     */
     public void creerContainer ( Container container , int nbrectainer ){
         
         try {
@@ -52,6 +64,11 @@ public class Iaas {
         
     }
     
+    /**
+     * 
+     * @param vmid = id du container 
+     * @return ( Utilisé la methode container.toString pour afficher les résultats retournés )
+     */
     public Container getContainer (int vmid){
         
             Container container = null;
@@ -64,6 +81,11 @@ public class Iaas {
         return container;
     }
     
+    /**
+     * 
+     * @param vmid = id du container 
+     * @return 
+     */
     public String deleteContainer (int vmid){
         
         String result=null;
@@ -79,6 +101,11 @@ public class Iaas {
         return result;
     }
     
+    /**
+     * Mettre à jour les caractériqtiques d'un container en l'occurence : 
+     * cpus , diskspace , memory(RAM)
+     * @param container 
+     */
     public void UpdateContainer(Container container){
         
         try {
@@ -88,7 +115,11 @@ public class Iaas {
         }
     }
     
-    
+    /**
+     * 
+     * @param vmid=id du container 
+     * @return 
+     */
     public String startContainer (int vmid){
         
         String result=null;
@@ -100,6 +131,11 @@ public class Iaas {
         return result;
     }
     
+    /**
+     * 
+     * @param vmid = id du container 
+     * @return 
+     */
     public String stopContainer (int vmid){
        
        String result=null;
@@ -111,6 +147,11 @@ public class Iaas {
        return result;
     }
     
+    /**
+     * 
+     * @param vmid = id du container 
+     * @return lien https vers la console du container  
+     */
     public String getConsole(int vmid){
         
        // retourne url de la console 
@@ -119,6 +160,13 @@ public class Iaas {
        return url;
     }
     
+    /**
+     * 
+     * @param vmid = id du container 
+     * @param param = "hour" ,"day","week","month","year"
+     * @return un tableau de json contenant les caractéristiques par 
+     * heure de la machine depuis son allumage ( cas "hour") : RRD data
+     */
     public String getStatistics(int vmid,String param){
          
        String result=null;
