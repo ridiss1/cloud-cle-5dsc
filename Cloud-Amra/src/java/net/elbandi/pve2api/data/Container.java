@@ -18,16 +18,16 @@ import org.json.JSONObject;
  */
 public class Container {
     
-    private String ostemplate;
+    private String ostemplate; // nom du fichier template utilisé
     private String storage;
-    private String vmid;
-    private String cpus;
-    private String disk;
-    private String hostname;
+    private String vmid; // ide du container 
+    private String cpus; // nombre de cpu
+    private String disk; // taille disque en GB 
+    private String hostname; 
     private String ip_address;
-    private String memory;
+    private String memory; // mémoire en MB
     private String password;
-    private String status;
+    private String status; // état de la machine "running",...
 
     // Création
     public Container(String ostemplate, String vmid, String cpus, String disk, String hostname, String memory, String password) {
