@@ -148,7 +148,6 @@ public class Iaas {
     }
     
     /**
-     * 
      * @param vmid = id du container 
      * @return lien https vers la console du container  
      */
@@ -177,5 +176,7 @@ public class Iaas {
         }
        return result;
      }
+    
+    
     
 }

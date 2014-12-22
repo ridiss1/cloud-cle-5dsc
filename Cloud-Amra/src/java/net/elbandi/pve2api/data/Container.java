@@ -28,6 +28,9 @@ public class Container {
     private String memory; // mémoire en MB
     private String password;
     private String status; // état de la machine "running",...
+    private String cpu_usage;
+    private String mem_usage;
+    private String disk_usage;
 
     // Création
     public Container(String ostemplate, String vmid, String cpus, String disk, String hostname, String memory, String password) {
@@ -48,6 +51,10 @@ public class Container {
 		memory = data.getString("maxmem");
 		ip_address = data.getString("ip");
                 status = data.getString("status");
+                cpu_usage=data.getString("cpu");
+                disk_usage=data.getString("mem");
+                mem_usage=data.getString("disk");
+                
     }
 
     public Pve2Api.PveParams getCreateParams() {
@@ -69,7 +76,9 @@ public class Container {
         return "cpus="+this.cpus+"\n"+
                 "disk="+this.disk+"\n"+"hostname="+this.hostname+"\n"+
                 "memory="+this.memory+"\n"+"status="+this.status+"\n"+
-                "ip_address="+this.ip_address;   
+                "ip_address="+this.ip_address+"\n"+" ----- Taux d'utilisation --------"+"\n"+
+                "cpu_usage="+this.cpu_usage+"\n"+"mem_usage="+this.mem_usage+"\n"+
+                "disk_usage="+this.disk_usage ;   
     }
            
 
