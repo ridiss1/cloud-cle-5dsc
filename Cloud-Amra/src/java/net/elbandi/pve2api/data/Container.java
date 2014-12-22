@@ -52,8 +52,8 @@ public class Container {
 		ip_address = data.getString("ip");
                 status = data.getString("status");
                 cpu_usage=data.getString("cpu");
-                disk_usage=data.getString("mem");
-                mem_usage=data.getString("disk");
+                disk_usage=data.getString("disk");
+                mem_usage=data.getString("mem");
                 
     }
 
