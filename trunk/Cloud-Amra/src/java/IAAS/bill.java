@@ -23,7 +23,7 @@ public class bill {
         "101","1","1","test2","512","test");
         ias.creerContainer(container, 19);*/
         
-        //System.out.println(ias.getContainer(100).toString());
+        System.out.println(ias.getContainer(101).toString());
         
         //System.out.println(ias.deleteContainer(100));
         
