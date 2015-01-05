@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import PAAS.Models.*;
 import java.util.HashMap;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -28,6 +29,7 @@ public class AuthentificationServlet extends HttpServlet{
     private static final String ATTR_ERROR_PASSWORD="password";
     private static final String ATTR_MESSAGE="Message";
     public static final String ATT_SESSION_USER = "sessionUser";
+    public static final String ATT_SESSION_LISTVM = "ListVm";
     private String nextPage;
     
     
@@ -49,7 +51,11 @@ public class AuthentificationServlet extends HttpServlet{
         Form form = new Form ();
         form.validation(login, password);
         message= form.getError();
-        User user = form.getUser();      
+        User user = form.getUser();
+        List <Vm> listVm = form.getListVm(user);
+        session.setAttribute( ATT_SESSION_LISTVM, listVm );
+        
+        form.close();
         
         if (message.get("connexion")!=null) {
             nextPage= "/index.jsp";
@@ -62,6 +68,7 @@ public class AuthentificationServlet extends HttpServlet{
             }
             else if (form.getType() == 2){
                 nextPage=VUE_ACCUEIL_PROFESSEUR;
+               
             }
         }
         

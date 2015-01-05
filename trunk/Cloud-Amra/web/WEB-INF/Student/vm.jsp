@@ -29,23 +29,7 @@
         <!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 
-        <script type="text/javascript">
-            //  function panel() {
-            var hidden = false;
-
-            $(document).on("click", "#expander", function () {
-                if (hidden) {
-                    $(".well").slideUp();
-                }
-                else {
-                    $(".well").slideDown();
-                }
-                hidden = !hidden;
-            });
-
-            }
-            // }
-        </script>    
+           
     </head>
     <body>
         <!-- Header -->

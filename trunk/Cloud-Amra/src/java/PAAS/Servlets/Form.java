@@ -6,7 +6,9 @@
 package PAAS.Servlets;
 
 import PAAS.Models.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -19,8 +21,21 @@ public class Form {
     private User user;
     private int type;
 
-    public Form() {
+   
+    
 
+    public Form() {
+        
+    }
+    
+    public List <Vm> getListVm (User user) {
+        List <Vm> listVm= null;
+        Factory factory= new Factory ();
+        factory.open();
+        listVm = factory.vmfindAllByUser(user);
+        factory.close();
+        return listVm;
+        
     }
 
     public void validation(String login, String password) {
@@ -32,8 +47,9 @@ public class Form {
 
     public void validationLogin(String login) {
         try {
-            Factory factory = new Factory();
+            Factory factory= new Factory ();
             factory.open();
+            
             User userLogin = factory.userFindByLogin(login);
             if (userLogin == null) {
                 error.put("login", "Merci de saisir un login valide");
@@ -48,7 +64,7 @@ public class Form {
 
     public void validationPassword(String password) {
         try {
-            Factory factory = new Factory();
+            Factory factory= new Factory ();
             factory.open();
             User userPassword = factory.userFindByPassword(password);
             if (userPassword == null) {
@@ -64,7 +80,8 @@ public class Form {
 
     public void validationConnexion(String login, String password) {
         try {
-            Factory factory = new Factory();
+            
+            Factory factory= new Factory ();
             factory.open();
             User userConnexion = factory.userFindByLoginPassword(login, password);
             if (userConnexion == null) {
@@ -111,6 +128,11 @@ public class Form {
     
     public String getErrorMail() {
         return this.errorMail;
+    }
+    
+    
+    public void close () {
+        //factory.close();
     }
 
 
