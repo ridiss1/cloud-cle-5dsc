@@ -9,19 +9,43 @@
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.scrolly.min.js"></script>
         <script src="js/jquery.scrollzer.min.js"></script>
         <script src="js/skel.min.js"></script>
         <script src="js/skel-layers.min.js"></script>
         <script src="js/init.js"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <noscript>
         <link rel="stylesheet" href="css/skel.css" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-wide.css" />
+        <link href="css/my_style.css" rel="stylesheet" type="text/css"/>
+
         </noscript>
         <!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+
+        <script type="text/javascript">
+            //  function panel() {
+            var hidden = false;
+
+            $(document).on("click", "#expander", function () {
+                if (hidden) {
+                    $(".well").slideUp();
+                }
+                else {
+                    $(".well").slideDown();
+                }
+                hidden = !hidden;
+            });
+
+            }
+            // }
+        </script>    
     </head>
     <body>
         <!-- Header -->
@@ -41,9 +65,9 @@
 
                     <ul>
                         <li><a href="accueil" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Accueil</span></a></li>
-                        <li><a href="profil" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Profil</span></a></li>
-                        <li><a href="vm" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Virtuel Machine</span></a></li>
-                        <li><a href="contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contact</span></a></li>
+
+                        <li><a class="active" href="vm" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Virtuel Machine</span></a></li>
+
                         <li><a href="connexion" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-power-off">Deconnexion</span></a></li>
                     </ul>
                 </nav>
@@ -53,74 +77,65 @@
         </div>
         <!-- Main -->
         <div id="main">
-            <!-- Vm -->
-            <section id="portfolio" class="two">
+
+            <section id="list_vm" class="vm">
                 <div class="container">
-
-                    <header>
-                        <h2>Portfolio</h2>
-                    </header>
-
-                    <p>Vitae natoque dictum etiam semper magnis enim feugiat convallis convallis
-                        egestas rhoncus ridiculus in quis risus amet curabitur tempor orci penatibus.
-                        Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis 
-                        fusce hendrerit lacus ridiculus.</p>
-
-                    <div class="row">
-                        <div class="4u">
-                            <article class="item">
-                                <a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-                                <header>
-                                    <h3>Ipsum Feugiat</h3>
-                                </header>
-                            </article>
-                            <article class="item">
-                                <a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-                                <header>
-                                    <h3>Rhoncus Semper</h3>
-                                </header>
-                            </article>
-                        </div>
-                        <div class="4u">
-                            <article class="item">
-                                <a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
-                                <header>
-                                    <h3>Magna Nullam</h3>
-                                </header>
-                            </article>
-                            <article class="item">
-                                <a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
-                                <header>
-                                    <h3>Natoque Vitae</h3>
-                                </header>
-                            </article>
-                        </div>
-                        <div class="4u">
-                            <article class="item">
-                                <a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
-                                <header>
-                                    <h3>Dolor Penatibus</h3>
-                                </header>
-                            </article>
-                            <article class="item">
-                                <a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
-                                <header>
-                                    <h3>Orci Convallis</h3>
-                                </header>
-                            </article>
-                        </div>
-                    </div>
+                    <a href="#" class="list-group-item">24*7 support</a>
+                    <a href="#" class="list-group-item">Free Window Space hosting</a>
+                    <a href="#" class="list-group-item">Number of Images</a>
+                    <a href="#" class="list-group-item">Renewal cost per year</a>
 
                 </div>
             </section>
+
+
+            <section id="content" class="one dark cover">
+
+                <div class="container">
+                    <table class="table table-hover">
+                        <caption>Hover Table Layout</caption>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>City</th>
+                                <th>Pincode</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tanmay</td>
+                                <td>Bangalore</td>
+                                <td>560001</td>
+                            </tr>
+                            <tr>
+                                <td>Sachin</td>
+                                <td>Mumbai</td>
+                                <td>400003</td>
+                            </tr>
+                            <tr>
+                                <td>Uma</td>
+                                <td>Pune</td>
+                                <td>411027</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </section>
+
+
+
         </div>
+
+
+
 
         <!-- Footer -->
         <div id="footer">
 
             <!-- Copyright -->
             <ul class="copyright">
-                <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                <li>&copy; Insa Toulouse. All rights reserved.</li>
             </ul>
 
         </div>
