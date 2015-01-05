@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  */
 public class AuthentificationServlet extends HttpServlet{
     private static final String VUE_ACCUEIL_STUDENT = "/WEB-INF/Student/accueil.jsp";
-    private static final String VUE_ACCUEIL_PROFESSEUR = "/WEB-INF/Professor/accueil.jsp";
+    private static final String VUE_ACCUEIL_PROFESSEUR = "/WEB-INF/Professor/accueilProf.jsp";
     private static final String VUE_ACCUEIL_ADMIN = "/WEB-INF/Admin/accueil.jsp";
     private static final String  ATTR_LOGIN="login";
     private static final String ATTR_PASWWORD="password";
@@ -59,6 +59,9 @@ public class AuthentificationServlet extends HttpServlet{
             session.setAttribute( ATT_SESSION_USER, user );
             if (form.getType()==3) {
                 nextPage=VUE_ACCUEIL_STUDENT;
+            }
+            else if (form.getType() == 2){
+                nextPage=VUE_ACCUEIL_PROFESSEUR;
             }
         }
         
