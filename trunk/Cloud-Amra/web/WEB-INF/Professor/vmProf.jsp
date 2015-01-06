@@ -71,10 +71,34 @@
 
             <section id="list_vm" class="vm">
                 <div class="container">
-                    <a href="#" class="list-group-item">24*7 support</a>
+                    <!-- <a href="#" class="list-group-item">24*7 support</a>
                     <a href="#" class="list-group-item">Free Window Space hosting</a>
                     <a href="#" class="list-group-item">Number of Images</a>
-                    <a href="#" class="list-group-item">Renewal cost per year</a>
+                    <a href="#" class="list-group-item">Renewal cost per year</a> -->
+                    
+                    <form method="post" action="vmProf">
+                            <select name="ram">
+                                <option>256</option>
+                                <option>512</option>
+                                <option>1000</option>
+                            </select>
+                            <select name="cpus">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                            <select name="disk">
+                                <option>5</option>
+                                <option>10</option>
+                                <option>15</option>
+                            </select>
+                            <select name="template">
+                                <c:forEach items="${sessionScope.ListeTemplate}" var="template">
+                                    <option>${template.libelle} </option> 
+                                </c:forEach>
+                            </select>
+                        <center> <input type="submit" value="CreerContainer"></center>
+                    </form>
 
                 </div>
             </section>
