@@ -787,4 +787,9 @@
 
 			form .erreur {
     color: #900;
+    
 }
+
+.centre {
+        text-align: center;
+    }

@@ -22,6 +22,30 @@ public class Container {
     private String storage;
     private String vmid; // id du container 
     private String cpus; // nombre de cpu
+
+    public String getCpu_usage() {
+        return cpu_usage;
+    }
+
+    public void setCpu_usage(String cpu_usage) {
+        this.cpu_usage = cpu_usage;
+    }
+
+    public String getMem_usage() {
+        return mem_usage;
+    }
+
+    public void setMem_usage(String mem_usage) {
+        this.mem_usage = mem_usage;
+    }
+
+    public String getDisk_usage() {
+        return disk_usage;
+    }
+
+    public void setDisk_usage(String disk_usage) {
+        this.disk_usage = disk_usage;
+    }
     private String disk; // taille disque en GB 
     private String hostname; 
     private String ip_address;

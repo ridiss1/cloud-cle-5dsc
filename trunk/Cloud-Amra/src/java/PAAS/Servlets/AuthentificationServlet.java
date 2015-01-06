@@ -14,6 +14,7 @@ import PAAS.Models.*;
 import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import net.elbandi.pve2api.data.Container;
 
 /**
  *
@@ -23,6 +24,7 @@ public class AuthentificationServlet extends HttpServlet{
     private static final String VUE_ACCUEIL_STUDENT = "/WEB-INF/Student/accueil.jsp";
     private static final String VUE_ACCUEIL_PROFESSEUR = "/WEB-INF/Professor/accueilProf.jsp";
     private static final String VUE_ACCUEIL_ADMIN = "/WEB-INF/Admin/accueil.jsp";
+     private static final String LISTE_CONTAINER= "ListContainer";
     private static final String  ATTR_LOGIN="login";
     private static final String ATTR_PASWWORD="password";
     private static final String ATTR_ERROR_LOGIN="login";
@@ -31,6 +33,7 @@ public class AuthentificationServlet extends HttpServlet{
     public static final String ATT_SESSION_USER = "sessionUser";
     public static final String ATT_SESSION_LISTVM = "ListVm";
     private String nextPage;
+    private List<Container> listContainer=null;
     
     
     
@@ -43,6 +46,7 @@ public class AuthentificationServlet extends HttpServlet{
      public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         nextPage=null;
        
+        /********************ALY NE TOUCHE PAS********************************************/
         HashMap <String,String> message = new HashMap <String,String> (); 
         String login=request.getParameter(ATTR_LOGIN).trim();
         String password=request.getParameter(ATTR_PASWWORD).trim();
@@ -52,11 +56,19 @@ public class AuthentificationServlet extends HttpServlet{
         form.validation(login, password);
         message= form.getError();
         User user = form.getUser();
+        
+       // session.setAttribute( ATT_SESSION_LISTVM, listVm );
+        
+        
+        /*************Get List Container*******************************/
         List <Vm> listVm = form.getListVm(user);
-        session.setAttribute( ATT_SESSION_LISTVM, listVm );
+        listContainer= form.getListContainer(listVm);
+        session.setAttribute( LISTE_CONTAINER, listContainer);
+        form.writeFile(listContainer);
         
         form.close();
         
+        /***********************************************************************************/
         if (message.get("connexion")!=null) {
             nextPage= "/index.jsp";
             

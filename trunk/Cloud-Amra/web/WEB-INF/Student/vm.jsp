@@ -16,6 +16,7 @@
         <script src="js/skel.min.js"></script>
         <script src="js/skel-layers.min.js"></script>
         <script src="js/init.js"></script>
+        <script src="js/Chart.js"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.js" type="text/javascript"></script>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -29,7 +30,7 @@
         <!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 
-           
+
     </head>
     <body>
         <!-- Header -->
@@ -64,16 +65,16 @@
 
             <section id="list_vm" class="vm">
                 <div class="container">
-                    <a href="#" class="list-group-item">24*7 support</a>
-                    <a href="#" class="list-group-item">Free Window Space hosting</a>
-                    <a href="#" class="list-group-item">Number of Images</a>
-                    <a href="#" class="list-group-item">Renewal cost per year</a>
+                    <c:forEach items="${sessionScope.ListContainer}" var="container">
+                        <a href="#" class="list-group-item">${container.hostname}</a>
+                    </c:forEach>
+                    
 
                 </div>
             </section>
 
 
-            <section id="content" class="one dark cover">
+            <section id="content">
 
                 <div class="container">
                     <table class="table table-hover">
@@ -105,6 +106,55 @@
                     </table>
 
                 </div>
+
+
+
+
+
+            </section>
+
+            <!--            <section id="graphe_ram" class="one dark cover centre">
+                            <header> <h1> RAM </h1> </header>
+                            <div class="container">
+                                <canvas id="chart-area" width="300" height="300"/>
+            
+                            </div>
+                            
+            
+                            
+            
+            
+                        </section>-->
+
+            <section id="graphe_cpu" class="one dark cover">
+
+                <div class="container">
+                    <table class="table table-hover">
+                        <caption>Hover Table Layout</caption>
+                        <thead>
+                            <tr>
+                                <th>RAM</th>
+                                <th>CPU</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><canvas id="chart-area" width="300" height="300"/></td>
+                                <td>lala</td>
+
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+
+
+
             </section>
 
 
@@ -123,6 +173,7 @@
             </ul>
 
         </div>
+        <script type="text/javascript" src="js/graphe.js"></script>
 
     </body>
 
