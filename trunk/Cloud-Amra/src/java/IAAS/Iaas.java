@@ -33,7 +33,7 @@ public class Iaas {
          * param3 = "pam"
          * param4 = mot de passe
          */
-        pve = new Pve2Api("10.201.2.5","root","pam","iaas2014");
+        pve = new Pve2Api("192.168.100.10","root","pam","pppppppp");
         try {
             pve.login();
         } catch (JSONException ex) {
