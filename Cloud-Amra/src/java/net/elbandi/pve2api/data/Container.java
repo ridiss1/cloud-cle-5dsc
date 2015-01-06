@@ -20,7 +20,7 @@ public class Container {
     
     private String ostemplate; // nom du fichier template utilisé
     private String storage;
-    private String vmid; // ide du container 
+    private String vmid; // id du container 
     private String cpus; // nombre de cpu
     private String disk; // taille disque en GB 
     private String hostname; 

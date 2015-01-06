@@ -94,7 +94,7 @@
                             </select>
                             <select name="template">
                                 <c:forEach items="${sessionScope.ListeTemplate}" var="template">
-                                    <option>${template.libelle} </option> 
+                                    <option>${template.alia} </option> 
                                 </c:forEach>
                             </select>
                         <center> <input type="submit" value="CreerContainer"></center>

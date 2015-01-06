@@ -99,6 +99,16 @@ public class Form {
         }
 
     }
+    
+     public List <Template> getListTemplate () {
+        List <Template> listTemplate= null;
+        Factory factory= new Factory ();
+        factory.open();
+        listTemplate = factory.templatefindAll();
+        factory.close();
+        return listTemplate;
+        
+    }
 
     /**
      * Valide l'adresse mail saisie.

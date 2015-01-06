@@ -75,6 +75,13 @@ public class Factory {
         return vm;
     }
     
+     public List<Template> templatefindAll () {
+        List <Template> templates=null;
+        Query query = em.createNamedQuery("Template.findAll");
+        templates= (List <Template>) query.getResultList(); 
+        return templates;
+    }
+    
     
     
     
