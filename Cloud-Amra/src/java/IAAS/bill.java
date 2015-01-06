@@ -18,18 +18,19 @@ public class bill {
         // POUR LES TESTS
         Iaas ias = new Iaas();
         
-        
         /*Container container = new Container("ubuntu-10.04-standard_10.04-4_i386.tar.gz",
         "101","1","1","test2","512","test");
         ias.creerContainer(container, 19);*/
         
-        System.out.println(ias.getContainer(101).toString());
+        //System.out.println(ias.getContainer(101).toString());
         
         //System.out.println(ias.deleteContainer(100));
         
         //System.out.println(ias.getConsole(101));
         
         //System.out.println(ias.getStatistics(101,"hour"));
+        
+        //System.out.println(System.getProperty("java.home"));
         
     }
     
