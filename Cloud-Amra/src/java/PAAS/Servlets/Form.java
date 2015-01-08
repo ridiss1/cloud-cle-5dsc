@@ -27,6 +27,51 @@ public class Form {
     private String errorMail;
     private User user;
     private int type;
+    private String start = "btn-lg active";
+    private String stop = "disabled";
+    private String console = "disabled";
+
+    public String getConsole() {
+        return console;
+    }
+
+    public void setConsole(String console) {
+        this.console = console;
+    }
+    private String startStatus = "NOK";
+    private String stopStatus = "NOK";
+
+    public String getStartStatus() {
+        return startStatus;
+    }
+
+    public void setStartStatus(String startStatus) {
+        this.startStatus = startStatus;
+    }
+
+    public String getStopStatus() {
+        return stopStatus;
+    }
+
+    public void setStopStatus(String stopStatus) {
+        this.stopStatus = stopStatus;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public String getStop() {
+        return stop;
+    }
+
+    public void setStop(String stop) {
+        this.stop = stop;
+    }
 
     public Form() {
 
@@ -103,15 +148,15 @@ public class Form {
         }
 
     }
-    
-     public List <Template> getListTemplate () {
-        List <Template> listTemplate= null;
-        Factory factory= new Factory ();
+
+    public List<Template> getListTemplate() {
+        List<Template> listTemplate = null;
+        Factory factory = new Factory();
         factory.open();
         listTemplate = factory.templatefindAll();
         factory.close();
         return listTemplate;
-        
+
     }
 
     /**
@@ -151,85 +196,91 @@ public class Form {
     public void writeFile(List<Container> listContainer) {
         PrintWriter ecrire;
         String nomFichier = "C:/Users/camara/Documents/NetBeansProjects/Cloud/trunk/Cloud-Amra/web/js/graphe.js";
-        
+
         try {
             ecrire = new PrintWriter(new BufferedWriter(new FileWriter(nomFichier)));
-            
+
             ecrire.println("window.onload = function(){");
             for (Container container : listContainer) {
-                String data="ramdata"+container.getVmid();
-                String ramUsage=container.getMem_usage();
-                String ramTotal=container.getMemory();
-                String memUsage=container.getDisk_usage();
-                String memTotal=container.getDisk();
-                String concav="";
-                String cpu=container.getCpus();
-                String cpuUsage=container.getCpu_usage();
-                /**************RAM******************************/
-                ecrire.println("var "+data+" = [");
+                String data = "ramdata" + container.getVmid();
+                String ramUsage = container.getMem_usage();
+                String ramTotal = container.getMemory();
+                String memUsage = container.getDisk_usage();
+                String memTotal = container.getDisk();
+                String concav = "";
+                String cpu = container.getCpus();
+                String cpuUsage = container.getCpu_usage();
+                /**
+                 * ************RAM*****************************
+                 */
+                ecrire.println("var " + data + " = [");
                 ecrire.println("{");
-                ecrire.println("value: "+ramUsage+",");
+                ecrire.println("value: " + ramUsage + ",");
                 ecrire.println("color:'#F7464A',");
                 ecrire.println("highlight: '#FF5A5E',");
                 ecrire.println("label: 'RAM Usage'");
                 ecrire.println("},");
 
                 ecrire.println("{");
-                ecrire.println("value: "+ramTotal+",");
+                ecrire.println("value: " + ramTotal + ",");
                 ecrire.println("color: '#4D5360',");
                 ecrire.println("highlight: '#616774',");
                 ecrire.println("label: 'RAM Total'");
                 ecrire.println("}");
                 ecrire.println("];");
-   
-                /**************CPU******************************/
-                 String data1="cpudata"+container.getVmid();
-                
-                ecrire.println("var "+data1+" = [");
+
+                /**
+                 * ************CPU*****************************
+                 */
+                String data1 = "cpudata" + container.getVmid();
+
+                ecrire.println("var " + data1 + " = [");
                 ecrire.println("{");
-                ecrire.println("value: "+cpuUsage+",");
+                ecrire.println("value: " + cpuUsage + ",");
                 ecrire.println("color:'#F7464A',");
                 ecrire.println("highlight: '#FF5A5E',");
                 ecrire.println("label: 'CPU Usage'");
                 ecrire.println("},");
 
                 ecrire.println("{");
-                ecrire.println("value: "+cpu+",");
+                ecrire.println("value: " + cpu + ",");
                 ecrire.println("color: '#4D5360',");
                 ecrire.println("highlight: '#616774',");
                 ecrire.println("label: 'CPU Total'");
                 ecrire.println("}");
                 ecrire.println("];");
-                
-                /**************DISK******************************/
-                String data2="memdata"+container.getVmid();
-                ecrire.println("var "+data2+" = [");
+
+                /**
+                 * ************DISK*****************************
+                 */
+                String data2 = "memdata" + container.getVmid();
+                ecrire.println("var " + data2 + " = [");
                 ecrire.println("{");
-                ecrire.println("value: "+memUsage+",");
+                ecrire.println("value: " + memUsage + ",");
                 ecrire.println("color:'#F7464A',");
                 ecrire.println("highlight: '#FF5A5E',");
                 ecrire.println("label: 'Disk Usage'");
                 ecrire.println("},");
 
                 ecrire.println("{");
-                ecrire.println("value: "+memTotal+",");
+                ecrire.println("value: " + memTotal + ",");
                 ecrire.println("color: '#4D5360',");
                 ecrire.println("highlight: '#616774',");
                 ecrire.println("label: 'Disk Total'");
                 ecrire.println("}");
                 ecrire.println("];");
-                
-                ecrire.println("var ctx = document.getElementById('"+data+"').getContext('2d');");
-                ecrire.println("window.myPie"+data+" = new Chart(ctx).Pie("+data+");");
-              
-                ecrire.println("var ctx = document.getElementById('"+data1+"').getContext('2d');");
-                ecrire.println("window.myPie"+data1+" = new Chart(ctx).Pie("+data1+");");
-                
-                ecrire.println("var ctx = document.getElementById('"+data2+"').getContext('2d');");
-                ecrire.println("window.myPie"+data2+" = new Chart(ctx).Pie("+data2+");");
-               
+
+                ecrire.println("var ctx = document.getElementById('" + data + "').getContext('2d');");
+                ecrire.println("window.myPie" + data + " = new Chart(ctx).Pie(" + data + ");");
+
+                ecrire.println("var ctx = document.getElementById('" + data1 + "').getContext('2d');");
+                ecrire.println("window.myPie" + data1 + " = new Chart(ctx).Pie(" + data1 + ");");
+
+                ecrire.println("var ctx = document.getElementById('" + data2 + "').getContext('2d');");
+                ecrire.println("window.myPie" + data2 + " = new Chart(ctx).Pie(" + data2 + ");");
+
             }
-             ecrire.println("};");
+            ecrire.println("};");
 
             ecrire.close();
 
@@ -242,32 +293,52 @@ public class Form {
     public ArrayList<Container> getListContainer(List<Vm> listVm) {
 
         ArrayList<Container> listCont = new ArrayList<Container>();
-        String [] hostname ={"vm Cloud","vm M2M"};
-        String [] ram ={"400","460"};
-        String [] ramUsage ={"210","150"};
-        String [] cpu ={"540","430"};
-        String [] cpuUsage ={"70","180"};
-        String [] mem ={"600","510"};
-        String [] memUsage ={"10","100"};
-        String [] id ={"110","150"};
-        
-        int i=0;
+        String[] hostname = {"vm Cloud", "vm M2M"};
+        String[] ram = {"400", "460"};
+        String[] ramUsage = {"210", "150"};
+        String[] cpu = {"540", "430"};
+        String[] cpuUsage = {"70", "180"};
+        String[] mem = {"600", "510"};
+        String[] memUsage = {"10", "100"};
+        String[] id = {"110", "150"};
+
+        int i = 0;
         //for (Vm vm : listVm) {
-            //int idVm = vm.getId();
-         int idVm = listVm.get(0).getId();
-   
-            String vmid = Integer.toString(idVm);
-            //String password = vm.getPassword();
-            String password = listVm.get(0).getPassword();
-            Container container = null;
-            //container = new Container(id[i],hostname[i],ram[i],ramUsage[i],cpu[i],cpuUsage[i]);
-            container = new Container(id[0],hostname[0],ram[0],ramUsage[0],cpu[0],cpuUsage[0],mem[0],memUsage[0]);
-            listCont.add(container);
+        //int idVm = vm.getId();
+        int idVm = listVm.get(0).getId();
+
+        String vmid = Integer.toString(idVm);
+        //String password = vm.getPassword();
+        String password = listVm.get(0).getPassword();
+        Container container = null;
+        //container = new Container(id[i],hostname[i],ram[i],ramUsage[i],cpu[i],cpuUsage[i]);
+        container = new Container(id[0], hostname[0], ram[0], ramUsage[0], cpu[0], cpuUsage[0], mem[0], memUsage[0]);
+        listCont.add(container);
           //  i++;
-      //  }
+        //  }
 
         return listCont;
 
+    }
+
+    public void startVm() {
+        String status = this.startStatus;
+        if (!status.equals("NOK")) {
+            this.start = "disabled";
+            this.stop = "btn-lg active";
+            this.console = "btn-lg active";
+        }
+        
+    }
+
+    public void stopVm() {
+        String status = this.stopStatus;
+        if (!status.equals("NOK")) {
+            this.stop = "disabled";
+            this.start = "btn-lg active";
+            this.console = "disabled";
+        }
+        
     }
 
 }

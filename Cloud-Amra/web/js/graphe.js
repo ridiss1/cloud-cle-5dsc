@@ -32,13 +32,13 @@ var memdata110 = [
 value: 10,
 color:'#F7464A',
 highlight: '#FF5A5E',
-label: 'Memory Usage'
+label: 'Disk Usage'
 },
 {
 value: 600,
 color: '#4D5360',
 highlight: '#616774',
-label: 'Memory Total'
+label: 'Disk Total'
 }
 ];
 var ctx = document.getElementById('ramdata110').getContext('2d');

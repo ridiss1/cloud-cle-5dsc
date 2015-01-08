@@ -56,19 +56,18 @@
         <div id="main">
             <!-- Intro -->
             <section id="top" class="one dark cover">
-                <div class="container">
+                <div class="container" >
 
-                    <header>
+                    <header >
                         <!-- Logo -->
-                        <div id="accueil">
+                        <div align="center">
                                 <h1><a href="accueil">CLE</a></h1>
-                                <p>Cloud based Learning Environnement</p>
+                                <p >Cloud based Learning Environnement</p>
+                                <a href="vm" class="button scrolly">Virtuel Machine</a>
                         </div>
                     </header>
 
-                    <footer>
-                        <a href="vm" class="button scrolly">Virtuel Machine</a>
-                    </footer>
+                    
 
                 </div>
             </section>
