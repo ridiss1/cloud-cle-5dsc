@@ -293,7 +293,7 @@ public class Form {
 
     public List<Container> getListContainer(List<Vm> listVm) {
 
-        List<Container> listCont = null;
+        List<Container> listCont = new ArrayList ();
         String[] hostname = {"vm Cloud", "vm M2M"};
         String[] ram = {"400", "460"};
         String[] ramUsage = {"210", "150"};

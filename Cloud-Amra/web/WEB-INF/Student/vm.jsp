@@ -158,7 +158,9 @@
                         </table>
 
                     </div>
-                    <div class="container">
+                                    </br>
+                                    
+                    <div class="container four dark" id="status">
                         <table class="table table-bordered">
                             <caption class="titrestat"><h3>STATUS</h3></caption>
                             <thead>
@@ -168,13 +170,13 @@
                                 
                                 <tr>
                                     <td>Start</td>
-                                    <td><b>${statusStart}</b></td>
+                                    <td>${statusStart}</td>
                                     
                                 </tr>
                                 
                                 <tr>
                                     <td>Stop</td>
-                                    <td><b>${statusStop}</b></td>
+                                    <td>${statusStop}</td>
                                     
                                 </tr>
                                 
