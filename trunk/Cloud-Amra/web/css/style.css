@@ -784,3 +784,24 @@
 			{
 				background-color: #e8edec;
 			}
+                        .table {
+                            border-width: 3px;
+                            border-style: solid;
+                            
+                        }  
+                        
+                        .titrestat {
+                            color : #fff;
+                            
+                        }
+                        .backvm {
+                            background  : #ffffff;
+                            
+                        }
+                        .my_list_vm {
+                            background  : #f5fafa;
+                        }
+                        #alignright {
+                            text-align: right;
+                            padding-right:  100px;                      }
+                       

@@ -55,6 +55,18 @@ public class Container {
     private String cpu_usage;
     private String mem_usage;
     private String disk_usage;
+    
+    public Container (String id,String hostname, String ram, String ramUsage, String cpu, String cpuUsage,String mem, String memUsage) {
+        this.vmid=id;
+        this.memory=ram;
+        this.mem_usage=ramUsage;
+        this.cpus=cpu;
+        this.cpu_usage=cpuUsage;
+        this.hostname=hostname;
+        this.disk=mem;
+        this.disk_usage=memUsage;
+        
+    }
 
     // Création
     public Container(String ostemplate, String vmid, String cpus, String disk, String hostname, String memory, String password) {
