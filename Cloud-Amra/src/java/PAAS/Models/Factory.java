@@ -5,6 +5,7 @@
  */
 package PAAS.Models;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -66,12 +67,14 @@ public class Factory {
         
     }
     
-    public List<Vm> vmfindAllByUser (User user) {
-        List <Vm> vm=null;
+    public List <Vm> vmfindAllByUser (User user) {
+        //ArrayList <Vm> vm= new ArrayList <Vm> ();
+        List <Vm> vm= null;
         String requete= "SELECT v FROM Vm v WHERE v.user =:id";
         Query query = em.createQuery(requete);
         query.setParameter("id", user);
-        vm= (List <Vm>) query.getResultList(); 
+        if (query.getResultList()!=null)
+            vm= (List <Vm>) query.getResultList(); 
         return vm;
     }
     
