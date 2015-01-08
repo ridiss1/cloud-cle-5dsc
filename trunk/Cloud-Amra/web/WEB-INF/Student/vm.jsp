@@ -69,7 +69,7 @@
                         Liste des machines virtuelles
                     </a>
                     <c:forEach items="${sessionScope.ListContainer}" var="container">
-                        <a href="#" class="list-group-item">${container.hostname}</a>
+                        <a href="#${container.vmid}" class="list-group-item">${container.hostname}</a>
                     </c:forEach>
 
 
@@ -78,25 +78,37 @@
             <c:forEach items="${sessionScope.ListContainer}" var="container">
 
                 <section id="content${container.vmid}" class="backvm">
-                    <div  class="container" >
-                        <p id="alignright">
-                            <a class="btn btn-default btn-lg active" href="#" role="button">Start</a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a class="btn btn-default btn-lg active" href="#" role="button">Console</a>
-                        </p>
 
+                    <div  class="container" id ="${container.vmid}">
+                        <nav class="navbar navbar-default" role="navigation">
+                            <div class="navbar-header">
+                                <b><a class="navbar-brand" >${container.hostname}</a></b>
+                            </div>
+
+                            <div id="alignright" class="navbar-right">
+
+                                <a class="btn btn-default ${sessionScope.start}" href="vm?start=0" role="button"><span class="icon fa-play">&nbsp;&nbsp;Start</span></a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-default ${sessionScope.stop}" href="vm?stop=1" role="button"><span class="icon fa-power-off">&nbsp;&nbsp;Stop</span></a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-default ${console}" href="#" role="button"><span class="icon fa-desktop">&nbsp;&nbsp;Console</span></a>
+
+
+                            </div>
+
+                        </nav>
                     </div>
+
 
 
                     <div  class="container">
 
-                        <table class="table table-hover">
-                            <caption><h1>Vm : </h1></caption>
+                        <table class="table table-bordered">
+
                             <thead>
                                 <tr>
                                     <th>Hostname</th>
                                     <th>${container.hostname}</th>
-                                    <th>&nbsp;&nbsp;</th>
 
                                 </tr>
                             </thead>
@@ -104,19 +116,15 @@
                                 <tr>
                                     <td>Vmid</td>
                                     <td>${container.vmid}</td>
-                                    <td>&nbsp;&nbsp;</td>
-
                                 </tr>
                                 <tr>
                                     <td>Address</td>
                                     <td></td>
-                                    <td>&nbsp;&nbsp;</td>
-
                                 </tr>
-                                
-                                
-                                
-                                
+
+
+
+
                             </tbody>
                         </table>
 
@@ -127,8 +135,8 @@
                 <section id="graphe_cpu${container.vmid}" class="one dark cover">
 
                     <div id="tabstat" class="container">
-                        <table class="table table-hover">
-                            <caption class="titrestat"><h1>MEMORY</h1></caption>
+                        <table class="table table-bordered">
+                            <caption class="titrestat"><h3>MEMORY</h3></caption>
                             <thead>
                                 <tr>
                                     <th>RAM</th>
@@ -150,8 +158,35 @@
                         </table>
 
                     </div>
+                    <div class="container">
+                        <table class="table table-bordered">
+                            <caption class="titrestat"><h3>STATUS</h3></caption>
+                            <thead>
+                                
+                            </thead>
+                            <tbody>
+                                
+                                <tr>
+                                    <td>Start</td>
+                                    <td>${statusStart}</td>
+                                    
+                                </tr>
+                                
+                                <tr>
+                                    <td>Stop</td>
+                                    <td>${statusStop}</td>
+                                    
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+
+
+                    </div>
+
 
                 </section>
+
             </c:forEach>
 
 
