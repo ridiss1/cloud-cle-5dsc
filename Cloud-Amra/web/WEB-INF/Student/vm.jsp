@@ -168,13 +168,13 @@
                                 
                                 <tr>
                                     <td>Start</td>
-                                    <td>${statusStart}</td>
+                                    <td><b>${statusStart}</b></td>
                                     
                                 </tr>
                                 
                                 <tr>
                                     <td>Stop</td>
-                                    <td>${statusStop}</td>
+                                    <td><b>${statusStop}</b></td>
                                     
                                 </tr>
                                 
