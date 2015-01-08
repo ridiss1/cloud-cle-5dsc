@@ -77,11 +77,12 @@ public class Form {
 
     }
 
-    public List<Vm> getListVm(User user) {
-        List<Vm> listVm = null;
+    public List <Vm> getListVm(User user) {
+        List <Vm> listVm = null;
         Factory factory = new Factory();
         factory.open();
-        listVm = factory.vmfindAllByUser(user);
+        if (factory.vmfindAllByUser(user)!=null)
+            listVm = (List<Vm>) factory.vmfindAllByUser(user);
         factory.close();
         return listVm;
 
@@ -290,9 +291,9 @@ public class Form {
 
     }
 
-    public ArrayList<Container> getListContainer(List<Vm> listVm) {
+    public List<Container> getListContainer(List<Vm> listVm) {
 
-        ArrayList<Container> listCont = new ArrayList<Container>();
+        List<Container> listCont = null;
         String[] hostname = {"vm Cloud", "vm M2M"};
         String[] ram = {"400", "460"};
         String[] ramUsage = {"210", "150"};
@@ -305,6 +306,7 @@ public class Form {
         int i = 0;
         //for (Vm vm : listVm) {
         //int idVm = vm.getId();
+        
         int idVm = listVm.get(0).getId();
 
         String vmid = Integer.toString(idVm);
