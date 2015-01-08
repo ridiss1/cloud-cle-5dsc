@@ -63,99 +63,96 @@
         <!-- Main -->
         <div id="main">
 
-            <section id="list_vm" class="vm">
+            <section id="listvm" class="my_list_vm">
                 <div class="container">
+                    <a href="#" class="list-group-item active">
+                        Liste des machines virtuelles
+                    </a>
                     <c:forEach items="${sessionScope.ListContainer}" var="container">
                         <a href="#" class="list-group-item">${container.hostname}</a>
                     </c:forEach>
-                    
+
 
                 </div>
             </section>
+            <c:forEach items="${sessionScope.ListContainer}" var="container">
+
+                <section id="content${container.vmid}" class="backvm">
+                    <div  class="container" >
+                        <p id="alignright">
+                            <a class="btn btn-default btn-lg active" href="#" role="button">Start</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a class="btn btn-default btn-lg active" href="#" role="button">Console</a>
+                        </p>
+
+                    </div>
 
 
-            <section id="content">
+                    <div  class="container">
 
-                <div class="container">
-                    <table class="table table-hover">
-                        <caption>Hover Table Layout</caption>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>City</th>
-                                <th>Pincode</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tanmay</td>
-                                <td>Bangalore</td>
-                                <td>560001</td>
-                            </tr>
-                            <tr>
-                                <td>Sachin</td>
-                                <td>Mumbai</td>
-                                <td>400003</td>
-                            </tr>
-                            <tr>
-                                <td>Uma</td>
-                                <td>Pune</td>
-                                <td>411027</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <table class="table table-hover">
+                            <caption><h1>Vm : </h1></caption>
+                            <thead>
+                                <tr>
+                                    <th>Hostname</th>
+                                    <th>${container.hostname}</th>
+                                    <th>&nbsp;&nbsp;</th>
 
-                </div>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Vmid</td>
+                                    <td>${container.vmid}</td>
+                                    <td>&nbsp;&nbsp;</td>
 
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td></td>
+                                    <td>&nbsp;&nbsp;</td>
 
+                                </tr>
+                                
+                                
+                                
+                                
+                            </tbody>
+                        </table>
 
+                    </div>
 
+                </section>
 
-            </section>
+                <section id="graphe_cpu${container.vmid}" class="one dark cover">
 
-            <!--            <section id="graphe_ram" class="one dark cover centre">
-                            <header> <h1> RAM </h1> </header>
-                            <div class="container">
-                                <canvas id="chart-area" width="300" height="300"/>
-            
-                            </div>
-                            
-            
-                            
-            
-            
-                        </section>-->
+                    <div id="tabstat" class="container">
+                        <table class="table table-hover">
+                            <caption class="titrestat"><h1>MEMORY</h1></caption>
+                            <thead>
+                                <tr>
+                                    <th>RAM</th>
+                                    <th>CPU</th>
+                                    <th>DISK</th>
 
-            <section id="graphe_cpu" class="one dark cover">
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><canvas id="ramdata${container.vmid}" width="300" height="300"/></td>
+                                    <td><canvas id="cpudata${container.vmid}" width="300" height="300"/></td>
+                                    <td><canvas id="memdata${container.vmid}" width="300" height="300"/></td>
 
-                <div class="container">
-                    <table class="table table-hover">
-                        <caption>Hover Table Layout</caption>
-                        <thead>
-                            <tr>
-                                <th>RAM</th>
-                                <th>CPU</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><canvas id="chart-area" width="300" height="300"/></td>
-                                <td>lala</td>
-
-                            </tr>
+                                </tr>
 
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
 
-                </div>
+                    </div>
 
-
-
-
-
-            </section>
+                </section>
+            </c:forEach>
 
 
 
