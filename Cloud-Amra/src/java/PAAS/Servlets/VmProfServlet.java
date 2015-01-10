@@ -21,7 +21,7 @@ import net.elbandi.pve2api.data.Container;
  * @author metbill
  */
 public class VmProfServlet extends HttpServlet{
-    
+    // gggggg
      private static final String VUE_VM_PROF = "/WEB-INF/Professor/vmProf.jsp";
       private static final String ATTR_LISTE_TEMPLATE="ListeTemplate";
     
