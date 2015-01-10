@@ -27,38 +27,6 @@ public class IaaSManager {
     private int port = 22;
     
     
-    public void createTemplate(int containerID, int userID, String comments) throws JSchException, InterruptedException{
-        JSch jsch = new JSch();
-        String command = "/root/scripts/create_template.sh "+containerID+" "+userID+ " "+"\""+comments+"\""; 
-        //String command = "/root/scripts/create_template.sh "+containerID+" "+userID+ " "+comments;
-        System.out.println(command);
-        Session  session = jsch.getSession(this.user,this.host,this.port);
-         
-         session.setPassword(pwd);
-         
-         session.setConfig("StrictHostKeyChecking", "no");
-      
-         session.connect();
-         
-         Channel channel = session.openChannel("exec");
-         ((ChannelExec) channel).setCommand(command);
-         
-         
-         InputStream is = new ByteArrayInputStream(command.getBytes());
-         channel.setInputStream(is);
-         
-         System.out.println(is);
-         channel.setExtOutputStream(System.out);
-         
-         channel.connect(15*1000);
-         
-         Thread.sleep(3*1000);
-         
-         channel.disconnect();
-         session.disconnect();
-    }
-    
-    
     public void createCustomerTemplate (int containerID, int userID, String comments) throws JSchException, IOException {
 
         JSch jsch = new JSch();
