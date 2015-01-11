@@ -73,8 +73,22 @@ public class Factory {
         String requete= "SELECT v FROM Vm v WHERE v.user =:id";
         Query query = em.createQuery(requete);
         query.setParameter("id", user);
-        if (query.getResultList()!=null)
+        if (query.getResultList()!=null){
             vm= (List <Vm>) query.getResultList(); 
+        }
+            
+        return vm;
+    }
+    
+        
+    public List <Vm> vmfindAllByProf (User user) {
+        List <Vm> vm= null;
+        Query query = em.createNamedQuery("Vm.findByProf");
+        query.setParameter("prof", 6);
+        if (query.getResultList()!=null){
+            vm= (List <Vm>) query.getResultList();
+        }
+            
         return vm;
     }
     
@@ -117,11 +131,12 @@ public class Factory {
         student = (User) query.getSingleResult();
         return student;
     }
-    public void vmAddForUser(User user, Groupe groupe, String password){
+    public void vmAddForUser(User user, Groupe groupe, String password, int idProf){
         Vm vm = new Vm();
         vm.setUser(user);
         vm.setGroupe(groupe);
         vm.setPassword(password);
+        vm.setProf(idProf);
         em.persist(vm);
         
     }

@@ -39,7 +39,50 @@ public class AuthentificationServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         nextPage = null;
-        this.getServletContext().getRequestDispatcher(VUE_ACCUEIL_STUDENT).forward(request, response);
+        HttpSession session = request.getSession();
+        Form form = new Form();
+        HashMap<String, String> message = new HashMap<String, String>();
+        message = form.getError();
+        if (message.get("connexion") != null) {
+            nextPage = "/index.jsp";
+
+        } else {
+            User user = (User) session.getAttribute(ATT_SESSION_USER);
+
+            /**
+             * ***********ETUDIANT***************************************************************
+             */
+            if (user.getType() == 3) {
+                /**
+                 * ***********Get List Container******************************
+                 */
+                
+                List<Vm> listVm = form.getListVm(user);
+
+                if (listVm.size() != 0) {
+                    listContainer = form.getListContainer(listVm);
+                    session.setAttribute(LISTE_CONTAINER, listContainer);
+                    form.writeFile(listContainer);
+
+                }
+                nextPage = VUE_ACCUEIL_STUDENT;
+            }
+
+            /**
+             * ***********PROFESSOR***************************************************************
+             */
+            if (user.getType() == 2) {
+                nextPage = VUE_ACCUEIL_PROFESSEUR;
+            }
+
+            /**
+             * ***********ADMIN***************************************************************
+             */
+            if (user.getType() == 1) {
+                nextPage = VUE_ACCUEIL_ADMIN;
+            }
+        }
+        this.getServletContext().getRequestDispatcher(nextPage).forward(request, response);
 
     }
 

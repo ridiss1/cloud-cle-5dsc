@@ -75,7 +75,7 @@
                     <a href="#" class="list-group-item">Free Window Space hosting</a>
                     <a href="#" class="list-group-item">Number of Images</a>
                     <a href="#" class="list-group-item">Renewal cost per year</a> -->
-                    
+                    <h1>Creation d'un VM</h1>
                     <form method="post" action="vmProf">
                             <h3>RAM:</h3>
                             <select name="ram">
@@ -119,7 +119,7 @@
                             <br/>
                             <h3>Mot de passe:</h3>
                             <input type="password" name="passwordDefault" class="form-control input-lg" placeholder="Password">
-                        <center> <input type="submit" value="CreerContainer"></center>
+                        <center> <input type="submit" name="actionAdd" value="CreerContainer"></center>
                     </form>
 
                 </div>
@@ -129,34 +129,34 @@
             <section id="content" class="one dark cover">
 
                 <div class="container">
-                    <table class="table table-hover">
-                        <caption>Hover Table Layout</caption>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>City</th>
-                                <th>Pincode</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tanmay</td>
-                                <td>Bangalore</td>
-                                <td>560001</td>
-                            </tr>
-                            <tr>
-                                <td>Sachin</td>
-                                <td>Mumbai</td>
-                                <td>400003</td>
-                            </tr>
-                            <tr>
-                                <td>Uma</td>
-                                <td>Pune</td>
-                                <td>411027</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+                    <!--<form method="post" action="vmProf">-->
+                        <table class="table table-hover">
+                            <caption>Liste VMs créés</caption>
+                            <thead>
+                                <tr>
+                                    <th>VMid</th>
+                                    <th>Etudiant</th>
+                                    <th>Groupe</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${sessionScope.ListeVM}" var="VM">
+                                    <tr>
+                                        <td>${VM.id}</td>
+                                        <td>${VM.user.nom}</td>
+                                        <td>${VM.groupe.libelle}</td>
+                                        <td><a href="vmProfModify" id="top-link" name="actionChange" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Modify</span></a></td>
+                                        <!--
+                                        <td>
+                                            <input type="submit" name="actionUpdate" value="UpdateContainer">
+                                            <input type="submit" name="actionDelete" value="SupprimerContainer">
+                                        </td>-->
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>                                                      
+                    <!--</form>-->
                 </div>
             </section>
 

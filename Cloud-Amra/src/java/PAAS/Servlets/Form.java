@@ -77,24 +77,50 @@ public class Form {
 
     }
     
-    public boolean addVM(User user, Groupe groupe, String password){
+        
+    /**
+     * Ajouter un VM pour un etudiant dans un groupe.
+     */
+    public boolean addVM(User user, Groupe groupe, String password, int idProf){
         Factory factory = new Factory();
         factory.open();
-        factory.vmAddForUser(user, groupe, password);
+        factory.vmAddForUser(user, groupe, password, idProf);
         factory.close();
         return true;
     }
+        
+    /**
+     * Recuperer la liste des VMs.
+     */
     public List <Vm> getListVm(User user) {
         List <Vm> listVm = null;
         Factory factory = new Factory();
         factory.open();
-        if (factory.vmfindAllByUser(user)!=null)
+        if (factory.vmfindAllByUser(user)!=null){
             listVm = (List<Vm>) factory.vmfindAllByUser(user);
+        }
         factory.close();
         return listVm;
 
     }
-    
+
+    /**
+     * Recuperer la liste des VMs.
+     */
+    public List<Vm> getListVmByProf(User user) {
+        List<Vm> listVm = null;
+        Factory factory = new Factory();
+        factory.open();
+        if (factory.vmfindAllByProf(user)!=null){
+            listVm = (List<Vm>) factory.vmfindAllByProf(user);  
+        }
+        factory.close();
+        return listVm;
+
+    }    
+    /**
+     * Recuperer la liste des groupes.
+     */
     public List<Groupe> getListGroupe(){
         List<Groupe> listGroupe = null;
         Factory factory = new Factory();
@@ -106,6 +132,10 @@ public class Form {
         return listGroupe;
     }
     
+        
+    /**
+     * Recuperer le groupe avec sa libelle.
+     */
     public Groupe getGroupeByLibelle(String groupeName){
         Factory factory = new Factory();
         Groupe groupe = null;
@@ -116,7 +146,11 @@ public class Form {
         factory.close();
         return groupe;
     }
-    
+
+        
+    /**
+     * Recuperer la liste des etudiants du groupe.
+     */
     public List<UserGroupe> getListStudentByGroupe(Groupe groupe){
         List<UserGroupe> listIdStudent = null;
         Factory factory = new Factory();
@@ -129,6 +163,10 @@ public class Form {
         return listIdStudent;
     }
     
+        
+    /**
+     * Recuperer l'etudiant du groupe.
+     */
     public User getStudentInGroupe(UserGroupe userGroupe){
         User student = null;
         Factory factory = new Factory();
@@ -139,6 +177,11 @@ public class Form {
         factory.close();
         return student;
     }
+    
+        
+    /**
+     * Recuperer le VM avec l'idEtudiant et l'idGroupe.
+     */
     public Vm getVmByStudentAndGroupe(User user,Groupe groupe){
         Vm vm=null;
         Factory factory = new Factory();
@@ -149,6 +192,7 @@ public class Form {
         factory.close();
         return vm;
     }
+    
     public void validation(String login, String password) {
         validationLogin(login);
         validationPassword(password);
@@ -188,7 +232,10 @@ public class Form {
         }
 
     }
-
+        
+    /**
+     * Valide la connexion.
+     */
     public void validationConnexion(String login, String password) {
         try {
 
@@ -210,7 +257,10 @@ public class Form {
         }
 
     }
-
+    
+    /**
+     * Recuperer la liste des templates.
+     */
     public List<Template> getListTemplate() {
         List<Template> listTemplate = null;
         Factory factory = new Factory();
