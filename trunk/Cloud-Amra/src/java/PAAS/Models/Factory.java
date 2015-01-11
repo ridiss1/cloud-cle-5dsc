@@ -85,8 +85,56 @@ public class Factory {
         return templates;
     }
     
+    public List<Groupe> groupefindAll(){
+        List<Groupe> groupes=null;
+        Query query = em.createNamedQuery("Groupe.findAll");
+        groupes = (List<Groupe>) query.getResultList();
+        return groupes;
+    }
     
+    public Groupe groupefindByLibelle(String groupeName){
+        Groupe groupe=null;
+        Query query = em.createNamedQuery("Groupe.findByLibelle");
+        query.setParameter("libelle", groupeName);
+        groupe = (Groupe) query.getSingleResult();
+        return groupe;
+    }
     
+    public List<UserGroupe> studentfindAllByGroupe(Groupe groupe){
+        List<UserGroupe> idStudents=null;
+        String req = "SELECT u FROM UserGroupe u WHERE u.groupe = :groupe"; 
+        Query query = em.createQuery(req);  
+        query.setParameter("groupe", groupe);       
+        idStudents = (List<UserGroupe>) query.getResultList();
+        
+        return idStudents;
+    }
+    
+    public User studentfindInGroupe(UserGroupe userGroupe){
+        User student = null;
+        Query query = em.createNamedQuery("User.findById");
+        query.setParameter("id", (Integer)userGroupe.getUser().getId());
+        student = (User) query.getSingleResult();
+        return student;
+    }
+    public void vmAddForUser(User user, Groupe groupe, String password){
+        Vm vm = new Vm();
+        vm.setUser(user);
+        vm.setGroupe(groupe);
+        vm.setPassword(password);
+        em.persist(vm);
+        
+    }
+    
+    public Vm vmfindByStudentAndGroupe(User user, Groupe groupe){
+        Vm vm = null;
+        String req = "SELECT v FROM Vm v WHERE v.user = :user AND v.groupe = :groupe";
+        Query query = em.createQuery(req);
+        query.setParameter("user", user);
+        query.setParameter("groupe", groupe);
+        vm = (Vm) query.getSingleResult();
+        return vm;
+    }
     
 
     public void close() {

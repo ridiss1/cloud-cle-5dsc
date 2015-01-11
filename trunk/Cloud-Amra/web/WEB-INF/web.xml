@@ -9,19 +9,37 @@
         <servlet-name>VmStudentServlet</servlet-name>
         <servlet-class>PAAS.Servlets.VmStudentServlet</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>VmProfServlet</servlet-name>
+        <servlet-class>PAAS.Servlets.VmProfServlet</servlet-class>
+    </servlet>
+    
     <servlet>
         <servlet-name>DeconnexionStudentServlet</servlet-name>
         <servlet-class>PAAS.Servlets.DeconnexionStudentServlet</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>AuthentificationServlet</servlet-name>
         <url-pattern>/accueil</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>
+        <servlet-name>AuthentificationServlet</servlet-name>
+        <url-pattern>/accueilProf</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
         <servlet-name>VmStudentServlet</servlet-name>
         <url-pattern>/vm</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>VmProfServlet</servlet-name>
+        <url-pattern>/vmProf</url-pattern>
+    </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>DeconnexionStudentServlet</servlet-name>
         <url-pattern>/connexion</url-pattern>
