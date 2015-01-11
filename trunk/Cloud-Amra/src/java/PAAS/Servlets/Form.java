@@ -27,6 +27,7 @@ public class Form {
     private String errorMail;
     private User user;
     private int type;
+       
     private String start = "btn-lg active";
     private String stop = "disabled";
     private String console = "disabled";
@@ -56,22 +57,22 @@ public class Form {
     public void setConsole(String console) {
         this.console = console;
     }
-    private String startStatus = "NOK";
-    private String stopStatus = "NOK";
+    private boolean startStatus = false;
+    private boolean stopStatus = false;
 
-    public String getStartStatus() {
+    public boolean getStartStatus() {
         return startStatus;
     }
 
-    public void setStartStatus(String startStatus) {
+    public void setStartStatus(boolean startStatus) {
         this.startStatus = startStatus;
     }
 
-    public String getStopStatus() {
+    public boolean getStopStatus() {
         return stopStatus;
     }
 
-    public void setStopStatus(String stopStatus) {
+    public void setStopStatus(boolean stopStatus) {
         this.stopStatus = stopStatus;
     }
 
@@ -475,8 +476,8 @@ public class Form {
     }
 
     public void startVm() {
-        String status = this.startStatus;
-        if (!status.equals("NOK")) {
+        boolean status = this.startStatus;
+        if (status) {
             this.start = "disabled";
             this.stop = "btn-lg active";
             this.console = "btn-lg active";
@@ -485,8 +486,8 @@ public class Form {
     }
 
     public void stopVm() {
-        String status = this.stopStatus;
-        if (!status.equals("NOK")) {
+        boolean status = this.stopStatus;
+        if (status) {
             this.stop = "disabled";
             this.start = "btn-lg active";
             this.console = "disabled";

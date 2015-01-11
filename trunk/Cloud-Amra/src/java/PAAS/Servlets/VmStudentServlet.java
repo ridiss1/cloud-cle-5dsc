@@ -31,21 +31,29 @@ public class VmStudentServlet extends HttpServlet{
         
         String requeteStart= request.getParameter("start");
         String requeteStop= request.getParameter("stop");
+        request.setAttribute("requete_start", false);
+        request.setAttribute("requete_stop", false);
         
         if (requeteStart != null) {
             form.startVm();
+            session.setAttribute(CLASS_START, form.getStart());
+            request.setAttribute(STATUS_START, form.getStartStatus());
+            request.setAttribute("requete_start", true);
             
         }
         
          if (requeteStop != null) {
            form.stopVm();
+           session.setAttribute(CLASS_STOP, form.getStop());
+           request.setAttribute(STATUS_STOP, form.getStopStatus());
+           request.setAttribute("requete_stop", true);
             
         }
         
-        session.setAttribute(CLASS_START, form.getStart());
-        session.setAttribute(CLASS_STOP, form.getStop());
-        request.setAttribute(STATUS_START, form.getStartStatus());
-        request.setAttribute(STATUS_STOP, form.getStopStatus());
+        
+        
+       
+      
         request.setAttribute(CLASS_CONSOLE, form.getConsole());
         this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 
