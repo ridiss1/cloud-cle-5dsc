@@ -37,6 +37,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Template.findByAlia", query = "SELECT t FROM Template t WHERE t.alia = :alia"),
     @NamedQuery(name = "Template.findByType", query = "SELECT t FROM Template t WHERE t.type = :type")})
 public class Template implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "file")
+    private String file;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -138,6 +143,14 @@ public class Template implements Serializable {
     @Override
     public String toString() {
         return "PAAS.Models.Template[ id=" + id + " ]";
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
     }
     
 }

@@ -44,4 +44,54 @@
         <servlet-name>DeconnexionStudentServlet</servlet-name>
         <url-pattern>/connexion</url-pattern>
     </servlet-mapping>
+    
+    
+    
+    <!-- TemplateProfServlet           -->
+    
+    <servlet>
+        <servlet-name>TemplateProfServlet</servlet-name>
+        <servlet-class>PAAS.Servlets.TemplateProfServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>TemplateProfServlet</servlet-name>
+        <url-pattern>/accueil_template</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- TemplateShowServlet           -->
+    <servlet>
+        <servlet-name>TemplateShowServlet</servlet-name>
+        <servlet-class>PAAS.Servlets.TemplateShowServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>TemplateShowServlet</servlet-name>
+        <url-pattern>/show_template</url-pattern>
+    </servlet-mapping>
+    
+    <!-- TemplateDeleteServlet           -->
+    <servlet>
+        <servlet-name>TemplateDeleteServlet</servlet-name>
+        <servlet-class>PAAS.Servlets.TemplateDeleteServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>TemplateDeleteServlet</servlet-name>
+        <url-pattern>/delete_template</url-pattern>
+    </servlet-mapping>
+    
+    <!-- TemplateCreateServlet           -->
+    <servlet>
+        <servlet-name>TemplateCreateServlet</servlet-name>
+        <servlet-class>PAAS.Servlets.TemplateCreateServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>TemplateCreateServlet</servlet-name>
+        <url-pattern>/create_template</url-pattern>
+    </servlet-mapping>
+    
+    
 </web-app>

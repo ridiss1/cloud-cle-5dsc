@@ -1,6 +1,6 @@
 <%-- 
-    Document   : acceuilProf
-    Created on : Jan 5, 2015, 11:03:59 AM
+    Document   : vmProf
+    Created on : Jan 5, 2015, 11:04:28 AM
     Author     : Duy Duc
 --%>
 
@@ -10,25 +10,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Accueil</title>
+        <title>Template</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.scrolly.min.js"></script>
         <script src="js/jquery.scrollzer.min.js"></script>
         <script src="js/skel.min.js"></script>
         <script src="js/skel-layers.min.js"></script>
         <script src="js/init.js"></script>
-        <link href="css/my_style.css" rel="stylesheet" type="text/css"/>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <noscript>
         <link rel="stylesheet" href="css/skel.css" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-wide.css" />
+        <link href="css/my_style.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+
         </noscript>
         <!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+
     </head>
     <body>
         <!-- Header -->
@@ -47,40 +54,47 @@
                 <nav id="nav">
 
                     <ul>
-                        <li><a class="active" href="accueilProf" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Accueil</span></a></li>
-                
+                        <li><a href="accueilProf" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Accueil</span></a></li>
+
                         <li><a href="vmProf" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Virtuel Machine</span></a></li>
-                        
-                        <li><a href="accueil_template" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Template</span></a></li>
-                        
+
+                        <li><a class="active" href="templateProf" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Template</span></a></li>
+
                         <li><a href="connexion" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-power-off">Deconnexion</span></a></li>
                     </ul>
                 </nav>
+
+
 
             </div>
 
         </div>
         <!-- Main -->
         <div id="main">
-            <!-- Intro -->
-            <section id="top" class="one dark cover">
+
+
+            <section id="nav" class="one dark cover">
                 <div class="container">
-
-                    <header>
-                        <!-- Logo -->
-                        <div id="accueil">
-                                <h1><a href="accueilProf">CLE - Professor</a></h1>
-                                <p>Cloud based Learning Environnement</p>
-                        </div>
-                    </header>
-
-                    <footer>
-                        <a href="vmProf" class="button scrolly">Virtuel Machine</a>
-                    </footer>
-
+                    
+                    <div class="navbar navbar-inverse">
+                        <ul class="nav navbar-nav"  >
+                            <li class="active"> <a href="#">Accueil</a> </li>
+                            <li> <a href="#">Create</a> </li>
+                            <li> <a href="#">Show</a> </li>
+                            <li> <a href="#">Delete</a> </li>
+                        </ul>
+                    </div>
                 </div>
+                
+                
             </section>
+            
+
+            
         </div>
+
+
+
 
         <!-- Footer -->
         <div id="footer">
@@ -95,3 +109,4 @@
     </body>
 
 </html>
+
