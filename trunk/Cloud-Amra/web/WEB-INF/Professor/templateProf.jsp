@@ -34,9 +34,10 @@
         </noscript>
         <!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-  
+
     </head>
     <body>
+
         <!-- Header -->
         <div id="header" class="skel-layers-fixed">
 
@@ -53,11 +54,11 @@
                 <nav id="nav">
 
                     <ul>
-                        <li><a href="accueilProf" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Accueil</span></a></li>
+                        <li><a  href="accueilProf" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Accueil</span></a></li>
 
                         <li><a href="vmProf" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Virtuel Machine</span></a></li>
-                        
-                        <li><a class="active" href="templateProf" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Template</span></a></li>
+
+                        <li><a class="active" href="accueil_template" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Template</span></a></li>
 
                         <li><a href="connexion" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-power-off">Deconnexion</span></a></li>
                     </ul>
@@ -68,12 +69,23 @@
         </div>
         <!-- Main -->
         <div id="main">
-            
-            <section id="actionTemplate">
+
+            <section class="one dark cover">
                 <div class="container">
-                    <a href="#" class="row 50% button">Créer une template</a>
-                    <a href="#" class="row 50% button">Supprimer une template</a>
-                    <a href="#" class="row 50% button">Mettre à jour une template</a>
+                    <nav class="navbar navbar-inverse " role="navigation">
+                        <div class="navbar-header ">
+                            <a class="navbar-brand active" href="#" >Gestion des templates &nbsp;&nbsp;&nbsp;</a>
+                        </div>
+                        <ul class="nav navbar-nav">
+                            <li class="bordure"><a href="create_template">Creation</a></li>
+                            
+                            <li class="bordure"><a href="show_template">&nbsp;&nbsp;&nbsp;Affichage</a></li>
+                            
+                            <li class="bordure"><a href="delete_template">&nbsp;&nbsp;&nbsp;Supression</a></li>
+                        </ul>    
+                        
+                        
+                    </nav>
                 </div>
             </section>
             <section id="list_vm" class="vm">
@@ -85,42 +97,6 @@
 
                 </div>
             </section>
-
-
-            <section id="content" class="one dark cover">
-
-                <div class="container">
-                    <table class="table table-hover">
-                        <caption>Hover Table Layout</caption>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>City</th>
-                                <th>Pincode</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tanmay</td>
-                                <td>Bangalore</td>
-                                <td>560001</td>
-                            </tr>
-                            <tr>
-                                <td>Sachin</td>
-                                <td>Mumbai</td>
-                                <td>400003</td>
-                            </tr>
-                            <tr>
-                                <td>Uma</td>
-                                <td>Pune</td>
-                                <td>411027</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-            </section>
-
 
 
         </div>

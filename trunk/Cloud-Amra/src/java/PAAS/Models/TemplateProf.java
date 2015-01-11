@@ -8,6 +8,7 @@ package PAAS.Models;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TemplateProf.findAll", query = "SELECT t FROM TemplateProf t"),
     @NamedQuery(name = "TemplateProf.findById", query = "SELECT t FROM TemplateProf t WHERE t.id = :id")})
 public class TemplateProf implements Serializable {
+    @EmbeddedId
+    //protected PAAS.Models.TemplateProfPK templateProfPK;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -98,5 +101,13 @@ public class TemplateProf implements Serializable {
     public String toString() {
         return "PAAS.Models.TemplateProf[ id=" + id + " ]";
     }
-    
+/*
+    public PAAS.Models.TemplateProfPK getTemplateProfPK() {
+        return templateProfPK;
+    }
+
+    public void setTemplateProfPK(PAAS.Models.TemplateProfPK templateProfPK) {
+        this.templateProfPK = templateProfPK;
+    }
+   */ 
 }

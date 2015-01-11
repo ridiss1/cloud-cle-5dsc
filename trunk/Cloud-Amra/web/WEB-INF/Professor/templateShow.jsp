@@ -1,6 +1,6 @@
 <%-- 
-    Document   : acceuilProf
-    Created on : Jan 5, 2015, 11:03:59 AM
+    Document   : vmProf
+    Created on : Jan 5, 2015, 11:04:28 AM
     Author     : Duy Duc
 --%>
 
@@ -10,25 +10,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Accueil</title>
+        <title>Template</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.scrolly.min.js"></script>
         <script src="js/jquery.scrollzer.min.js"></script>
         <script src="js/skel.min.js"></script>
         <script src="js/skel-layers.min.js"></script>
         <script src="js/init.js"></script>
-        <link href="css/my_style.css" rel="stylesheet" type="text/css"/>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <noscript>
         <link rel="stylesheet" href="css/skel.css" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-wide.css" />
+        <link href="css/my_style.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+
         </noscript>
         <!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+
     </head>
     <body>
         <!-- Header -->
@@ -47,40 +54,59 @@
                 <nav id="nav">
 
                     <ul>
-                        <li><a class="active" href="accueilProf" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Accueil</span></a></li>
+                        <li><a  href="accueilProf" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Accueil</span></a></li>
                 
                         <li><a href="vmProf" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Virtuel Machine</span></a></li>
                         
-                        <li><a href="accueil_template" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Template</span></a></li>
+                        <li><a class="active" href="accueil_template" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Template</span></a></li>
                         
                         <li><a href="connexion" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-power-off">Deconnexion</span></a></li>
                     </ul>
                 </nav>
+
+
 
             </div>
 
         </div>
         <!-- Main -->
         <div id="main">
-            <!-- Intro -->
-            <section id="top" class="one dark cover">
+
+
+            <section class="one dark cover">
                 <div class="container">
-
-                    <header>
-                        <!-- Logo -->
-                        <div id="accueil">
-                                <h1><a href="accueilProf">CLE - Professor</a></h1>
-                                <p>Cloud based Learning Environnement</p>
+                    <nav class="navbar navbar-inverse " role="navigation">
+                        <div class="navbar-header ">
+                            <a class="navbar-brand active" href="#" >Gestion des templates &nbsp;&nbsp;&nbsp;</a>
                         </div>
-                    </header>
-
-                    <footer>
-                        <a href="vmProf" class="button scrolly">Virtuel Machine</a>
-                    </footer>
+                        <ul class="nav navbar-nav">
+                            <li class="bordure"><a href="create_template">Creation</a></li>
+                            
+                            <li class="bordure"><a href="show_template">&nbsp;&nbsp;&nbsp;Affichage</a></li>
+                            
+                            <li class="bordure"><a href="delete_template">&nbsp;&nbsp;&nbsp;Supression</a></li>
+                        </ul>    
+                        
+                        
+                    </nav>
+                </div>
+            </section>
+            <section id="list_vm" class="vm">
+                <div class="container">
+                    <a href="#" class="list-group-item">24*7 support</a>
+                    <a href="#" class="list-group-item">Free Window Space hosting</a>
+                    <a href="#" class="list-group-item">Number of Images</a>
+                    <a href="#" class="list-group-item">Renewal cost per year</a>
 
                 </div>
             </section>
+            
+
+            
         </div>
+
+
+
 
         <!-- Footer -->
         <div id="footer">
@@ -95,3 +121,4 @@
     </body>
 
 </html>
+
