@@ -81,7 +81,7 @@
                             <a class="navbar-brand active" href="#" >Gestion des templates &nbsp;&nbsp;&nbsp;</a>
                         </div>
                         <ul class="nav navbar-nav">
-                            <li class="bordure"><a href="create_template">Creation</a></li>
+                            <li class="bordure active"><a href="create_template">Creation</a></li>
                             
                             <li class="bordure"><a href="show_template">&nbsp;&nbsp;&nbsp;Affichage</a></li>
                             
