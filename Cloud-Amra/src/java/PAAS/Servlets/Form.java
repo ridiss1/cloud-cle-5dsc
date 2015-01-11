@@ -76,7 +76,14 @@ public class Form {
     public Form() {
 
     }
-
+    
+    public boolean addVM(User user, Groupe groupe, String password){
+        Factory factory = new Factory();
+        factory.open();
+        factory.vmAddForUser(user, groupe, password);
+        factory.close();
+        return true;
+    }
     public List <Vm> getListVm(User user) {
         List <Vm> listVm = null;
         Factory factory = new Factory();
@@ -87,7 +94,61 @@ public class Form {
         return listVm;
 
     }
-
+    
+    public List<Groupe> getListGroupe(){
+        List<Groupe> listGroupe = null;
+        Factory factory = new Factory();
+        factory.open();
+        if (factory.groupefindAll() != null){
+            listGroupe = (List<Groupe>)factory.groupefindAll();
+        }
+        factory.close();
+        return listGroupe;
+    }
+    
+    public Groupe getGroupeByLibelle(String groupeName){
+        Factory factory = new Factory();
+        Groupe groupe = null;
+        factory.open();
+        if (factory.groupefindByLibelle(groupeName) != null){
+            groupe = factory.groupefindByLibelle(groupeName);
+        }
+        factory.close();
+        return groupe;
+    }
+    
+    public List<UserGroupe> getListStudentByGroupe(Groupe groupe){
+        List<UserGroupe> listIdStudent = null;
+        Factory factory = new Factory();
+        factory.open();
+        if (factory.studentfindAllByGroupe(groupe) != null){
+            listIdStudent = (List<UserGroupe>) factory.studentfindAllByGroupe(groupe);
+        }
+        factory.close();
+        
+        return listIdStudent;
+    }
+    
+    public User getStudentInGroupe(UserGroupe userGroupe){
+        User student = null;
+        Factory factory = new Factory();
+        factory.open();
+        if (factory.studentfindInGroupe(userGroupe) != null){
+            student = factory.studentfindInGroupe(userGroupe);
+        }
+        factory.close();
+        return student;
+    }
+    public Vm getVmByStudentAndGroupe(User user,Groupe groupe){
+        Vm vm=null;
+        Factory factory = new Factory();
+        factory.open();
+        if (factory.vmfindByStudentAndGroupe(user, groupe) != null){
+            vm=factory.vmfindByStudentAndGroupe(user, groupe);
+        }
+        factory.close();
+        return vm;
+    }
     public void validation(String login, String password) {
         validationLogin(login);
         validationPassword(password);
