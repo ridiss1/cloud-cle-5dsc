@@ -10,7 +10,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- -->
         <title>Virtuel Machine</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
@@ -78,26 +77,48 @@
                     <a href="#" class="list-group-item">Renewal cost per year</a> -->
                     
                     <form method="post" action="vmProf">
+                            <h3>RAM:</h3>
                             <select name="ram">
+                               
                                 <option>256</option>
                                 <option>512</option>
                                 <option>1000</option>
                             </select>
+                            <br/>
+                            <h3>CPU:</h3>
                             <select name="cpus">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
                             </select>
+                                                        
+                            <br/>
+                            <h3>DISK:</h3>
                             <select name="disk">
                                 <option>5</option>
                                 <option>10</option>
                                 <option>15</option>
                             </select>
+                                                        
+                            <br/>
+                            <h3>Template:</h3>
                             <select name="template">
                                 <c:forEach items="${sessionScope.ListeTemplate}" var="template">
-                                    <option>${template.alia} </option> 
+                                    <option>${template.file} </option> 
                                 </c:forEach>
                             </select>
+                            
+                            <br/>
+                            <h3>Groupe:</h3>
+                            <select name="groupe">
+                                <c:forEach items="${sessionScope.ListeGroupe}" var="groupe">
+                                    <option>${groupe.libelle} </option> 
+                                </c:forEach>
+                            </select>
+                            
+                            <br/>
+                            <h3>Mot de passe:</h3>
+                            <input type="password" name="passwordDefault" class="form-control input-lg" placeholder="Password">
                         <center> <input type="submit" value="CreerContainer"></center>
                     </form>
 

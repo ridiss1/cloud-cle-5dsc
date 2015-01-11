@@ -69,13 +69,13 @@
                     <header>
                         <!-- Logo -->
                         <div id="accueil">
-                                <h1><a href="accueil">CLE - Professor</a></h1>
+                                <h1><a href="accueilProf">CLE - Professor</a></h1>
                                 <p>Cloud based Learning Environnement</p>
                         </div>
                     </header>
 
                     <footer>
-                        <a href="vm" class="button scrolly">Virtuel Machine</a>
+                        <a href="vmProf" class="button scrolly">Virtuel Machine</a>
                     </footer>
 
                 </div>
