@@ -55,11 +55,11 @@
 
                     <ul>
                         <li><a  href="accueilProf" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Accueil</span></a></li>
-                
+
                         <li><a href="vmProf" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Virtuel Machine</span></a></li>
-                        
+
                         <li><a class="active" href="accueil_template" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Template</span></a></li>
-                        
+
                         <li><a href="connexion" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-power-off">Deconnexion</span></a></li>
                     </ul>
                 </nav>
@@ -69,7 +69,7 @@
             </div>
 
         </div>
-                    
+
         <!-- Main -->
         <div id="main">
 
@@ -82,28 +82,65 @@
                         </div>
                         <ul class="nav navbar-nav">
                             <li class="bordure active"><a href="create_template">Creation</a></li>
-                            
+
                             <li class="bordure"><a href="show_template">&nbsp;&nbsp;&nbsp;Affichage</a></li>
-                            
+
                             <li class="bordure"><a href="delete_template">&nbsp;&nbsp;&nbsp;Supression</a></li>
                         </ul>    
-                        
-                        
+
+
                     </nav>
                 </div>
             </section>
             <section id="list_vm" class="vm">
+                
                 <div class="container">
-                    <a href="#" class="list-group-item">24*7 support</a>
-                    <a href="#" class="list-group-item">Free Window Space hosting</a>
-                    <a href="#" class="list-group-item">Number of Images</a>
-                    <a href="#" class="list-group-item">Renewal cost per year</a>
+                    <header>  <h2>Création des templates</h2></header>
+                    <form class="form-horizontal" role="form" action="create_template" method="post">
+                        <div class="form-group">
+                            <label for="libelle" class="col-sm-2 control-label">Libelle</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="libelle" name="libelle"
+                                       placeholder="Entrez le libelle du teplate">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="vm" class="col-sm-2 control-label">Vm</label>
+                            <div class="col-sm-5">
+                                <select class="form-control" name="vm" id="vm">
+                                    <c:forEach items="${sessionScope.ListVm}" var="vm">
+                                    <option>${vm.id}</option>
+                                    
+                                     </c:forEach>
+                                </select>
+                            </div>  
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">Valider</button>
+                            </div>
+                        </div>
+                    </form>
 
                 </div>
+                
+               <c:if test="${template && not get}">
+                     <div class="container alert alert-success"> Le template ${Libelle} a été avec succès .</div>
+               </c:if>
+               
+               <c:if test="${ not template && not get }">
+                     <div class="container alert alert-danger"> Le template ${Libelle} n'a pas été créé .</div>
+               </c:if>
+               
+                     
+                   
             </section>
-            
 
-            
+
+
         </div>
 
 

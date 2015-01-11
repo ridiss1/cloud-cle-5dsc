@@ -55,11 +55,11 @@
 
                     <ul>
                         <li><a  href="accueilProf" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Accueil</span></a></li>
-                
+
                         <li><a href="vmProf" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Virtuel Machine</span></a></li>
-                        
+
                         <li><a class="active" href="accueil_template" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Template</span></a></li>
-                        
+
                         <li><a href="connexion" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-power-off">Deconnexion</span></a></li>
                     </ul>
                 </nav>
@@ -81,28 +81,37 @@
                         </div>
                         <ul class="nav navbar-nav">
                             <li class="bordure"><a href="create_template">Creation</a></li>
-                            
+
                             <li class="bordure"><a href="show_template">&nbsp;&nbsp;&nbsp;Affichage</a></li>
-                            
+
                             <li class="bordure"><a href="delete_template">&nbsp;&nbsp;&nbsp;Supression</a></li>
                         </ul>    
-                        
-                        
+
+
                     </nav>
                 </div>
             </section>
             <section id="list_vm" class="vm">
                 <div class="container">
-                    <a href="#" class="list-group-item">24*7 support</a>
-                    <a href="#" class="list-group-item">Free Window Space hosting</a>
-                    <a href="#" class="list-group-item">Number of Images</a>
-                    <a href="#" class="list-group-item">Renewal cost per year</a>
+
+                    <a href="#" class="list-group-item active">
+                        Liste des templates
+                    </a>
+                    <ul class="list-group">
+                        <c:forEach items="${sessionScope.ListTemplate}" var="template">
+                            <li class="list-group-item">
+                                <span class="badge">New</span>
+                                ${template.libelle}
+                            </li>
+                            
+                        </c:forEach>
+                    </ul>
 
                 </div>
             </section>
-            
 
-            
+
+
         </div>
 
 

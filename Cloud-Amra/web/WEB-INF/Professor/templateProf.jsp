@@ -54,7 +54,7 @@
                 <nav id="nav">
 
                     <ul>
-                        <li><a  href="accueilProf" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Accueil</span></a></li>
+                        <li><a  href="accueil_template" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Accueil</span></a></li>
 
                         <li><a href="vmProf" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Virtuel Machine</span></a></li>
 
@@ -87,16 +87,20 @@
                         
                     </nav>
                 </div>
-            </section>
-            <section id="list_vm" class="vm">
+                
                 <div class="container">
-                    <a href="#" class="list-group-item">24*7 support</a>
-                    <a href="#" class="list-group-item">Free Window Space hosting</a>
-                    <a href="#" class="list-group-item">Number of Images</a>
-                    <a href="#" class="list-group-item">Renewal cost per year</a>
-
+                    
+                    <header >
+                        <!-- Logo -->
+                        <div align="center">
+                            </br> </br> </br>
+                                
+                                <a  class="button scrolly">Gestion des templates</a>
+                        </div>
+                    </header>
                 </div>
             </section>
+            
 
 
         </div>

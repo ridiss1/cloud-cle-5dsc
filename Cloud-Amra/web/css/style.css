@@ -817,4 +817,8 @@
                             border-left:   1px solid #fff ;
                             border-right: 1px solid #fff;
                         }
+                        .borForm {
+                            border: 5px groove ;
+                            padding: 70px;
+                        }
                        
