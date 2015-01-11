@@ -5,11 +5,17 @@
  */
 package PAAS.Servlets;
 
+import PAAS.Models.Template;
+import PAAS.Models.User;
+import PAAS.Models.Vm;
+import static PAAS.Servlets.TemplateCreateServlet.ATT_SESSION_USER;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -19,6 +25,22 @@ public class TemplateProfServlet extends HttpServlet{
      private static final String VUE_VM_PROF = "/WEB-INF/Professor/templateProf.jsp";
      
      public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+         HttpSession session = request.getSession();
+         Form form = new Form ();
+          User prof=null;
+          List <Vm> listVmByProf=null;
+          List <Template> listTemplateByProf=null;
+           prof = (User) session.getAttribute(ATT_SESSION_USER);
+          /**************Get list Template et vm By Prof*******************************/
+           if (prof!=null) {
+              listVmByProf=form.getListVmByProf(prof);
+              listTemplateByProf= form.getListTemplateByProf(prof);
+          }
+          session.setAttribute("ListVm", listVmByProf);
+          session.setAttribute("ListTemplate", listTemplateByProf);
+          
+          
+         
          
          this.getServletContext().getRequestDispatcher(VUE_VM_PROF).forward(request, response);
      }

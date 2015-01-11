@@ -91,14 +91,46 @@
                     </nav>
                 </div>
             </section>
-            <section id="list_vm" class="vm">
+            <section id="suppression_template" class="vm">
+                
                 <div class="container">
-                    <a href="#" class="list-group-item">24*7 support</a>
-                    <a href="#" class="list-group-item">Free Window Space hosting</a>
-                    <a href="#" class="list-group-item">Number of Images</a>
-                    <a href="#" class="list-group-item">Renewal cost per year</a>
+                    <header>  <h2>Suppression des templates</h2></header>
+                    <form class="form-horizontal" role="form" action="delete_template" method="post">
+                        
+                        <div class="form-group">
+                            <label for="vm" class="col-sm-2 control-label">Template</label>
+                            <div class="col-sm-5">
+                                <select class="form-control" name="template" id="template">
+                                    <c:forEach items="${sessionScope.ListTemplate}" var="template">
+                                    <option>${template.libelle}</option>
+                                    
+                                     </c:forEach>
+                                </select>
+                            </div>  
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">Valider</button>
+                            </div>
+                        </div>
+                    </form>
 
                 </div>
+                
+               <c:if test="${deleteTemplate && not get}">
+                     <div class="container alert alert-success"> Le template ${Libelle} a été avec succès .</div>
+               </c:if>
+               
+               <c:if test="${ not deleteTemplate && not get }">
+                     <div class="container alert alert-danger"> Le template ${Libelle} n'a pas été créé .</div>
+               </c:if>
+               
+                     
+                   
+            </section>
             </section>
             
 

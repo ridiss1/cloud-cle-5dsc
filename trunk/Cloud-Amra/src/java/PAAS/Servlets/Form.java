@@ -30,6 +30,24 @@ public class Form {
     private String start = "btn-lg active";
     private String stop = "disabled";
     private String console = "disabled";
+    private boolean template= false;
+    private boolean deletetemplate= false;
+
+    public boolean isDeletetemplate() {
+        return deletetemplate;
+    }
+
+    public void setDeletetemplate(boolean deletetemplate) {
+        this.deletetemplate = deletetemplate;
+    }
+
+    public boolean getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(boolean template) {
+        this.template = template;
+    }
 
     public String getConsole() {
         return console;
@@ -270,6 +288,28 @@ public class Form {
         return listTemplate;
 
     }
+    
+    public Template getTemplateByLibelle(String libelle) {
+        Template template = null;
+        Factory factory = new Factory();
+        factory.open();
+        template = factory.templatefindByLibelle(libelle);
+        factory.close();
+        return template;
+
+    }
+    
+    public List<Template> getListTemplateByProf(User user) {
+        List<Template> listTemplate = null;
+        Factory factory = new Factory();
+        factory.open();
+        listTemplate = factory.templatefindByProf(user);
+        factory.close();
+        return listTemplate;
+
+    }
+    
+    
 
     /**
      * Valide l'adresse mail saisie.
@@ -451,6 +491,22 @@ public class Form {
             this.start = "btn-lg active";
             this.console = "disabled";
         }
+        
+    }
+    
+    public void createTemplate (int vmid, String libelle, int prof) {
+        System.out.println ("+++++++++++++++++++++++++++++++++++++Vmid : "+vmid);
+        System.out.println ("++++++++++++++++++++++++++++++Libelle: "+libelle);
+        System.out.println ("+++++++++++++++++++++++++++++prof :"+prof);
+        
+        
+    }
+    
+    public void deleteTemplate (int idTemplate, String libelle, int idProf) {
+        System.out.println ("+++++++++++++++++++++++++++++++++++++Vmid : "+idTemplate);
+        System.out.println ("++++++++++++++++++++++++++++++Libelle: "+libelle);
+       
+        
         
     }
 

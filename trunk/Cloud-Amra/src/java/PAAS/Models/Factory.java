@@ -84,7 +84,7 @@ public class Factory {
     public List <Vm> vmfindAllByProf (User user) {
         List <Vm> vm= null;
         Query query = em.createNamedQuery("Vm.findByProf");
-        query.setParameter("prof", 6);
+        query.setParameter("prof", user.getId());
         if (query.getResultList()!=null){
             vm= (List <Vm>) query.getResultList();
         }
@@ -96,6 +96,31 @@ public class Factory {
         List <Template> templates=null;
         Query query = em.createNamedQuery("Template.findAll");
         templates= (List <Template>) query.getResultList(); 
+        return templates;
+    }
+     
+     public Template templatefindByLibelle (String libelle) {
+        Template templates=null;
+        Query query = em.createNamedQuery("Template.findByLibelle");
+        query.setParameter("libelle", libelle);
+        templates= (Template) query.getSingleResult(); 
+        return templates;
+    }
+     
+     public List<Template> templatefindByProf (User user) {
+        List <Template> templates= new ArrayList ();
+        List <TemplateProf> templateProf=null;
+       // System.out.println ("=============================================== :");
+        Query query = em.createNamedQuery("TemplateProf.findByProf");
+        query.setParameter("prof",user.getId());
+        templateProf= (List <TemplateProf>) query.getResultList(); 
+        for (TemplateProf temp : templateProf) {
+         //System.out.println ("+++++++++++++++++++++++++++ : "+temp.getTemplateProfPK().getTemplate());
+           Template template= templateFindById (temp.getTemplateProfPK().getTemplate());
+           templates.add(template);
+           //System.out.println ("+++++++++++++++++++++++++++ : "+template.getLibelle());
+        }
+        //templates= (List <Template>) query.getResultList(); 
         return templates;
     }
     
@@ -112,6 +137,14 @@ public class Factory {
         query.setParameter("libelle", groupeName);
         groupe = (Groupe) query.getSingleResult();
         return groupe;
+    }
+    
+    public Template templateFindById(int id){
+        Template template=null;
+        Query query = em.createNamedQuery("Template.findById");
+        query.setParameter("id", id);
+        template = (Template) query.getSingleResult();
+        return template;
     }
     
     public List<UserGroupe> studentfindAllByGroupe(Groupe groupe){
