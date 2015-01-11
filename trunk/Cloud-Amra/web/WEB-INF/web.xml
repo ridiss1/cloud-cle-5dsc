@@ -39,6 +39,11 @@
         <servlet-name>VmProfServlet</servlet-name>
         <url-pattern>/vmProf</url-pattern>
     </servlet-mapping>
+            
+    <servlet-mapping>
+        <servlet-name>VmProfServlet</servlet-name>
+        <url-pattern>/vmProfModify</url-pattern>
+    </servlet-mapping>
     
     <servlet-mapping>
         <servlet-name>DeconnexionStudentServlet</servlet-name>
