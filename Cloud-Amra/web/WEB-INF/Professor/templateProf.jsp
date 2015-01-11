@@ -74,7 +74,11 @@
                 <div class="container">
                     <nav class="navbar navbar-inverse " role="navigation">
                         <div class="navbar-header ">
-                            <a class="navbar-brand active" href="#" >Gestion des templates &nbsp;&nbsp;&nbsp;</a>
+                            <a class="navbar-brand active" href="#" >&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                Gestion des templates &nbsp;&nbsp;&nbsp;</a>
                         </div>
                         <ul class="nav navbar-nav">
                             <li class="bordure"><a href="create_template">Creation</a></li>
