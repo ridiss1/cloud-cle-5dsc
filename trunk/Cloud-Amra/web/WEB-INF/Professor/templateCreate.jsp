@@ -102,6 +102,9 @@
                     <header>  <h2>Création des templates</h2></header>
                     
                     <form class="form-horizontal" role="form" action="create_template" method="post">
+                        
+                        
+                     
                         <div class="form-group">
                             <label for="libelle" class="col-sm-2 control-label">Libelle</label>
                             <div class="col-sm-5">
