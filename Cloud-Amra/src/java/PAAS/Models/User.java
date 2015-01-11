@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author camara
  */
 @Entity
-@Table(name = "User", catalog = "Cloud", schema = "")
+@Table(name = "User")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
@@ -43,38 +43,36 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "login", nullable = false, length = 255)
+    @Column(name = "login")
     private String login;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "password", nullable = false, length = 255)
+    @Column(name = "password")
     private String password;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "nom", nullable = false, length = 255)
+    @Column(name = "nom")
     private String nom;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "prenom", nullable = false, length = 255)
+    @Column(name = "prenom")
     private String prenom;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "type", nullable = false)
+    @Column(name = "type")
     private int type;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserGroupe> userGroupeList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Vm> vmList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "prof")
-    private List<TemplateProf> templateProfList;
 
     public User() {
     }
@@ -156,15 +154,6 @@ public class User implements Serializable {
 
     public void setVmList(List<Vm> vmList) {
         this.vmList = vmList;
-    }
-
-    @XmlTransient
-    public List<TemplateProf> getTemplateProfList() {
-        return templateProfList;
-    }
-
-    public void setTemplateProfList(List<TemplateProf> templateProfList) {
-        this.templateProfList = templateProfList;
     }
 
     @Override

@@ -6,15 +6,8 @@
 package PAAS.Models;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -25,62 +18,40 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author camara
  */
 @Entity
-@Table(name = "TemplateProf", catalog = "Cloud", schema = "")
+@Table(name = "TemplateProf")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TemplateProf.findAll", query = "SELECT t FROM TemplateProf t"),
-    @NamedQuery(name = "TemplateProf.findById", query = "SELECT t FROM TemplateProf t WHERE t.id = :id")})
+    @NamedQuery(name = "TemplateProf.findByTemplate", query = "SELECT t FROM TemplateProf t WHERE t.templateProfPK.template = :template"),
+    @NamedQuery(name = "TemplateProf.findByProf", query = "SELECT t FROM TemplateProf t WHERE t.templateProfPK.prof = :prof")})
 public class TemplateProf implements Serializable {
-    @EmbeddedId
-    //protected PAAS.Models.TemplateProfPK templateProfPK;
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id", nullable = false)
-    private Integer id;
-    @JoinColumn(name = "template", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false)
-    private Template template;
-    @JoinColumn(name = "prof", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false)
-    private User prof;
+    @EmbeddedId
+    protected TemplateProfPK templateProfPK;
 
     public TemplateProf() {
     }
 
-    public TemplateProf(Integer id) {
-        this.id = id;
+    public TemplateProf(TemplateProfPK templateProfPK) {
+        this.templateProfPK = templateProfPK;
     }
 
-    public Integer getId() {
-        return id;
+    public TemplateProf(int template, int prof) {
+        this.templateProfPK = new TemplateProfPK(template, prof);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public TemplateProfPK getTemplateProfPK() {
+        return templateProfPK;
     }
 
-    public Template getTemplate() {
-        return template;
-    }
-
-    public void setTemplate(Template template) {
-        this.template = template;
-    }
-
-    public User getProf() {
-        return prof;
-    }
-
-    public void setProf(User prof) {
-        this.prof = prof;
+    public void setTemplateProfPK(TemplateProfPK templateProfPK) {
+        this.templateProfPK = templateProfPK;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (templateProfPK != null ? templateProfPK.hashCode() : 0);
         return hash;
     }
 
@@ -91,7 +62,7 @@ public class TemplateProf implements Serializable {
             return false;
         }
         TemplateProf other = (TemplateProf) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.templateProfPK == null && other.templateProfPK != null) || (this.templateProfPK != null && !this.templateProfPK.equals(other.templateProfPK))) {
             return false;
         }
         return true;
@@ -99,15 +70,7 @@ public class TemplateProf implements Serializable {
 
     @Override
     public String toString() {
-        return "PAAS.Models.TemplateProf[ id=" + id + " ]";
+        return "PAAS.Models.TemplateProf[ templateProfPK=" + templateProfPK + " ]";
     }
-/*
-    public PAAS.Models.TemplateProfPK getTemplateProfPK() {
-        return templateProfPK;
-    }
-
-    public void setTemplateProfPK(PAAS.Models.TemplateProfPK templateProfPK) {
-        this.templateProfPK = templateProfPK;
-    }
-   */ 
+    
 }

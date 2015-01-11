@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author camara
  */
 @Entity
-@Table(name = "Groupe", catalog = "Cloud", schema = "")
+@Table(name = "Groupe")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Groupe.findAll", query = "SELECT g FROM Groupe g"),
@@ -39,12 +39,12 @@ public class Groupe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
-    @Column(name = "libelle", nullable = false, length = 255)
+    @Column(name = "libelle")
     private String libelle;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupe")
     private List<UserGroupe> userGroupeList;

@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author camara
  */
 @Entity
-@Table(name = "UserGroupe", catalog = "Cloud", schema = "")
+@Table(name = "UserGroupe")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UserGroupe.findAll", query = "SELECT u FROM UserGroupe u"),
@@ -34,14 +34,14 @@ public class UserGroupe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "groupe", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false)
-    private Groupe groupe;
-    @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "user", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User user;
+    @JoinColumn(name = "groupe", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Groupe groupe;
 
     public UserGroupe() {
     }
@@ -58,20 +58,20 @@ public class UserGroupe implements Serializable {
         this.id = id;
     }
 
-    public Groupe getGroupe() {
-        return groupe;
-    }
-
-    public void setGroupe(Groupe groupe) {
-        this.groupe = groupe;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Groupe getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
     }
 
     @Override
