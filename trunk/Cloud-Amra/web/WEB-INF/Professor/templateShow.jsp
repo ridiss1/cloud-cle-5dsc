@@ -101,6 +101,7 @@
                     <a href="#" class="list-group-item active">
                         Liste des templates
                     </a>
+                    </br>
                     <ul class="list-group">
                         <c:forEach items="${sessionScope.ListTemplate}" var="template">
                             <li class="list-group-item">
