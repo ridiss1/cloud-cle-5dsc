@@ -158,30 +158,25 @@
                         </table>
 
                     </div>
-                                    </br>
-                                    
+                    </br>
+
                     <div class="container four dark" id="status">
-                        <table class="table table-bordered">
-                            <caption class="titrestat"><h3>STATUS</h3></caption>
-                            <thead>
-                                
-                            </thead>
-                            <tbody>
-                                
-                                <tr>
-                                    <td>Start</td>
-                                    <td>${statusStart}</td>
-                                    
-                                </tr>
-                                
-                                <tr>
-                                    <td>Stop</td>
-                                    <td>${statusStop}</td>
-                                    
-                                </tr>
-                                
-                            </tbody>
-                        </table>
+                        <c:if test="${statusStart && requete_start}">
+                            <div class="container alert alert-success">${container.hostname} est demarré .</div>
+                        </c:if>
+
+                        <c:if test="${ not statusStart && requete_start}">
+                            <div class="container alert alert-danger">${container.hostname} n'est pas demarré .</div>
+                        </c:if>
+                        
+                            <c:if test="${statusStop && requete_stop}">
+                            <div class="container alert alert-success">${container.hostname} est stoppé .</div>
+                        </c:if>
+
+                        <c:if test="${ not statusStop && requete_stop}">
+                            <div class="container alert alert-danger">${container.hostname} n'est pas stopé .</div>
+                        </c:if>
+                            
 
 
                     </div>
