@@ -26,35 +26,47 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author camara
  */
 @Entity
-@Table(name = "Vm", catalog = "Cloud", schema = "")
+@Table(name = "Vm")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Vm.findAll", query = "SELECT v FROM Vm v"),
-    @NamedQuery(name = "Vm.findById", query = "SELECT v FROM Vm v WHERE v.id = :id")})
+    @NamedQuery(name = "Vm.findById", query = "SELECT v FROM Vm v WHERE v.id = :id"),
+    @NamedQuery(name = "Vm.findByProf", query = "SELECT v FROM Vm v WHERE v.prof = :prof"),
+    @NamedQuery(name = "Vm.findByPassword", query = "SELECT v FROM Vm v WHERE v.password = :password")})
 public class Vm implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "prof")
+    private int prof;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "password")
     private String password;
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id", nullable = false)
-    private Integer id;
-    @JoinColumn(name = "groupe", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false)
-    private Groupe groupe;
-    @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "user", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User user;
+    @JoinColumn(name = "groupe", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Groupe groupe;
 
     public Vm() {
     }
 
     public Vm(Integer id) {
         this.id = id;
+    }
+
+    public Vm(Integer id, int prof, String password) {
+        this.id = id;
+        this.prof = prof;
+        this.password = password;
     }
 
     public Integer getId() {
@@ -65,12 +77,20 @@ public class Vm implements Serializable {
         this.id = id;
     }
 
-    public Groupe getGroupe() {
-        return groupe;
+    public int getProf() {
+        return prof;
     }
 
-    public void setGroupe(Groupe groupe) {
-        this.groupe = groupe;
+    public void setProf(int prof) {
+        this.prof = prof;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public User getUser() {
@@ -79,6 +99,14 @@ public class Vm implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Groupe getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
     }
 
     @Override
@@ -104,14 +132,6 @@ public class Vm implements Serializable {
     @Override
     public String toString() {
         return "PAAS.Models.Vm[ id=" + id + " ]";
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
     
 }
