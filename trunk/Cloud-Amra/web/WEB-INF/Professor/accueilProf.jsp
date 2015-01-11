@@ -65,19 +65,15 @@
             <!-- Intro -->
             <section id="top" class="one dark cover">
                 <div class="container">
-
-                    <header>
+                    
+                    <header >
                         <!-- Logo -->
-                        <div id="accueil">
-                                <h1><a href="accueilProf">CLE - Professor</a></h1>
-                                <p>Cloud based Learning Environnement</p>
+                        <div align="center">
+                            </br> </br> </br>
+                                
+                                <a  class="button scrolly">Bienvenue dans la page professeur</a>
                         </div>
                     </header>
-
-                    <footer>
-                        <a href="vmProf" class="button scrolly">Virtuel Machine</a>
-                    </footer>
-
                 </div>
             </section>
         </div>

@@ -78,7 +78,11 @@
                 <div class="container">
                     <nav class="navbar navbar-inverse " role="navigation">
                         <div class="navbar-header ">
-                            <a class="navbar-brand active" href="#" >Gestion des templates &nbsp;&nbsp;&nbsp;</a>
+                            <a class="navbar-brand active" href="#" >&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                Gestion des templates &nbsp;&nbsp;&nbsp;</a>
                         </div>
                         <ul class="nav navbar-nav">
                             <li class="bordure active"><a href="create_template">Creation</a></li>
@@ -96,12 +100,13 @@
                 
                 <div class="container">
                     <header>  <h2>Création des templates</h2></header>
+                    
                     <form class="form-horizontal" role="form" action="create_template" method="post">
                         <div class="form-group">
                             <label for="libelle" class="col-sm-2 control-label">Libelle</label>
                             <div class="col-sm-5">
                                 <input type="text" class="form-control" id="libelle" name="libelle"
-                                       placeholder="Entrez le libelle du teplate">
+                                       placeholder="Entrez le libelle du template">
                             </div>
                         </div>
                         <div class="form-group">
