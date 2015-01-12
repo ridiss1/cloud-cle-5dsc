@@ -5,6 +5,7 @@
  */
 package PAAS.Servlets;
 
+import IAAS.Iaas;
 import PAAS.Models.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -446,6 +447,7 @@ public class Form {
     public List<Container> getListContainer(List<Vm> listVm) {
 
         List<Container> listCont = new ArrayList ();
+        Iaas iaas = new Iaas ();
         String[] hostname = {"vm Cloud", "vm M2M"};
         String[] ram = {"400", "460"};
         String[] ramUsage = {"210", "150"};
@@ -465,9 +467,11 @@ public class Form {
         //String password = vm.getPassword();
         String password = listVm.get(0).getPassword();
         Container container = null;
-        //container = new Container(id[i],hostname[i],ram[i],ramUsage[i],cpu[i],cpuUsage[i]);
-        container = new Container(id[0], hostname[0], ram[0], ramUsage[0], cpu[0], cpuUsage[0], mem[0], memUsage[0]);
+        for (Vm vm : listVm) {
+          container= iaas.getContainer(vm.getId());
+       // container = new Container(id[0], hostname[0], ram[0], ramUsage[0], cpu[0], cpuUsage[0], mem[0], memUsage[0]);
         listCont.add(container);
+        }
           //  i++;
         //  }
 
