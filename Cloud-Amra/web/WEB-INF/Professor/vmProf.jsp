@@ -115,6 +115,10 @@
                                     <option>${groupe.libelle} </option> 
                                 </c:forEach>
                             </select>
+
+                            <br/>
+                            <h3>Hostname:</h3>                            
+                            <input type="text" name="hostname" class="form-control input-lg">
                             
                             <br/>
                             <h3>Mot de passe:</h3>
@@ -129,7 +133,7 @@
             <section id="content" class="one dark cover">
 
                 <div class="container">
-                    <!--<form method="post" action="vmProf">-->
+                    
                         <table class="table table-hover">
                             <caption>Liste VMs créés</caption>
                             <thead>
@@ -142,21 +146,23 @@
                             </thead>
                             <tbody>
                                 <c:forEach items="${sessionScope.ListeVM}" var="VM">
-                                    <tr>
-                                        <td>${VM.id}</td>
-                                        <td>${VM.user.nom}</td>
-                                        <td>${VM.groupe.libelle}</td>
-                                        <td><a href="vmProfModify" id="top-link" name="actionChange" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Modify</span></a></td>
-                                        <!--
-                                        <td>
-                                            <input type="submit" name="actionUpdate" value="UpdateContainer">
-                                            <input type="submit" name="actionDelete" value="SupprimerContainer">
-                                        </td>-->
-                                    </tr>
+                                
+                                    <form method="get" action="vmProfModify">
+                                        <tr>
+                                            <td>${VM.id}</td>
+                                            <td>${VM.user.nom}</td>
+                                            <td>${VM.groupe.libelle}</td>
+                                            <td>
+                                                <input type="hidden" name="VMid" value="${VM.id}">
+                                                <input type="submit" name="actionChange" value="Modify">
+
+                                            </td>
+                                        </tr>
+                                    </form>
+
                                 </c:forEach>
                             </tbody>
                         </table>                                                      
-                    <!--</form>-->
                 </div>
             </section>
 
