@@ -97,12 +97,16 @@ public class VmProfServlet extends HttpServlet{
                 if (result){
                     System.out.println("Creation CONTAINER");
                     //Creation du VM pour un etudiant
-                    Container container = new Container(request.getParameter("template"),form.getVmByStudentAndGroupe(student, groupe).getId().toString(),
-                    request.getParameter("cpus"),request.getParameter("disk"),request.getParameter("hostname")+"_"+form.getVmByStudentAndGroupe(student, groupe).getId().toString(),
-                            request.getParameter("cpus"),request.getParameter("disk"),request.getParameter("passwordDefault")+user.getId());
-
-                    //Ajout du container
-                    ias.creerContainer(container, form.getVmByStudentAndGroupe(student, groupe).getId().intValue());
+                    String vmid = form.getVmByStudentAndGroupe(student, groupe).getId().toString();
+                    System.out.println("vmid="+vmid);
+                    Container container = new Container(request.getParameter("template"),vmid,
+                    request.getParameter("cpus"),request.getParameter("disk"),request.getParameter("hostname")+"_"+vmid,
+                            request.getParameter("ram"),request.getParameter("passwordDefault")+user.getId());
+                    
+                    ias.creerContainer(container, Integer.parseInt(vmid));
+                    /*Container container = new Container("ubuntu-10.04-standard_10.04-4_i386.tar.gz",
+        "105","1","1","test2","512","test");
+        ias.creerContainer(container, 19);*/
                     System.out.println("Creation OK pour "+ user.getId());
                 }
                 else{
