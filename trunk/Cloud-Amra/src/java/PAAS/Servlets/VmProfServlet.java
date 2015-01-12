@@ -38,7 +38,7 @@ public class VmProfServlet extends HttpServlet{
         HttpSession session = request.getSession();
         User prof = (User) session.getAttribute("sessionUser"); 
         if (request.getParameter("actionChange") == null){
-                   
+            Container container = null;        
             session.setAttribute(ATTR_LISTE_TEMPLATE, form.getListTemplate());
             session.setAttribute(ATTR_LISTE_GROUPE, form.getListGroupe());
             session.setAttribute(ATTR_LISTE_VM, form.getListVmByProf(prof));
@@ -46,6 +46,9 @@ public class VmProfServlet extends HttpServlet{
             this.getServletContext().getRequestDispatcher(VUE_VM_PROF).forward(request, response); 
         }
         else{
+            
+            System.out.println("id======="+ request.getParameter("VMid"));
+            session.setAttribute("VMid", null);
             this.getServletContext().getRequestDispatcher(VUE_VM_PROF_MODIFY).forward(request, response); 
         }
 
@@ -61,6 +64,7 @@ public class VmProfServlet extends HttpServlet{
             System.out.println("DISK="+request.getParameter("disk"));
             System.out.println("TEMPLATE="+request.getParameter("template"));
             System.out.println("GROUPE="+request.getParameter("groupe"));
+            System.out.println("HOSTNAME="+request.getParameter("hostname"));
             System.out.println("MDP="+request.getParameter("passwordDefault"));
 
             Iaas ias = new Iaas();
@@ -94,11 +98,11 @@ public class VmProfServlet extends HttpServlet{
                     System.out.println("Creation CONTAINER");
                     //Creation du VM pour un etudiant
                     Container container = new Container(request.getParameter("template"),form.getVmByStudentAndGroupe(student, groupe).getId().toString(),
-                    request.getParameter("cpus"),request.getParameter("disk"),"test",request.getParameter("cpus"),request.getParameter("disk"),
-                    request.getParameter("passwordDefault")+user.getId());
+                    request.getParameter("cpus"),request.getParameter("disk"),request.getParameter("hostname")+"_"+form.getVmByStudentAndGroupe(student, groupe).getId().toString(),
+                            request.getParameter("cpus"),request.getParameter("disk"),request.getParameter("passwordDefault")+user.getId());
 
                     //Ajout du container
-                    ias.creerContainer(container, 1);
+                    ias.creerContainer(container, form.getVmByStudentAndGroupe(student, groupe).getId().intValue());
                     System.out.println("Creation OK pour "+ user.getId());
                 }
                 else{
