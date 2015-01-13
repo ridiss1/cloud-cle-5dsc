@@ -26,7 +26,7 @@ public class AuthentificationServlet extends HttpServlet {
     private static final String VUE_ACCUEIL_STUDENT = "/WEB-INF/Student/accueil.jsp";
     private static final String VUE_ACCUEIL_PROFESSEUR = "/WEB-INF/Professor/accueilProf.jsp";
     private static final String VUE_ACCUEIL_ADMIN = "/WEB-INF/Admin/accueilAdmin.jsp";
-    private static final String LISTE_CONTAINER = "ListContainer";
+    
     private static final String ATTR_LOGIN = "login";
     private static final String ATTR_PASWWORD = "password";
     private static final String ATTR_ERROR_LOGIN = "login";
@@ -35,7 +35,7 @@ public class AuthentificationServlet extends HttpServlet {
     public static final String ATT_SESSION_USER = "sessionUser";
     public static final String ATT_SESSION_LISTVM = "ListVm";
     private String nextPage;
-    private List<Container> listContainer = null;
+   
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         nextPage = null;
@@ -57,14 +57,7 @@ public class AuthentificationServlet extends HttpServlet {
                  * ***********Get List Container******************************
                  */
                 
-                List<Vm> listVm = form.getListVm(user);
-
-                if (listVm.size() != 0) {
-                    listContainer = form.getListContainer(listVm);
-                    session.setAttribute(LISTE_CONTAINER, listContainer);
-                    form.writeFile(listContainer);
-
-                }
+                
                 nextPage = VUE_ACCUEIL_STUDENT;
             }
 
@@ -122,14 +115,7 @@ public class AuthentificationServlet extends HttpServlet {
                  * ***********Get List Container******************************
                  */
 
-                List<Vm> listVm = form.getListVm(user);
-
-                if (listVm.size() != 0) {
-                    listContainer = form.getListContainer(listVm);
-                    session.setAttribute(LISTE_CONTAINER, listContainer);
-                    form.writeFile(listContainer);
-
-                }
+               
                 nextPage = VUE_ACCUEIL_STUDENT;
 
             }
