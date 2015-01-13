@@ -57,7 +57,7 @@
 
                         <li><a class="active" href="vmProf" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Virtuel Machine</span></a></li>
                         
-                        <li><a href="templateProf" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Template</span></a></li>
+                        <li><a href="accueil_template" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Template</span></a></li>
 
                         <li><a href="connexion" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-power-off">Deconnexion</span></a></li>
                     </ul>
@@ -71,11 +71,7 @@
 
             <section id="list_vm" class="vm">
                 <div class="container">
-                    <!-- <a href="#" class="list-group-item">24*7 support</a>
-                    <a href="#" class="list-group-item">Free Window Space hosting</a>
-                    <a href="#" class="list-group-item">Number of Images</a>
-                    <a href="#" class="list-group-item">Renewal cost per year</a> -->
-                    <h1>Modify VM</h1>
+                    <h1 >Modify VM ${InfoContainer.hostname}</h1>
                     <form method="post" action="vmProfModify">
                             <h3>RAM:</h3>
                             <select name="ram">    
@@ -98,45 +94,52 @@
                                 <option>10</option>
                                 <option>15</option>
                             </select>
-                                                        
-                            <br/>
-                            <h3>Template:</h3>
-                            <select name="template">
-                                <c:forEach items="${sessionScope.ListeTemplate}" var="template">
-                                    <option>${template.file} </option> 
-                                </c:forEach>
-                            </select>
-                            
-                            <br/>
-                            <h3>Groupe:</h3>
-                            <select name="groupe">
-                                <c:forEach items="${sessionScope.ListeGroupe}" var="groupe">
-                                    <option>${groupe.libelle} </option> 
-                                </c:forEach>
-                            </select>
-                            
-                            <br/>
-                            <h3>Mot de passe:</h3>
-                            <input type="password" name="passwordDefault" class="form-control input-lg" placeholder="Password">
-                        <center> <input type="submit" name="actionAdd" value="CreerContainer"></center>
+                                 <input type="hidden" name="VMid" value="${InfoContainer.vmid}">                      
+                        <center> <input type="submit" name="actionUpdate" value="UpdateContainer"></center>
+                        <center> <input type="submit" name="actionDelete" value="SupprimerContainer"></center>
                     </form>
 
                 </div>
             </section>
 
-
+            
             <section id="content" class="one dark cover">
 
                 <div class="container">
                     <h1>Hello</h1>
+                                            
+                    <table class="table table-hover">
+                            <caption>Info VM </caption>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Hostname</th>
+                                    <th>Address</th>
+                                    <th>Ram</th>
+                                    <th>Cpu</th>
+                                    <th>Disk</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                        <tr>
+                                            <td>${InfoContainer.vmid}</td>
+                                            <td>${InfoContainer.hostname}</td>
+                                            <td>${InfoContainer.ip_address}</td>
+                                            <td>${InfoContainer.memory}</td>
+                                            <td>${InfoContainer.cpus}</td>
+                                            <td>${InfoContainer.disk}</td>
+                                            <td>${InfoContainer.status}</td>
+                                        </tr>
+                            </tbody>
+                        
+                    </table> 
                 </div>
             </section>
 
 
 
         </div>
-
-
 
 
         <!-- Footer -->

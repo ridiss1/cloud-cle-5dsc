@@ -108,7 +108,18 @@ public class Form {
         factory.close();
         return true;
     }
-        
+
+    /**
+     * Supprimer un VM
+     */
+    public boolean removeVM(int idVM){
+        Factory factory = new Factory();
+        factory.open();
+        factory.vmDelete(idVM);
+        factory.close();
+        return true;
+    }
+    
     /**
      * Recuperer la liste des VMs.
      */

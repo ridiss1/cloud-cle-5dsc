@@ -139,21 +139,23 @@
                             <thead>
                                 <tr>
                                     <th>VMid</th>
-                                    <th>Etudiant</th>
-                                    <th>Groupe</th>
+                                    <th>Hostname</th>
+                                    <th>Address</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${sessionScope.ListeVM}" var="VM">
+                                <c:forEach items="${sessionScope.ListeContainer}" var="Container">
                                 
                                     <form method="get" action="vmProfModify">
                                         <tr>
-                                            <td>${VM.id}</td>
-                                            <td>${VM.user.nom}</td>
-                                            <td>${VM.groupe.libelle}</td>
+                                            <td>${Container.vmid}</td>
+                                            <td>${Container.hostname}</td>
+                                            <td>${Container.ip_address}</td>
+                                            <td>${Container.status}</td>
                                             <td>
-                                                <input type="hidden" name="VMid" value="${VM.id}">
+                                                <input type="hidden" name="VMid" value="${Container.vmid}">
                                                 <input type="submit" name="actionChange" value="Modify">
 
                                             </td>

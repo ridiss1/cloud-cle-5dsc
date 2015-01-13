@@ -170,8 +170,16 @@ public class Factory {
         vm.setGroupe(groupe);
         vm.setPassword(password);
         vm.setProf(idProf);
-        em.persist(vm);
+        em.persist(vm);        
+    }
+    
         
+    public boolean vmDelete(int idVM){
+        Vm vm = new Vm();
+        String req = "DELETE v FROM Vm v WHERE v.id = :id";
+        Query query = em.createQuery(req);
+        query.setParameter("id", idVM);
+        return true;
     }
     
     public Vm vmfindByStudentAndGroupe(User user, Groupe groupe){
