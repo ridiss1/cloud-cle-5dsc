@@ -22,11 +22,11 @@ public class bill {
         "105","1","1","test2","512","test");
         ias.creerContainer(container, 19);*/
         
-        System.out.println(ias.getContainer(12).toString());
+       System.out.println(ias.getContainer(12).toString());
         
-        //System.out.println(ias.deleteContainer(100));
+        //System.outprintln(ias.deleteContainer(100));
         
-        //System.out.println(ias.getConsole(100));
+        //System.out.println(ias.getConsole(10;
         
         //System.out.println(ias.getStatistics(101,"hour"));
         

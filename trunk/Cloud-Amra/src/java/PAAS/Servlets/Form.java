@@ -297,7 +297,7 @@ public class Form {
         Factory factory = new Factory();
         factory.open();
         listTemplate = factory.templatefindAll();
-        factory.close();
+//        factory.close();
         return listTemplate;
 
     }
@@ -501,55 +501,28 @@ public class Form {
     }
 
     public void startVm(int id) {
-        
         Iaas iaas = new Iaas ();
-        iaas.startContainer(id);
         String status=iaas.getContainer(id).getStatus();
+       
         if (status.equals("running")){
             this.startStatus=true;
         }else{
             this.startStatus=false;
+            iaas.startContainer(id);
         }
          
-        
-        if (startStatus) {
-            this.start = "disabled";
-            this.stop = "btn-lg active";
-            this.console = "btn-lg active";
-        }
-        else {
-            this.start = "btn-lg active";
-            this.stop = "disabled";
-            this.console = "disabled";
-            
-        }
-        
     }
 
     public void stopVm(int id) {
         Iaas iaas = new Iaas ();
-        iaas.stopContainer(id);
         String status=iaas.getContainer(id).getStatus();
         if (status.equals("stopped")){
             this.stopStatus=true;
         }else{
             this.stopStatus=false;
+            iaas.stopContainer(id);
         }
-        System.out.println("STOP="+iaas.getContainer(id).getStatus());
-        this.stopStatus=true;
-        
-        if (stopStatus) {
-            this.stop = "disabled";
-            this.start = "btn-lg active";
-            this.console = "btn-lg active";
-        }
-        else  {
-            this.stop = "btn-lg active";
-            this.start = "disabled";
-            this.console = "disabled";
-            
-        }
-        
+        System.out.println("STOP="+iaas.getContainer(id).getStatus()); 
     }
     
     public void createTemplate (int vmid, String libelle, int prof) {
