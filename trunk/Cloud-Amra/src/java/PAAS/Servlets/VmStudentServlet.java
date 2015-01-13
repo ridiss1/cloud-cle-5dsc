@@ -5,12 +5,17 @@
  */
 package PAAS.Servlets;
 
+import PAAS.Models.User;
+import PAAS.Models.Vm;
+import static PAAS.Servlets.AuthentificationServlet.ATT_SESSION_USER;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import net.elbandi.pve2api.data.Container;
 
 /**
  *
@@ -23,11 +28,14 @@ public class VmStudentServlet extends HttpServlet{
      private static final String STATUS_START = "statusStart";
      private static final String STATUS_STOP = "statusStop";
      private static final String CLASS_CONSOLE = "console";
+      private List<Container> listContainer = null;
+      private static final String LISTE_CONTAINER = "ListContainer";
     
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         Form form = new Form ();
         HttpSession session = request.getSession();
+        User user = (User) session.getAttribute(ATT_SESSION_USER);
         
         String requeteStart= request.getParameter("start");
         String requeteStop= request.getParameter("stop");
@@ -53,7 +61,14 @@ public class VmStudentServlet extends HttpServlet{
         }
         
         
-        
+        List<Vm> listVm = form.getListVm(user);
+
+                if (listVm.size() != 0) {
+                    listContainer = form.getListContainer(listVm);
+                    session.setAttribute(LISTE_CONTAINER, listContainer);
+                    form.writeFile(listContainer);
+
+                }
        
       
         request.setAttribute(CLASS_CONSOLE, form.getConsole());

@@ -481,14 +481,14 @@ public class Form {
         for (Vm vm : listVm) {
           container= iaas.getContainer(vm.getId());
           container.setVmid(vm.getId().toString());
-          long disk=Long.parseLong(container.getDisk())/(1024*1024*1024);
+         /* long disk=Long.parseLong(container.getDisk())/(1024*1024*1024);
           long disk_usage=Long.parseLong(container.getDisk_usage())/(1024*1024*1024);
           long ram2=Long.parseLong(container.getMemory())/(1024*1024);
           long ram_usage=Long.parseLong(container.getMem_usage())/(1024*1024);
           container.setDisk(Long.toString(disk));
           container.setDisk_usage(Long.toString(disk_usage));
           container.setMemory(Long.toString(ram2));
-          container.setMem_usage(Long.toString(ram_usage));
+          container.setMem_usage(Long.toString(ram_usage));*/
           System.out.println(container.toString());
        // container = new Container(id[0], hostname[0], ram[0], ramUsage[0], cpu[0], cpuUsage[0], mem[0], memUsage[0]);
         listCont.add(container);

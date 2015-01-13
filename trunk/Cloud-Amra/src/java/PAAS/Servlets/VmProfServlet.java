@@ -160,6 +160,7 @@ public class VmProfServlet extends HttpServlet{
             System.out.println("DISK="+request.getParameter("disk"));
             System.out.println("DISK="+request.getParameter("VMid"));
             Container c = new Container(request.getParameter("VMid"),request.getParameter("cpus"),request.getParameter("disk"),request.getParameter("ram"));
+            c.setVmid(request.getParameter("VMid"));
             ias.UpdateContainer(c);
             System.out.println("UPDATE OK pour VM " + request.getParameter("VMid"));
         }
