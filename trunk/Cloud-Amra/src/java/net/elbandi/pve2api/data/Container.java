@@ -67,7 +67,17 @@ public class Container {
         this.disk_usage=memUsage;
         
     }
+    
+    //Upate
 
+    public Container(String vmid, String cpus, String disk, String memory) {
+        this.vmid = vmid;
+        this.cpus = cpus;
+        this.disk = disk;
+        this.memory = memory;
+    }
+    
+    
     // Création
     public Container(String ostemplate, String vmid, String cpus, String disk, String hostname, String memory, String password) {
         this.ostemplate = ostemplate;
