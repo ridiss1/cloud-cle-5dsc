@@ -82,7 +82,7 @@
                     <div  class="container" id ="${container.vmid}">
                         <nav class="navbar navbar-default" role="navigation">
                             <div class="navbar-header">
-                                <b><a class="navbar-brand" >${container.hostname}</a></b>
+                                <b><a class="navbar-brand" >${container.hostname} : <span class="badge">status : ${container.status}</span></a></b>
                             </div>
 
                             <div id="alignright" class="navbar-right">
@@ -178,6 +178,8 @@
                         <c:if test="${ not statusStop && requete_stop}">
                             <div class="container alert alert-danger">${container.hostname} n'est pas stopé .</div>
                         </c:if>
+                         
+                            
                             
 
 
