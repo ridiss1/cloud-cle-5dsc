@@ -35,7 +35,8 @@ public class VmStudentServlet extends HttpServlet{
         request.setAttribute("requete_stop", false);
         
         if (requeteStart != null) {
-            form.startVm();
+             int vmid= Integer.parseInt(request.getParameter("start"));
+            form.startVm(vmid);
             session.setAttribute(CLASS_START, form.getStart());
             request.setAttribute(STATUS_START, form.getStartStatus());
             request.setAttribute("requete_start", true);
@@ -43,7 +44,8 @@ public class VmStudentServlet extends HttpServlet{
         }
         
          if (requeteStop != null) {
-           form.stopVm();
+            int vmid= Integer.parseInt(request.getParameter("stop"));
+           form.stopVm(vmid);
            session.setAttribute(CLASS_STOP, form.getStop());
            request.setAttribute(STATUS_STOP, form.getStopStatus());
            request.setAttribute("requete_stop", true);

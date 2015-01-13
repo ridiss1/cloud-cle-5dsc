@@ -87,11 +87,11 @@
 
                             <div id="alignright" class="navbar-right">
 
-                                <a class="btn btn-default ${sessionScope.start}" href="vm?start=0" role="button"><span class="icon fa-play">&nbsp;&nbsp;Start</span></a>
+                                <a class="btn btn-default" href="vm?start=${container.vmid}" role="button"><span class="icon fa-play">&nbsp;&nbsp;Start</span></a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a class="btn btn-default ${sessionScope.stop}" href="vm?stop=1" role="button"><span class="icon fa-power-off">&nbsp;&nbsp;Stop</span></a>
+                                <a class="btn btn-default" href="vm?stop=${container.vmid}" role="button"><span class="icon fa-power-off">&nbsp;&nbsp;Stop</span></a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a class="btn btn-default ${console}" href="#" role="button"><span class="icon fa-desktop">&nbsp;&nbsp;Console</span></a>
+                                <a class="btn btn-default " href="#" role="button"><span class="icon fa-desktop">&nbsp;&nbsp;Console</span></a>
 
 
                             </div>
@@ -119,7 +119,7 @@
                                 </tr>
                                 <tr>
                                     <td>Address</td>
-                                    <td></td>
+                                    <td>${container.ip_address}</td>
                                 </tr>
 
 
@@ -164,6 +164,8 @@
                         <c:if test="${statusStart && requete_start}">
                             <div class="container alert alert-success">${container.hostname} est demarré .</div>
                         </c:if>
+                        
+                           
 
                         <c:if test="${ not statusStart && requete_start}">
                             <div class="container alert alert-danger">${container.hostname} n'est pas demarré .</div>
