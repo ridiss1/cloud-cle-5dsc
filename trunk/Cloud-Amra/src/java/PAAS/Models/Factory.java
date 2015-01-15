@@ -173,6 +173,10 @@ public class Factory {
         em.persist(vm);        
     }
     
+    public void addTemplateProf (TemplateProf templ) {
+        em.persist(templ);
+    }
+    
         
     public boolean vmDelete(int idVM){
         Vm vm = new Vm();

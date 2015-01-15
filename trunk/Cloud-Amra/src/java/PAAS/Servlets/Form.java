@@ -7,6 +7,7 @@ package PAAS.Servlets;
 
 import IAAS.Iaas;
 import PAAS.Models.*;
+import com.jcraft.jsch.JSchException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -192,6 +193,20 @@ public class Form {
         factory.close();
         
         return listIdStudent;
+    }
+    
+    /*********************
+     * 
+     * Add template prof
+     */
+    
+    public void addTemplateProf (TemplateProf templateProf) {
+        Factory factory = new Factory();
+        factory.open();
+        factory.addTemplateProf(templateProf);
+        
+        factory.close();;
+        
     }
     
         
@@ -526,18 +541,38 @@ public class Form {
     }
     
     public void createTemplate (int vmid, String libelle, int prof) {
-        System.out.println ("+++++++++++++++++++++++++++++++++++++Vmid : "+vmid);
-        System.out.println ("++++++++++++++++++++++++++++++Libelle: "+libelle);
-        System.out.println ("+++++++++++++++++++++++++++++prof :"+prof);
-        
-        
+        boolean result =false;
+        try {
+            Iaas iaas = new Iaas();
+            result = iaas.createCustomerTemplate(vmid, libelle);
+        } catch (JSchException ex) {
+            Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (result) {
+            Template template = getTemplateByLibelle(libelle); 
+            int id = template.getId();
+            TemplateProf templateProf = new TemplateProf(id, prof);
+            addTemplateProf (templateProf);
+            
+            
+        }
+
+        System.out.println ("+++++++++++++++++++++++++++++++++++++Vmid : "+result);
     }
     
-    public void deleteTemplate (int idTemplate, String libelle, int idProf) {
-        System.out.println ("+++++++++++++++++++++++++++++++++++++Vmid : "+idTemplate);
-        System.out.println ("++++++++++++++++++++++++++++++Libelle: "+libelle);
+    public void deleteTemplate (int idTemplate, String file, int idProf) {
+        boolean result = false;
+        try {
+            Iaas iaas = new Iaas();
+            iaas.deleteTemplate(file);
+        } catch (JSchException ex) {
+            Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
-        
         
     }
 
