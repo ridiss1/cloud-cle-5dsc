@@ -6,7 +6,12 @@
 
 package IAAS;
 
+import com.jcraft.jsch.ChannelExec;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.security.auth.login.LoginException;
@@ -23,7 +28,13 @@ import org.json.JSONObject;
 public class Iaas {
     
     private Pve2Api pve;
-    
+    /**
+     * SSH Attributes
+     */
+    private String user = "root";
+    private String pwd = "pppppppp";
+    private String host = "192.168.100.10";
+    private int port = 22;
     public  Iaas(){
         
         /**
@@ -177,6 +188,117 @@ public class Iaas {
        return result;
      }
     
+    /**
+     * ALIOUNE WORK
+     */
+        /**
+     *
+     * @param containerID
+     * @param userID : the ID of user in User table will be used as foreign key
+     * @param comments : user's comments to describe the aim of the template
+     * @throws JSchException
+     * @throws IOException
+     */
+    public boolean createCustomerTemplate(int containerID, String comments) throws JSchException, IOException {
+
+        //boolean result=false;
+        String text = "";
+        String pattern = ".*Backup job finished successfully.*";
+        JSch jsch = new JSch();
+        String command = "/root/scripts/createtemplateprof.sh " + containerID + " " + "\"" + comments + "\"";
+        Session session = jsch.getSession(this.user, this.host, this.port);
+        session.setConfig("StrictHostKeyChecking", "no");
+        session.setPassword(this.pwd);
+        session.connect();
+        ChannelExec channel = (ChannelExec) session.openChannel("exec");
+        channel.setCommand(command);
+        channel.setInputStream(null);
+        ((ChannelExec) channel).setErrStream(System.err);
+        InputStream in = channel.getInputStream();
+        channel.connect();
+        boolean result = channel.isConnected();
+        System.out.println("Unix system connected...");
+        byte[] tmp = new byte[1024];
+        boolean test = true;
+        while (test) {
+            while (in.available() > 0) {
+                int i = in.read(tmp, 0, 1024);
+                if (i < 0) {
+                    break;
+                }
+                String line = new String(tmp, 0, i);
+                //matcher = pattern.matcher(line);
+                text = line;
+
+                System.out.println("Unix system console output: ");
+                System.out.println("Here is a line " + line);
+            }
+            if (channel.isClosed()) {
+                test = false;
+                break;
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (Exception ee) {
+                //ignore
+            }
+        }
+        channel.disconnect();
+        session.disconnect();
+
+        //return Pattern.matches(pattern, text);
+        return result;
+    }
     
-    
+    /**
+     * 
+     * @param fileName
+     * @return
+     * @throws JSchException
+     * @throws IOException 
+     */
+    public boolean deleteTemplate(String fileName) throws JSchException, IOException {
+        JSch jsch = new JSch();
+        String command = "/root/scripts//delete_template.sh " + fileName;
+        Session session = jsch.getSession(this.user, this.host, this.port);
+        session.setConfig("StrictHostKeyChecking", "no");
+        session.setPassword(this.pwd);
+        session.connect();
+        ChannelExec channel = (ChannelExec) session.openChannel("exec");
+        channel.setCommand(command);
+        channel.setInputStream(null);
+        ((ChannelExec) channel).setErrStream(System.err);
+        InputStream in = channel.getInputStream();
+        channel.connect();
+        boolean result = channel.isConnected();
+        System.out.println("Unix system connected...");
+        byte[] tmp = new byte[1024];
+        boolean test = true;
+        while (test) {
+            while (in.available() > 0) {
+                int i = in.read(tmp, 0, 1024);
+                if (i < 0) {
+                    break;
+                }
+                String line = new String(tmp, 0, i);
+
+                System.out.println("Unix system console output: ");
+                System.out.println("Here is a line " + line);
+            }
+            if (channel.isClosed()) {
+                test = false;
+                break;
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (Exception ee) {
+                //ignore
+            }
+        }
+        channel.disconnect();
+        session.disconnect();
+
+        //return Pattern.matches(pattern, text);
+        return result;
+    }
 }

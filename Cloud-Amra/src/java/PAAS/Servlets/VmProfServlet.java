@@ -67,6 +67,7 @@ public class VmProfServlet extends HttpServlet{
             
             System.out.println("id====="+ request.getParameter("VMid"));
             Container c = ias.getContainer(Integer.parseInt(request.getParameter("VMid")));
+            c.setVmid(request.getParameter("VMid"));
             session.setAttribute(ATTR_INFO_CONTAINER, c);
             this.getServletContext().getRequestDispatcher(VUE_VM_PROF_MODIFY).forward(request, response); 
         }
@@ -160,7 +161,6 @@ public class VmProfServlet extends HttpServlet{
             System.out.println("DISK="+request.getParameter("disk"));
             System.out.println("DISK="+request.getParameter("VMid"));
             Container c = new Container(request.getParameter("VMid"),request.getParameter("cpus"),request.getParameter("disk"),request.getParameter("ram"));
-            c.setVmid(request.getParameter("VMid"));
             ias.UpdateContainer(c);
             System.out.println("UPDATE OK pour VM " + request.getParameter("VMid"));
         }

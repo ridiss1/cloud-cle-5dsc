@@ -488,6 +488,7 @@ public class Pve2Api {
 
         public void updateOpenvz(String node,Container container) throws JSONException,
                 LoginException, IOException{
+                System.out.println("++++++++id="+container.getVmid());
                 Map<String, String> data = container.getUpdateParams();
 		pve_action("/nodes/" +node +"/openvz/"+container.getVmid()+"/config", RestClient.RequestMethod.PUT, data);       
         }
