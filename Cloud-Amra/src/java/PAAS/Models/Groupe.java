@@ -48,8 +48,6 @@ public class Groupe implements Serializable {
     private String libelle;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupe")
     private List<UserGroupe> userGroupeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupe")
-    private List<Vm> vmList;
 
     public Groupe() {
     }
@@ -86,15 +84,6 @@ public class Groupe implements Serializable {
 
     public void setUserGroupeList(List<UserGroupe> userGroupeList) {
         this.userGroupeList = userGroupeList;
-    }
-
-    @XmlTransient
-    public List<Vm> getVmList() {
-        return vmList;
-    }
-
-    public void setVmList(List<Vm> vmList) {
-        this.vmList = vmList;
     }
 
     @Override

@@ -71,8 +71,6 @@ public class User implements Serializable {
     private int type;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserGroupe> userGroupeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Vm> vmList;
 
     public User() {
     }
@@ -145,15 +143,6 @@ public class User implements Serializable {
 
     public void setUserGroupeList(List<UserGroupe> userGroupeList) {
         this.userGroupeList = userGroupeList;
-    }
-
-    @XmlTransient
-    public List<Vm> getVmList() {
-        return vmList;
-    }
-
-    public void setVmList(List<Vm> vmList) {
-        this.vmList = vmList;
     }
 
     @Override
