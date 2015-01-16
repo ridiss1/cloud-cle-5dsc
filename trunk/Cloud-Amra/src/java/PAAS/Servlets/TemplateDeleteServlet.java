@@ -45,7 +45,7 @@ public class TemplateDeleteServlet extends HttpServlet{
          if ( (libelle!=null) &&  (prof!=null)) {
               Template template = form.getTemplateByLibelle(libelle);
              // System.out.println ("++++++++++++++++++++++++++++++++ :"+template.getId());
-              form.deleteTemplate(template.getId(), libelle, prof.getId());;
+             // form.deleteTemplate(template.getId(), libelle, prof.getId());;
               request.setAttribute("Libelle", libelle);
               request.setAttribute("deleteTemplate", form.isDeletetemplate());
               

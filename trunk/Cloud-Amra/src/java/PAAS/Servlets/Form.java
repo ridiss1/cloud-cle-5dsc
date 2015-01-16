@@ -8,6 +8,7 @@ package PAAS.Servlets;
 import IAAS.Iaas;
 import PAAS.Models.*;
 import com.jcraft.jsch.JSchException;
+//import com.jcraft.jsch.JSchException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -29,12 +30,12 @@ public class Form {
     private String errorMail;
     private User user;
     private int type;
-       
+
     private String start = "btn-lg active";
     private String stop = "disabled";
     private String console = "disabled";
-    private boolean template= false;
-    private boolean deletetemplate= false;
+    private boolean template = false;
+    private boolean deletetemplate = false;
 
     public boolean isDeletetemplate() {
         return deletetemplate;
@@ -97,38 +98,39 @@ public class Form {
     public Form() {
 
     }
-    
-        
+
     /**
      * Ajouter un VM pour un etudiant dans un groupe.
      */
-    public boolean addVM(User user, Groupe groupe, String password, int idProf){
+    public boolean addVM(Integer id, int user, int prof, int groupe, String password) {
+        boolean resul = false;
         Factory factory = new Factory();
         factory.open();
-        factory.vmAddForUser(user, groupe, password, idProf);
+        factory.vmAddForUser(id, user, prof, groupe, password);
+        resul = true;
         factory.close();
-        return true;
+        return resul;
     }
 
     /**
      * Supprimer un VM
      */
-    public boolean removeVM(int idVM){
+    public boolean removeVM(int idVM) {
         Factory factory = new Factory();
         factory.open();
         factory.vmDelete(idVM);
         factory.close();
         return true;
     }
-    
+
     /**
      * Recuperer la liste des VMs.
      */
-    public List <Vm> getListVm(User user) {
-        List <Vm> listVm = null;
+    public List<Vm> getListVm(User user) {
+        List<Vm> listVm = null;
         Factory factory = new Factory();
         factory.open();
-        if (factory.vmfindAllByUser(user)!=null){
+        if (factory.vmfindAllByUser(user) != null) {
             listVm = (List<Vm>) factory.vmfindAllByUser(user);
         }
         factory.close();
@@ -143,102 +145,100 @@ public class Form {
         List<Vm> listVm = null;
         Factory factory = new Factory();
         factory.open();
-        if (factory.vmfindAllByProf(user)!=null){
-            listVm = (List<Vm>) factory.vmfindAllByProf(user);  
+        if (factory.vmfindAllByProf(user) != null) {
+            listVm = (List<Vm>) factory.vmfindAllByProf(user);
         }
         factory.close();
         return listVm;
 
-    }    
+    }
+
     /**
      * Recuperer la liste des groupes.
      */
-    public List<Groupe> getListGroupe(){
+    public List<Groupe> getListGroupe() {
         List<Groupe> listGroupe = null;
         Factory factory = new Factory();
         factory.open();
-        if (factory.groupefindAll() != null){
-            listGroupe = (List<Groupe>)factory.groupefindAll();
+        if (factory.groupefindAll() != null) {
+            listGroupe = (List<Groupe>) factory.groupefindAll();
         }
         factory.close();
         return listGroupe;
     }
-    
-        
+
     /**
      * Recuperer le groupe avec sa libelle.
      */
-    public Groupe getGroupeByLibelle(String groupeName){
+    public Groupe getGroupeByLibelle(String groupeName) {
+
         Factory factory = new Factory();
         Groupe groupe = null;
         factory.open();
-        if (factory.groupefindByLibelle(groupeName) != null){
+        if (factory.groupefindByLibelle(groupeName) != null) {
             groupe = factory.groupefindByLibelle(groupeName);
         }
         factory.close();
         return groupe;
     }
 
-        
     /**
      * Recuperer la liste des etudiants du groupe.
      */
-    public List<UserGroupe> getListStudentByGroupe(Groupe groupe){
+    public List<UserGroupe> getListStudentByGroupe(Groupe groupe) {
         List<UserGroupe> listIdStudent = null;
         Factory factory = new Factory();
         factory.open();
-        if (factory.studentfindAllByGroupe(groupe) != null){
+        if (factory.studentfindAllByGroupe(groupe) != null) {
             listIdStudent = (List<UserGroupe>) factory.studentfindAllByGroupe(groupe);
         }
         factory.close();
-        
+
         return listIdStudent;
     }
-    
-    /*********************
-     * 
+
+    /**
+     * *******************
+     *
      * Add template prof
      */
-    
-    public void addTemplateProf (TemplateProf templateProf) {
+    public void addTemplateProf(TemplateProf templateProf) {
         Factory factory = new Factory();
         factory.open();
-        factory.addTemplateProf(templateProf);
-        
+        //factory.addTemplateProf(templateProf);
+
         factory.close();;
-        
+
     }
-    
-        
+
     /**
      * Recuperer l'etudiant du groupe.
      */
-    public User getStudentInGroupe(UserGroupe userGroupe){
+    public User getStudentInGroupe(UserGroupe userGroupe) {
         User student = null;
         Factory factory = new Factory();
         factory.open();
-        if (factory.studentfindInGroupe(userGroupe) != null){
+        if (factory.studentfindInGroupe(userGroupe) != null) {
             student = factory.studentfindInGroupe(userGroupe);
         }
         factory.close();
         return student;
     }
-    
-        
+
     /**
      * Recuperer le VM avec l'idEtudiant et l'idGroupe.
      */
-    public Vm getVmByStudentAndGroupe(User user,Groupe groupe){
-        Vm vm=null;
+    public Vm getVmByStudentAndGroupe(User user, Groupe groupe) {
+        Vm vm = null;
         Factory factory = new Factory();
         factory.open();
-        if (factory.vmfindByStudentAndGroupe(user, groupe) != null){
-            vm=factory.vmfindByStudentAndGroupe(user, groupe);
+        if (factory.vmfindByStudentAndGroupe(user, groupe) != null) {
+            vm = factory.vmfindByStudentAndGroupe(user, groupe);
         }
         factory.close();
         return vm;
     }
-    
+
     public void validation(String login, String password) {
         validationLogin(login);
         validationPassword(password);
@@ -247,6 +247,7 @@ public class Form {
     }
 
     public void validationLogin(String login) {
+
         try {
             Factory factory = new Factory();
             factory.open();
@@ -254,6 +255,8 @@ public class Form {
             User userLogin = factory.userFindByLogin(login);
             if (userLogin == null) {
                 error.put("login", "Merci de saisir un login valide");
+            } else {
+                System.out.println("************Login reussi");
             }
             factory.close();
             // errorLogin=null;
@@ -278,7 +281,7 @@ public class Form {
         }
 
     }
-        
+
     /**
      * Valide la connexion.
      */
@@ -293,6 +296,7 @@ public class Form {
                 user = null;
             } else {
                 type = userConnexion.getType();
+                System.out.println("*******Type*****************" + type);
                 user = userConnexion;
             }
             factory.close();
@@ -303,7 +307,29 @@ public class Form {
         }
 
     }
-    
+
+    /**
+     * *****
+     * Get last Id vm
+     */
+    public int getLastIdVm() {
+        int resul = 199;
+        Factory factory = new Factory();
+        factory.open();
+        resul = resul + factory.lastIdVm();
+        factory.close();
+        return resul;
+    }
+
+    public Vm getLastVm(int id) {
+        Vm vm = null;
+        Factory factory = new Factory();
+        factory.open();
+        vm = factory.vmfindById(id);
+        factory.close();
+        return vm;
+    }
+
     /**
      * Recuperer la liste des templates.
      */
@@ -316,7 +342,7 @@ public class Form {
         return listTemplate;
 
     }
-    
+
     public Template getTemplateByLibelle(String libelle) {
         Template template = null;
         Factory factory = new Factory();
@@ -326,7 +352,7 @@ public class Form {
         return template;
 
     }
-    
+
     public List<Template> getListTemplateByProf(User user) {
         List<Template> listTemplate = null;
         Factory factory = new Factory();
@@ -336,8 +362,6 @@ public class Form {
         return listTemplate;
 
     }
-    
-    
 
     /**
      * Valide l'adresse mail saisie.
@@ -472,8 +496,8 @@ public class Form {
 
     public List<Container> getListContainer(List<Vm> listVm) {
 
-        List<Container> listCont = new ArrayList ();
-        Iaas iaas = new Iaas ();
+        List<Container> listCont = new ArrayList();
+        Iaas iaas = new Iaas();
         String[] hostname = {"vm Cloud", "vm M2M"};
         String[] ram = {"400", "460"};
         String[] ramUsage = {"210", "150"};
@@ -486,7 +510,7 @@ public class Form {
         int i = 0;
         //for (Vm vm : listVm) {
         //int idVm = vm.getId();
-        
+
         int idVm = listVm.get(0).getId();
 
         String vmid = Integer.toString(idVm);
@@ -494,21 +518,21 @@ public class Form {
         String password = listVm.get(0).getPassword();
         Container container = null;
         for (Vm vm : listVm) {
-          container= iaas.getContainer(vm.getId());
-          container.setVmid(vm.getId().toString());
-         /* long disk=Long.parseLong(container.getDisk())/(1024*1024*1024);
-          long disk_usage=Long.parseLong(container.getDisk_usage())/(1024*1024*1024);
-          long ram2=Long.parseLong(container.getMemory())/(1024*1024);
-          long ram_usage=Long.parseLong(container.getMem_usage())/(1024*1024);
-          container.setDisk(Long.toString(disk));
-          container.setDisk_usage(Long.toString(disk_usage));
-          container.setMemory(Long.toString(ram2));
-          container.setMem_usage(Long.toString(ram_usage));*/
-          System.out.println(container.toString());
-       // container = new Container(id[0], hostname[0], ram[0], ramUsage[0], cpu[0], cpuUsage[0], mem[0], memUsage[0]);
-        listCont.add(container);
+            container = iaas.getContainer(vm.getId());
+            container.setVmid(vm.getId().toString());
+            /* long disk=Long.parseLong(container.getDisk())/(1024*1024*1024);
+             long disk_usage=Long.parseLong(container.getDisk_usage())/(1024*1024*1024);
+             long ram2=Long.parseLong(container.getMemory())/(1024*1024);
+             long ram_usage=Long.parseLong(container.getMem_usage())/(1024*1024);
+             container.setDisk(Long.toString(disk));
+             container.setDisk_usage(Long.toString(disk_usage));
+             container.setMemory(Long.toString(ram2));
+             container.setMem_usage(Long.toString(ram_usage));*/
+            System.out.println(container.toString());
+            // container = new Container(id[0], hostname[0], ram[0], ramUsage[0], cpu[0], cpuUsage[0], mem[0], memUsage[0]);
+            listCont.add(container);
         }
-          //  i++;
+        //  i++;
         //  }
 
         return listCont;
@@ -516,29 +540,134 @@ public class Form {
     }
 
     public void startVm(int id) {
-        Iaas iaas = new Iaas ();
-        String status=iaas.getContainer(id).getStatus();
-       
-        if (status.equals("running")){
-            this.startStatus=true;
-        }else{
-            this.startStatus=false;
+        Iaas iaas = new Iaas();
+        String status = iaas.getContainer(id).getStatus();
+
+        if (status.equals("running")) {
+            this.startStatus = true;
+        } else {
+            this.startStatus = false;
             iaas.startContainer(id);
         }
-         
+
     }
 
     public void stopVm(int id) {
-        Iaas iaas = new Iaas ();
-        String status=iaas.getContainer(id).getStatus();
-        if (status.equals("stopped")){
-            this.stopStatus=true;
-        }else{
-            this.stopStatus=false;
+        Iaas iaas = new Iaas();
+        String status = iaas.getContainer(id).getStatus();
+        if (status.equals("stopped")) {
+            this.stopStatus = true;
+        } else {
+            this.stopStatus = false;
             iaas.stopContainer(id);
         }
-        System.out.println("STOP="+iaas.getContainer(id).getStatus()); 
+        System.out.println("STOP=" + iaas.getContainer(id).getStatus());
     }
+
+   
+
+    /**
+     * *******Creer
+     * container******************************************************
+     */
+    public void createContainer(String template, String groupe, String cpu,
+            String disk, String hostname, String ram, String password, User prof) {
+
+        System.out.println("****CREATION DES CONTAINERS*************************/n");
+        System.out.println("*******************Parametres saisis**************");
+        System.out.println("***********************Template: " + template);
+        System.out.println("***********************Groupe: " + groupe);
+        System.out.println("***********************Cpu: " + cpu);
+        System.out.println("***********************Disk: " + disk);
+        System.out.println("***********************hostname: " + hostname);
+        System.out.println("***********************Ram: =" + ram);
+        System.out.println("***********************Password default: " + password);
+        /**
+         * ********************Le cas ou le groupe est unique
+         * ********************************************************************
+         */
+
+        Groupe groupVm = getGroupeByLibelle(groupe);
+
+        if (groupe.equals("Unique")) {
+            System.out.println("**************Creation d'un container unique pour le prof***********");
+            int nextId = this.getLastIdVm();
+            int currentId = nextId - 1;
+            Vm lastVm = getLastVm(currentId);
+            //Vm lastVm = null;
+            System.out.println("**************** dernier vm " + currentId + "*****************");
+            boolean createContainer = false;
+            Integer vmid = lastVm.getId() + 1;
+            System.out.println("**************** Creation du contaire " + vmid + " en cours*****************");
+            Container container = new Container(template, vmid.toString(), cpu, disk, hostname, ram, password);
+            try {
+                Iaas iaas = new Iaas();
+                createContainer = iaas.creerContainer(container, vmid);
+            } catch (Exception e) {
+                createContainer = false;
+
+            }
+            if (createContainer) {
+                System.out.println("**************Creation container " + vmid + " reusie********************");
+
+                //Integer id, int user, int prof, int groupe, String password
+                boolean result = addVM(vmid, prof.getId().intValue(), prof.getId().intValue(), groupVm.getId().intValue(), password);
+                if (result) {
+                    System.out.println("************Success Enregistrement de " + vmid + " dans la bd**********");
+                } else {
+                    System.out.println("************Error Enregistrement de " + vmid + " dans la bd**********");
+                }
+
+            } else {
+                System.out.println("**************Error Creation container " + vmid + "********************");
+
+            }
+
+        } /**
+         * ****************Cas ou le groupe n'est pas
+         * unique************************************************
+         */
+        else {
+            List<UserGroupe> listStudent = getListStudentByGroupe(groupVm);
+            for (UserGroupe userGroupe : listStudent) {
+                int nextId = this.getLastIdVm();
+                int currentId = nextId - 1;
+                Vm lastVm = getLastVm(currentId);
+                User student = getStudentInGroupe(userGroupe);
+                System.out.println("**Creation d'un container pour " + student.getNom() + "***********");
+                boolean createContainer = false;
+                Integer vmid = lastVm.getId() + 1;
+                System.out.println("**************** Creation du contaire " + vmid + " en cours*****************");
+                String hostnameVm = hostname + "-" + vmid;
+                Container container = new Container(template, vmid.toString(), cpu, disk, hostnameVm, ram, password);
+                try {
+                    Iaas iaas = new Iaas();
+                    createContainer = iaas.creerContainer(container, vmid);
+                } catch (Exception e) {
+                    createContainer = false;
+                }
+
+                if (createContainer) {
+                    System.out.println("**************Creation container " + vmid + " reusie********************");
+
+                    //Integer id, int user, int prof, int groupe, String password
+                    boolean result = addVM(vmid, student.getId().intValue(), prof.getId().intValue(), groupVm.getId().intValue(), password);
+                    if (result) {
+                        System.out.println("************Success Enregistrement de " + vmid + " dans la bd**********");
+                    } else {
+                        System.out.println("************Error Enregistrement de " + vmid + " dans la bd**********");
+                    }
+
+                } else {
+                    System.out.println("**************Error Creation container " + vmid + "********************");
+
+                }
+
+            }
+
+        }
+    }
+
     
     public void createTemplate (int vmid, String libelle, int prof) {
         boolean result =false;
@@ -575,5 +704,5 @@ public class Form {
        
         
     }
-
+    
 }

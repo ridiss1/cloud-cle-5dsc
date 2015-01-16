@@ -35,6 +35,24 @@ public class Iaas {
     private String pwd = "pppppppp";
     private String host = "192.168.100.10";
     private int port = 22;
+    
+    /*
+     //Server dist distant
+    final  private String address="192.168.100.10"; 
+    private String user="root";
+    private String password="pppppppp";
+   */
+    /*
+  //Server Local R1
+    final  private String address="10.201.2.218"; 
+    private String user="root";
+    private String password="admin";
+  */
+    
+     //Server Local INSA
+    final  private String address="10.32.3.140"; 
+    private String userProxmox="root";
+    private String password="admin";
     public  Iaas(){
         
         /**
@@ -44,7 +62,7 @@ public class Iaas {
          * param3 = "pam"
          * param4 = mot de passe
          */
-        pve = new Pve2Api("192.168.100.10","root","pam","pppppppp");
+          pve = new Pve2Api(address,user,"pam",password);
         try {
             pve.login();
         } catch (JSONException ex) {
@@ -62,16 +80,19 @@ public class Iaas {
      * @param nbrectainer : utilisé pour numéroter la machine de façcon unique
      * via son IP = 192.168.1.nbreContainer
      */
-    public void creerContainer ( Container container , int nbrectainer ){
-        
+    public boolean creerContainer ( Container container , int nbrectainer ) {
+        boolean result =false;
         try {
             container.setStorage("local");
             container.setIp_address("192.168.1."+nbrectainer);
             container.setOstemplate("local:vztmpl/"+container.getOstemplate());
             pve.createOpenvz("proxmox", container);
+            result=true;
         } catch (JSONException | LoginException | IOException ex) {
             Logger.getLogger(Iaas.class.getName()).log(Level.SEVERE, null, ex);
+            result=false;
         }
+        return result;
         
     }
     
