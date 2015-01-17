@@ -399,7 +399,8 @@ public class Form {
 
     public void writeFile(List<Container> listContainer) {
         PrintWriter ecrire;
-        String nomFichier = "C:/Users/metbill/Documents/NetBeansProjects/Cloud-Amra/web/js/graphe.js";
+        String nomFichier = "C:/Users/camara/Documents/NetBeansProjects/CLE/trunk/Cloud-Amra/web/js/graphe.js";
+        
 
         try {
             ecrire = new PrintWriter(new BufferedWriter(new FileWriter(nomFichier)));
@@ -421,14 +422,14 @@ public class Form {
                 ecrire.println("{");
                 ecrire.println("value: " + ramUsage + ",");
                 ecrire.println("color:'#F7464A',");
-                ecrire.println("highlight: '#FF5A5E',");
+                ecrire.println("highlight: '#FF5A5E',");              
                 ecrire.println("label: 'RAM Usage'");
                 ecrire.println("},");
 
                 ecrire.println("{");
                 ecrire.println("value: " + ramTotal + ",");
-                ecrire.println("color: '#4D5360',");
-                ecrire.println("highlight: '#616774',");
+                ecrire.println("color: '#46BFBD',");
+                ecrire.println("highlight: '#5AD3D1',");             
                 ecrire.println("label: 'RAM Total'");
                 ecrire.println("}");
                 ecrire.println("];");
@@ -442,14 +443,14 @@ public class Form {
                 ecrire.println("{");
                 ecrire.println("value: " + cpuUsage + ",");
                 ecrire.println("color:'#F7464A',");
-                ecrire.println("highlight: '#FF5A5E',");
+                ecrire.println("highlight: '#FF5A5E',");               
                 ecrire.println("label: 'CPU Usage'");
                 ecrire.println("},");
 
                 ecrire.println("{");
                 ecrire.println("value: " + cpu + ",");
-                ecrire.println("color: '#4D5360',");
-                ecrire.println("highlight: '#616774',");
+                ecrire.println("color: '#46BFBD',");
+                ecrire.println("highlight: '#5AD3D1',");               
                 ecrire.println("label: 'CPU Total'");
                 ecrire.println("}");
                 ecrire.println("];");
@@ -462,14 +463,14 @@ public class Form {
                 ecrire.println("{");
                 ecrire.println("value: " + memUsage + ",");
                 ecrire.println("color:'#F7464A',");
-                ecrire.println("highlight: '#FF5A5E',");
+                ecrire.println("highlight: '#FF5A5E',"); 
                 ecrire.println("label: 'Disk Usage'");
                 ecrire.println("},");
 
                 ecrire.println("{");
                 ecrire.println("value: " + memTotal + ",");
-                ecrire.println("color: '#4D5360',");
-                ecrire.println("highlight: '#616774',");
+                ecrire.println("color: '#46BFBD',");
+                ecrire.println("highlight: '#5AD3D1',");                         
                 ecrire.println("label: 'Disk Total'");
                 ecrire.println("}");
                 ecrire.println("];");
@@ -563,8 +564,6 @@ public class Form {
         }
         System.out.println("STOP=" + iaas.getContainer(id).getStatus());
     }
-
-   
 
     /**
      * *******Creer
@@ -666,11 +665,24 @@ public class Form {
             }
 
         }
+        System.out.println("***********FIN CREATION CONTAINER***********************");
+    }
+    
+    public void removeTemplateByLibelle (String libelle) {
+        Factory factory = new Factory ();
+        factory.open();
+        
+        factory.removeTemplate(libelle);
+        factory.close();
     }
 
-    
-    public void createTemplate (int vmid, String libelle, int prof) {
-        boolean result =false;
+    public void createTemplate(int vmid, String libelle, int prof) {
+        
+        System.out.println ("*************Creation template en cours*************************");
+        System.out.println ("*************Vmid : "+vmid+"*************************");
+        System.out.println ("*************Libelle : "+libelle+"*************************");
+        System.out.println ("*************Prof : "+prof+"*************************");
+        boolean result = false;
         try {
             Iaas iaas = new Iaas();
             result = iaas.createCustomerTemplate(vmid, libelle);
@@ -680,29 +692,58 @@ public class Form {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (result) {
-            Template template = getTemplateByLibelle(libelle); 
+            /*System.out.println ("*************Creation template reussi****************");
+            Template template = getTemplateByLibelle(libelle);
             int id = template.getId();
             TemplateProf templateProf = new TemplateProf(id, prof);
-            addTemplateProf (templateProf);
-            
-            
+            addTemplateProf(templateProf);*/
+            System.out.println ("*************Enregistrement du template dans la base reussi****************");
+
+        }
+        else {
+             System.out.println ("*************Echec creation template ****************");
         }
 
-        System.out.println ("+++++++++++++++++++++++++++++++++++++Vmid : "+result);
+        System.out.println("+++++++++++++++++++++++++++++++++++++Vmid : " + result);
     }
-    
-    public void deleteTemplate (int idTemplate, String file, int idProf) {
+
+    public void deleteTemplate(String libelle,int idProf) {
         boolean result = false;
+        Template template = getTemplateByLibelle(libelle);
+        String file= template.getFile();
         try {
             Iaas iaas = new Iaas();
-            iaas.deleteTemplate(file);
+            result=iaas.deleteTemplate(file);
         } catch (JSchException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
         
+        if (result) {
+            this.removeTemplateByLibelle(libelle);
+        }
+
+    }
+    
+    
+    /*************Liste des vm running*********************************************/
+    
+    public List <Vm> getListListVmRunning (List <Vm> listVm) {
+        List <Vm> listVmRun = new ArrayList <Vm> ();
+        Iaas iaas = new Iaas ();
+        for (Vm vm : listVm) {
+            Integer vmid = vm.getId();
+            Container container = iaas.getContainer(vmid);
+            if (container.getStatus().equals("running")) {
+                listVmRun.add(vm);
+            }
+        }
+        
+        if (listVmRun.size()==0)
+            listVmRun=null;
+        
+       return listVmRun; 
     }
     
 }

@@ -31,9 +31,8 @@ public class Iaas {
     /**
      * SSH Attributes
      */
-    private String user = "root";
-    private String pwd = "pppppppp";
-    private String host = "192.168.100.10";
+   
+   
     private int port = 22;
     
     /*
@@ -42,17 +41,17 @@ public class Iaas {
     private String user="root";
     private String password="pppppppp";
    */
-    /*
+    
   //Server Local R1
     final  private String address="10.201.2.218"; 
     private String user="root";
     private String password="admin";
-  */
-    
+  
+    /*
      //Server Local INSA
     final  private String address="10.32.3.140"; 
-    private String userProxmox="root";
-    private String password="admin";
+    private String user="root";
+    private String password="admin";*/
     public  Iaas(){
         
         /**
@@ -227,9 +226,9 @@ public class Iaas {
         String pattern = ".*Backup job finished successfully.*";
         JSch jsch = new JSch();
         String command = "/root/scripts/createtemplateprof.sh " + containerID + " " + "\"" + comments + "\"";
-        Session session = jsch.getSession(this.user, this.host, this.port);
+        Session session = jsch.getSession(this.user, this.address, this.port);
         session.setConfig("StrictHostKeyChecking", "no");
-        session.setPassword(this.pwd);
+        session.setPassword(this.password);
         session.connect();
         ChannelExec channel = (ChannelExec) session.openChannel("exec");
         channel.setCommand(command);
@@ -281,9 +280,9 @@ public class Iaas {
     public boolean deleteTemplate(String fileName) throws JSchException, IOException {
         JSch jsch = new JSch();
         String command = "/root/scripts//delete_template.sh " + fileName;
-        Session session = jsch.getSession(this.user, this.host, this.port);
+        Session session = jsch.getSession(this.user, this.address, this.port);
         session.setConfig("StrictHostKeyChecking", "no");
-        session.setPassword(this.pwd);
+        session.setPassword(this.password);
         session.connect();
         ChannelExec channel = (ChannelExec) session.openChannel("exec");
         channel.setCommand(command);

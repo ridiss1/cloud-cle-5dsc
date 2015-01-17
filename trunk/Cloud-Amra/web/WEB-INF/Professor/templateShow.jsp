@@ -102,15 +102,18 @@
                         Liste des templates
                     </a>
                     </br>
-                    <ul class="list-group">
+                    <table class="table table-striped">
+                        <tbody>                 
                         <c:forEach items="${sessionScope.ListTemplate}" var="template">
-                            <li class="list-group-item">
-                                <span class="badge">New</span>
-                                ${template.libelle}
-                            </li>
+                             <tr>
+                                 <td>${template.libelle}</td>
+                                 <td><a class="btn btn-danger " href="delete_template?template=${template.libelle}" role="button"><span class="glyphicon glyphicon-remove">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delete</span></a></td>
                             
+                             </tr>
                         </c:forEach>
-                    </ul>
+                   
+                        </tbody>
+                     </table>   
 
                 </div>
             </section>

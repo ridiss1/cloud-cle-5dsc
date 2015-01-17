@@ -57,7 +57,7 @@ public class VmProfServlet extends HttpServlet {
 
         
 
-            this.getServletContext().getRequestDispatcher(VUE_VM_PROF).forward(request, response);
+        this.getServletContext().getRequestDispatcher(VUE_VM_PROF).forward(request, response);
         
         
 
