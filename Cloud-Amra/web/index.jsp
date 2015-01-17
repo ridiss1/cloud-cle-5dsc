@@ -15,7 +15,7 @@
         <script src="js/jquery.js" type="text/javascript"></script>
         <title>Page de connexion </title>
     </head>
-    <body>
+    <body >
         <!--login modal-->
         <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">

@@ -421,14 +421,14 @@ public class Form {
                 ecrire.println("var " + data + " = [");
                 ecrire.println("{");
                 ecrire.println("value: " + ramUsage + ",");
-                ecrire.println("color:'#F7464A',");
+                ecrire.println("color:'#c4e3f3',");
                 ecrire.println("highlight: '#FF5A5E',");              
                 ecrire.println("label: 'RAM Usage'");
                 ecrire.println("},");
 
                 ecrire.println("{");
                 ecrire.println("value: " + ramTotal + ",");
-                ecrire.println("color: '#46BFBD',");
+                ecrire.println("color: 'darkblue',");
                 ecrire.println("highlight: '#5AD3D1',");             
                 ecrire.println("label: 'RAM Total'");
                 ecrire.println("}");
@@ -442,14 +442,14 @@ public class Form {
                 ecrire.println("var " + data1 + " = [");
                 ecrire.println("{");
                 ecrire.println("value: " + cpuUsage + ",");
-                ecrire.println("color:'#F7464A',");
+                ecrire.println("color:'#c4e3f3',");
                 ecrire.println("highlight: '#FF5A5E',");               
                 ecrire.println("label: 'CPU Usage'");
                 ecrire.println("},");
 
                 ecrire.println("{");
                 ecrire.println("value: " + cpu + ",");
-                ecrire.println("color: '#46BFBD',");
+                ecrire.println("color: 'darkblue',");
                 ecrire.println("highlight: '#5AD3D1',");               
                 ecrire.println("label: 'CPU Total'");
                 ecrire.println("}");
@@ -462,14 +462,14 @@ public class Form {
                 ecrire.println("var " + data2 + " = [");
                 ecrire.println("{");
                 ecrire.println("value: " + memUsage + ",");
-                ecrire.println("color:'#F7464A',");
+                ecrire.println("color:'#c4e3f3',");
                 ecrire.println("highlight: '#FF5A5E',"); 
                 ecrire.println("label: 'Disk Usage'");
                 ecrire.println("},");
 
                 ecrire.println("{");
                 ecrire.println("value: " + memTotal + ",");
-                ecrire.println("color: '#46BFBD',");
+                ecrire.println("color: 'darkblue',");
                 ecrire.println("highlight: '#5AD3D1',");                         
                 ecrire.println("label: 'Disk Total'");
                 ecrire.println("}");
