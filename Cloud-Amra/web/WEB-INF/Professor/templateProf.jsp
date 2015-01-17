@@ -85,7 +85,7 @@
                             
                             <li class="bordure"><a href="show_template">&nbsp;&nbsp;&nbsp;Affichage</a></li>
                             
-                            <li class="bordure"><a href="delete_template">&nbsp;&nbsp;&nbsp;Supression</a></li>
+                            
                         </ul>    
                         
                         

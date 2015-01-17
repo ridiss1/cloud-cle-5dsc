@@ -10,6 +10,7 @@ import PAAS.Models.User;
 import PAAS.Models.Vm;
 import static PAAS.Servlets.TemplateCreateServlet.ATT_SESSION_USER;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,19 +28,41 @@ public class TemplateProfServlet extends HttpServlet{
      public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          HttpSession session = request.getSession();
          Form form = new Form ();
-          User prof=null;
-          List <Vm> listVmByProf=null;
-          List <Template> listTemplateByProf=null;
-           prof = (User) session.getAttribute(ATT_SESSION_USER);
-          /**************Get list Template et vm By Prof*******************************/
-           if (prof!=null) {
+         User prof=null;
+         prof = (User) session.getAttribute(ATT_SESSION_USER);
+         
+         List <Vm> listVmByProf= new ArrayList <Vm> ();
+         List <Vm> listVmRunByProf= new ArrayList <Vm> ();
+         List <Template> listTemplateByProf= new ArrayList <Template> ();
+        
+         /**************Get list Template et vm By Prof*******************************/
+          if (form.getListVmByProf(prof).size()==0)
+              listVmByProf=null;
+          else 
               listVmByProf=form.getListVmByProf(prof);
+         
+          if (form.getListTemplateByProf(prof).size()==0)
+              listTemplateByProf=null;
+          else
               listTemplateByProf= form.getListTemplateByProf(prof);
+          
+          
+          if (listVmByProf !=null) {
+              listVmRunByProf=form.getListListVmRunning (listVmByProf);
           }
-          session.setAttribute("ListVm", listVmByProf);
-          session.setAttribute("ListTemplate", listTemplateByProf);
+          else {
+              listVmRunByProf=null;
+              
+          }
           
+          if (listVmByProf !=null)
+            session.setAttribute("ListVm", listVmByProf);
           
+          if (listTemplateByProf!=null)
+            session.setAttribute("ListTemplate", listTemplateByProf);
+          
+          if (listVmRunByProf !=null)
+            session.setAttribute("ListVmRun", listVmRunByProf);
          
          
          this.getServletContext().getRequestDispatcher(VUE_VM_PROF).forward(request, response);

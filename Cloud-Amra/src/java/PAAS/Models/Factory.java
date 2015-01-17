@@ -71,9 +71,9 @@ public class Factory {
     public List<Vm> vmfindAllByUser(User user) {
         //ArrayList <Vm> vm= new ArrayList <Vm> ();
         List<Vm> vm = null;
-        String requete = "SELECT v FROM Vm v WHERE v.user =:id";
-        Query query = em.createQuery(requete);
-        query.setParameter("id", user);
+       // String requete = "SELECT v FROM Vm v WHERE v.user =:id";
+        Query query = em.createNamedQuery("Vm.findByUser");
+        query.setParameter("user", user.getId().intValue());
         if (query.getResultList() != null) {
             vm = (List<Vm>) query.getResultList();
         }
@@ -146,6 +146,14 @@ public class Factory {
         template = (Template) query.getSingleResult();
         return template;
     }
+    
+    public TemplateProf templateProfFindByTemplate(int id) {
+        TemplateProf templateProf = null;
+        Query query = em.createNamedQuery("TemplateProf.findByTemplate");
+        query.setParameter("template", id);
+        templateProf = (TemplateProf) query.getSingleResult();
+        return templateProf;
+    }
 
     public List<UserGroupe> studentfindAllByGroupe(Groupe groupe) {
         List<UserGroupe> idStudents = null;
@@ -197,6 +205,23 @@ public class Factory {
         query.setParameter("groupe", groupe);
         vm = (Vm) query.getSingleResult();
         return vm;
+    }
+    
+    public void removeTemplate (String templ) {
+        Template template=null;
+        Query query = em.createNamedQuery("Template.findByLibelle");
+        template= templatefindByLibelle(templ);
+        Integer idTemplate= template.getId();
+        TemplateProf templateProf= templateProfFindByTemplate(idTemplate.intValue());
+        if (templateProf != null) {
+            em.remove(templateProf);
+        }
+        if (template != null) {
+            em.remove(template);
+        }
+        System.out.println ("******************Suppression de "+templ+"*****************");
+        
+        
     }
 
     public void close() {

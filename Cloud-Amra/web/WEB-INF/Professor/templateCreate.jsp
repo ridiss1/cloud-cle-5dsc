@@ -116,7 +116,7 @@
                             <label for="vm" class="col-sm-2 control-label">Vm</label>
                             <div class="col-sm-5">
                                 <select class="form-control" name="vm" id="vm">
-                                    <c:forEach items="${sessionScope.ListVm}" var="vm">
+                                    <c:forEach items="${sessionScope.ListVmRun}" var="vm">
                                     <option>${vm.id}</option>
                                     
                                      </c:forEach>

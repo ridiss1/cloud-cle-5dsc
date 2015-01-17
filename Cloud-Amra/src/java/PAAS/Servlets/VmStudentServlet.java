@@ -9,6 +9,7 @@ import PAAS.Models.User;
 import PAAS.Models.Vm;
 import static PAAS.Servlets.AuthentificationServlet.ATT_SESSION_USER;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -60,15 +61,18 @@ public class VmStudentServlet extends HttpServlet{
             
         }
         
+        List<Vm> listVm = new ArrayList <Vm> ();
+        if (form.getListVm(user).size() ==0)
+             listVm = null;
+        else
+            listVm = form.getListVm(user);
         
-        List<Vm> listVm = form.getListVm(user);
+        if (listVm != null) {
+            listContainer = form.getListContainer(listVm);
+            session.setAttribute(LISTE_CONTAINER, listContainer);
+            form.writeFile(listContainer);
 
-                if (listVm.size() != 0) {
-                    listContainer = form.getListContainer(listVm);
-                    session.setAttribute(LISTE_CONTAINER, listContainer);
-                    form.writeFile(listContainer);
-
-                }
+        }
        
       
         request.setAttribute(CLASS_CONSOLE, form.getConsole());

@@ -50,7 +50,7 @@ public class TemplateCreateServlet extends HttpServlet{
             vmid= Integer.parseInt(request.getParameter(ATTR_VM).trim());
           prof = (User) session.getAttribute(ATT_SESSION_USER);
           
-          if ( (libelle!=null) && (vmid!=Integer.MAX_VALUE) &&  (prof!=null)) {
+          if ( (libelle!=null) && (vmid !=Integer.MAX_VALUE) &&  (prof!=null)) {
               form.createTemplate(vmid, libelle, prof.getId());
               request.setAttribute("Libelle", libelle);
               request.setAttribute(ATTR_TEMPLATE, form.getTemplate());

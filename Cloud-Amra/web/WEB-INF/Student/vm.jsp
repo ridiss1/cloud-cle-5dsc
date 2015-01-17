@@ -82,16 +82,15 @@
                     <div  class="container" id ="${container.vmid}">
                         <nav class="navbar navbar-default" role="navigation">
                             <div class="navbar-header">
-                                <b><a class="navbar-brand" >${container.hostname} : <span class="badge">status : ${container.status}</span></a></b>
-                            </div>
+                                <a class="btn btn-primary" role="button">${container.hostname}  : ${container.status}</a>                           </div>
 
                             <div id="alignright" class="navbar-right">
 
-                                <a class="btn btn-default" href="vm?start=${container.vmid}" role="button"><span class="icon fa-play">&nbsp;&nbsp;Start</span></a>
+                                <a class="btn btn-success" href="vm?start=${container.vmid}" role="button"><span class="icon fa-play">&nbsp;&nbsp;Start</span></a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a class="btn btn-default" href="vm?stop=${container.vmid}" role="button"><span class="icon fa-power-off">&nbsp;&nbsp;Stop</span></a>
+                                <a class="btn btn-danger" href="vm?stop=${container.vmid}" role="button"><span class="icon fa-power-off">&nbsp;&nbsp;Stop</span></a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a class="btn btn-default " href="#" role="button"><span class="icon fa-desktop">&nbsp;&nbsp;Console</span></a>
+                                <a class="btn btn-info " href="#" role="button"><span class="icon fa-desktop">&nbsp;&nbsp;Console</span></a>
 
 
                             </div>
@@ -159,31 +158,6 @@
 
                     </div>
                     </br>
-
-                    <div class="container four dark" id="status">
-                        <c:if test="${statusStart && requete_start}">
-                            <div class="container alert alert-success">${container.hostname} est demarré .</div>
-                        </c:if>
-                        
-                           
-
-                        <c:if test="${ not statusStart && requete_start}">
-                            <div class="container alert alert-danger">${container.hostname} n'est pas demarré .</div>
-                        </c:if>
-                        
-                            <c:if test="${statusStop && requete_stop}">
-                            <div class="container alert alert-success">${container.hostname} est stoppé .</div>
-                        </c:if>
-
-                        <c:if test="${ not statusStop && requete_stop}">
-                            <div class="container alert alert-danger">${container.hostname} n'est pas stopé .</div>
-                        </c:if>
-                         
-                            
-                            
-
-
-                    </div>
 
 
                 </section>
