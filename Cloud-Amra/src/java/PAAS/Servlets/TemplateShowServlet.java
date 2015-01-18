@@ -37,7 +37,7 @@ public class TemplateShowServlet extends HttpServlet{
             listTemplateByProf= form.getListTemplateByProf(prof);
         
         if (listTemplateByProf!=null)
-            session.setAttribute("ListTemplate", listTemplateByProf);
+            request.setAttribute("ListTemplate", listTemplateByProf);
         
 
          this.getServletContext().getRequestDispatcher(VUE_VM_PROF).forward(request, response);

@@ -104,7 +104,7 @@
                     </br>
                     <table class="table table-striped">
                         <tbody>                 
-                        <c:forEach items="${sessionScope.ListTemplate}" var="template">
+                        <c:forEach items="${ListTemplate}" var="template">
                              <tr>
                                  <td>${template.libelle}</td>
                                  <td><a class="btn btn-danger " href="delete_template?template=${template.libelle}" role="button"><span class="glyphicon glyphicon-remove">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delete</span></a></td>
