@@ -31,39 +31,8 @@ public class TemplateProfServlet extends HttpServlet{
          User prof=null;
          prof = (User) session.getAttribute(ATT_SESSION_USER);
          
-         List <Vm> listVmByProf= new ArrayList <Vm> ();
-         List <Vm> listVmRunByProf= new ArrayList <Vm> ();
-         List <Template> listTemplateByProf= new ArrayList <Template> ();
-        
          /**************Get list Template et vm By Prof*******************************/
-          if (form.getListVmByProf(prof).size()==0)
-              listVmByProf=null;
-          else 
-              listVmByProf=form.getListVmByProf(prof);
-         
-          if (form.getListTemplateByProf(prof).size()==0)
-              listTemplateByProf=null;
-          else
-              listTemplateByProf= form.getListTemplateByProf(prof);
-          
-          
-          if (listVmByProf !=null) {
-              listVmRunByProf=form.getListListVmRunning (listVmByProf);
-          }
-          else {
-              listVmRunByProf=null;
-              
-          }
-          
-          if (listVmByProf !=null)
-            session.setAttribute("ListVm", listVmByProf);
-          
-          if (listTemplateByProf!=null)
-            session.setAttribute("ListTemplate", listTemplateByProf);
-          
-          if (listVmRunByProf !=null)
-            session.setAttribute("ListVmRun", listVmRunByProf);
-         
+           
          
          this.getServletContext().getRequestDispatcher(VUE_VM_PROF).forward(request, response);
      }
