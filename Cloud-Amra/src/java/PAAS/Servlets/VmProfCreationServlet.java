@@ -48,13 +48,13 @@ public class VmProfCreationServlet extends HttpServlet {
 
         }
 
-        if (listVmByProf != null) {
+       // if (listVmByProf != null) {
             request.setAttribute("ListVm", listVmByProf);
-        }
+      //  }
 
-        if (listVmRunByProf != null) {
+        //if (listVmRunByProf != null) {
             request.setAttribute("ListVmRun", listVmRunByProf);
-        }
+       // }
 
         request.setAttribute(ATTR_LISTE_TEMPLATE, form.getListTemplate());
         request.setAttribute(ATTR_LISTE_GROUPE, form.getListGroupe());

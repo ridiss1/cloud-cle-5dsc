@@ -36,7 +36,7 @@ public class TemplateShowServlet extends HttpServlet{
          else
             listTemplateByProf= form.getListTemplateByProf(prof);
         
-        if (listTemplateByProf!=null)
+       // if (listTemplateByProf!=null)
             request.setAttribute("ListTemplate", listTemplateByProf);
         
 
