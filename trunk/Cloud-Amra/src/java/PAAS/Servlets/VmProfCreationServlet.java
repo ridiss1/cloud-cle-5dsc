@@ -49,15 +49,15 @@ public class VmProfCreationServlet extends HttpServlet {
         }
 
         if (listVmByProf != null) {
-            session.setAttribute("ListVm", listVmByProf);
+            request.setAttribute("ListVm", listVmByProf);
         }
 
         if (listVmRunByProf != null) {
-            session.setAttribute("ListVmRun", listVmRunByProf);
+            request.setAttribute("ListVmRun", listVmRunByProf);
         }
 
-        session.setAttribute(ATTR_LISTE_TEMPLATE, form.getListTemplate());
-        session.setAttribute(ATTR_LISTE_GROUPE, form.getListGroupe());
+        request.setAttribute(ATTR_LISTE_TEMPLATE, form.getListTemplate());
+        request.setAttribute(ATTR_LISTE_GROUPE, form.getListGroupe());
 
         this.getServletContext().getRequestDispatcher(VUE_VM_PROF_CREATION).forward(request, response);
 
