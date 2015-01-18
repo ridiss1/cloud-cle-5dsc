@@ -8,7 +8,7 @@ package PAAS.Servlets;
 import IAAS.Iaas;
 import PAAS.Models.*;
 import com.jcraft.jsch.JSchException;
-//import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.JSchException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -109,7 +109,9 @@ public class Form {
         factory.vmAddForUser(id, user, prof, groupe, password);
         resul = true;
         factory.close();
+
         return resul;
+
     }
 
     /**
@@ -118,9 +120,9 @@ public class Form {
     public boolean removeVM(int idVM) {
         Factory factory = new Factory();
         factory.open();
-        factory.vmDelete(idVM);
+        boolean result = factory.vmDelete(idVM);
         factory.close();
-        return true;
+        return result;
     }
 
     /**
@@ -569,9 +571,11 @@ public class Form {
      * *******Creer
      * container******************************************************
      */
-    public void createContainer(String template, String groupe, String cpu,
+    public boolean createContainer(String template, String groupe, String cpu,
             String disk, String hostname, String ram, String password, User prof) {
 
+        boolean resultat=false;
+        
         System.out.println("****CREATION DES CONTAINERS*************************/n");
         System.out.println("*******************Parametres saisis**************");
         System.out.println("***********************Template: " + template);
@@ -612,6 +616,7 @@ public class Form {
                 //Integer id, int user, int prof, int groupe, String password
                 boolean result = addVM(vmid, prof.getId().intValue(), prof.getId().intValue(), groupVm.getId().intValue(), password);
                 if (result) {
+                    resultat=true;    
                     System.out.println("************Success Enregistrement de " + vmid + " dans la bd**********");
                 } else {
                     System.out.println("************Error Enregistrement de " + vmid + " dans la bd**********");
@@ -652,6 +657,7 @@ public class Form {
                     //Integer id, int user, int prof, int groupe, String password
                     boolean result = addVM(vmid, student.getId().intValue(), prof.getId().intValue(), groupVm.getId().intValue(), password);
                     if (result) {
+                        resultat=true;
                         System.out.println("************Success Enregistrement de " + vmid + " dans la bd**********");
                     } else {
                         System.out.println("************Error Enregistrement de " + vmid + " dans la bd**********");
@@ -666,6 +672,7 @@ public class Form {
 
         }
         System.out.println("***********FIN CREATION CONTAINER***********************");
+        return resultat;
     }
     
     public void removeTemplateByLibelle (String libelle) {
@@ -707,14 +714,15 @@ public class Form {
 
     public void deleteTemplate(String libelle,int idProf) throws IOException {
         boolean result = false;
+            Iaas iaas = new Iaas();
+
         Template template = getTemplateByLibelle(libelle);
         String file= template.getFile();
-        try {
-            Iaas iaas = new Iaas();
+        try {    
             result=iaas.deleteTemplate(file);
         } catch (JSchException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }        
         
         if (result) {
             this.removeTemplateByLibelle(libelle);
@@ -743,3 +751,4 @@ public class Form {
     }
     
 }
+

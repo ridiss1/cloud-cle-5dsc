@@ -70,7 +70,7 @@
         <!-- Main -->
         <div id="main">
 
-            <section class="one dark cover">
+            <section class="one blue cover">
                 <div class="container">
                     <nav class="navbar navbar-inverse " role="navigation">
                         <div class="navbar-header ">
