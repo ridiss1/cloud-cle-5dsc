@@ -90,7 +90,7 @@ public class Container {
     }
     
     //Lecture
-    public Container(JSONObject data) throws JSONException {
+    public Container(JSONObject data , int requete) throws JSONException {
 		cpus = data.getString("cpus");
 		disk = data.getString("maxdisk");
 		hostname = data.getString("name");
@@ -100,7 +100,11 @@ public class Container {
                 cpu_usage=data.getString("cpu");
                 disk_usage=data.getString("disk");
                 mem_usage=data.getString("mem");
-                vmid = data.getString("vmid");
+                
+                if (requete == 1){
+                    vmid = data.getString("vmid");
+                }
+                
                 
     }
 

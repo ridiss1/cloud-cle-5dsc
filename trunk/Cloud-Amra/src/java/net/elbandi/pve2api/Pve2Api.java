@@ -464,7 +464,7 @@ public class Pve2Api {
 				null);
 		JSONArray data2 = jObj.getJSONArray("data");
 		for (int i = 0; i < data2.length(); i++) {
-			res.add(new Container(data2.getJSONObject(i)));
+			res.add(new Container(data2.getJSONObject(i),1));
 		}
 		return res;
 	}
@@ -473,7 +473,7 @@ public class Pve2Api {
 			IOException {
 		JSONObject jObj = pve_action("/nodes/" + node + "/openvz/" + vmid + "/status/current",
 				RestClient.RequestMethod.GET, null);
-		return new Container(jObj.getJSONObject("data"));
+		return new Container(jObj.getJSONObject("data"),0);
 	}
 
 	public void getOpenvzConfig(String node, int vmid, VmOpenvz vm) throws JSONException,
