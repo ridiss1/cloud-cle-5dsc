@@ -35,18 +35,18 @@ public class Iaas {
    
     private int port = 22;
     
-    /*
+    
      //Server dist distant
     final  private String address="192.168.100.10"; 
     private String user="root";
     private String password="pppppppp";
-   */
-    
+   
+    /*
   //Server Local R1
     final  private String address="10.201.2.218"; 
     private String user="root";
     private String password="admin";
-  
+  */
     /*
      //Server Local INSA
     final  private String address="10.32.3.140"; 
