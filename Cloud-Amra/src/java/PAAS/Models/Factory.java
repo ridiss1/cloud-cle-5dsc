@@ -219,9 +219,11 @@ public class Factory {
         TemplateProf templateProf= templateProfFindByTemplate(idTemplate.intValue());
         if (templateProf != null) {
             em.remove(templateProf);
+            System.out.println ("****************Suppression du template dans TemplateProf Ok************");
         }
         if (template != null) {
             em.remove(template);
+            System.out.println ("****************Suppression du template dans Template OK************");
         }
         System.out.println ("******************Suppression de "+templ+"*****************");
         
@@ -247,6 +249,21 @@ public class Factory {
         if (query.getResultList() != null) {
             listVm = (List<Vm>) query.getResultList();
             nb = listVm.size();
+
+        }
+
+        return nb;
+    }
+    
+    
+    public int lastIdTemplate() {
+        int nb = 0;
+        List<Template> listTemplate = null;
+        Query query = em.createNamedQuery("Template.findAll");
+
+        if (query.getResultList() != null) {
+            listTemplate = (List<Template>) query.getResultList();
+            nb = listTemplate.size();
 
         }
 
