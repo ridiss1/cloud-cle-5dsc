@@ -717,15 +717,22 @@ public class Form {
             Iaas iaas = new Iaas();
 
         Template template = getTemplateByLibelle(libelle);
+        System.out.println ("****************Suppression du template "+template.getLibelle()+" en cours************");
         String file= template.getFile();
         try {    
             result=iaas.deleteTemplate(file);
+            System.out.println ("****************Suppression du template sur le server proxmox ok************");
         } catch (JSchException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println ("****************Error Suppression du template sur le server proxmox************");
         }        
         
         if (result) {
             this.removeTemplateByLibelle(libelle);
+            System.out.println ("****************Suppression du template dans la bd ok************");
+        }
+        else {
+            System.out.println ("****************Errot Suppression du template dans la bd************");
         }
 
     }
