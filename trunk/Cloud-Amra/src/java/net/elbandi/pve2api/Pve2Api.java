@@ -457,14 +457,14 @@ public class Pve2Api {
 		return jObj.getString("data");
 	}
         
-	public List<VmOpenvz> getOpenvzCTs(String node) throws JSONException, LoginException,
+	public List<Container> getOpenvzCTs(String node) throws JSONException, LoginException,
 			IOException {
-		List<VmOpenvz> res = new ArrayList<VmOpenvz>();
+		List<Container> res = new ArrayList<Container>();
 		JSONObject jObj = pve_action("/nodes/" + node + "/openvz", RestClient.RequestMethod.GET,
 				null);
 		JSONArray data2 = jObj.getJSONArray("data");
 		for (int i = 0; i < data2.length(); i++) {
-			res.add(new VmOpenvz(data2.getJSONObject(i)));
+			res.add(new Container(data2.getJSONObject(i)));
 		}
 		return res;
 	}

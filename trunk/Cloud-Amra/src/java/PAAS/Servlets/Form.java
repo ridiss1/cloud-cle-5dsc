@@ -409,7 +409,7 @@ public class Form {
             for (Container container : listContainer) {
                 String data = "ramdata" + container.getVmid();
                 String ramUsage = container.getMem_usage();
-                String ramTotal = container.getMemory();
+                int ramTotal = container.getMemory();
                 String memUsage = container.getDisk_usage();
                 String memTotal = container.getDisk();
                 String concav = "";
@@ -570,7 +570,7 @@ public class Form {
      * container******************************************************
      */
     public void createContainer(String template, String groupe, String cpu,
-            String disk, String hostname, String ram, String password, User prof) {
+            String disk, String hostname, int ram, String password, User prof) {
 
         System.out.println("****CREATION DES CONTAINERS*************************/n");
         System.out.println("*******************Parametres saisis**************");
