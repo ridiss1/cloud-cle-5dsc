@@ -68,7 +68,7 @@
         </div>
         <!-- Main -->
         <div id="main">
-
+                        
             <section id="list_vm" class="vm">
                 <div class="container">
                     <div class="navbar-header ">
@@ -77,65 +77,83 @@
                     <br/>
                     <br/>
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="vmProf">List VMs</a></li>
-                        <li ><a href="vmProfCreation">Creation</a></li>                  
+                        <li ><a href="vmProf">List VMs</a></li>
+                        <li class="active"><a href="vmProfCreation">Creation</a></li>                  
                     </ul>
                 </div>
             </section>
-
             <section id="content" class="one dark cover">
-
                 <div class="container">
-                    
-                        <table class="table table-hover">
-                            <caption>Liste VMs créés</caption>
-                            <thead>
-                                <tr>
-                                    <th>VMid</th>
-                                    <th>Hostname</th>
-                                    <th>Address</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach items="${sessionScope.ListeContainer}" var="Container">
-                                
-                                    <form method="get" action="vmProfModify">
-                                        <tr>
-                                            <td>${Container.vmid}</td>
-                                            <td>${Container.hostname}</td>
-                                            <td>${Container.ip_address}</td>
-                                            <td>${Container.status}</td>
-                                            <td>
-                                                <input type="hidden" name="VMid" value="${Container.vmid}">
-                                                <input type="submit" name="actionChange" value="Modify">
-
-                                            </td>
-                                        </tr>
-                                    </form>
-
+                    <!-- <a href="#" class="list-group-item">24*7 support</a>
+                    <a href="#" class="list-group-item">Free Window Space hosting</a>
+                    <a href="#" class="list-group-item">Number of Images</a>
+                    <a href="#" class="list-group-item">Renewal cost per year</a> -->
+                    <h1>Creation d'un VM</h1>
+                    <form method="post" action="vmProf">
+                            <h3>RAM:</h3>
+                            <select name="ram">
+                                <option>256</option>
+                                <option>512</option>
+                                <option>1000</option>
+                            </select>
+                            
+                            <h3>CPU:</h3>
+                            <select name="cpus">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                                                        
+                            
+                            <h3>DISK:</h3>
+                            <select name="disk">
+                                <option>5</option>
+                                <option>10</option>
+                                <option>15</option>
+                            </select>
+                                                        
+                            
+                            <h3>Template:</h3>
+                            <select name="template">
+                                <c:forEach items="${sessionScope.ListeTemplate}" var="template">
+                                    <option>${template.libelle} </option> 
                                 </c:forEach>
-                            </tbody>
-                        </table>                                                      
+                            </select>
+                            
+                            
+                            <h3>Groupe:</h3>
+                            <select name="groupe">
+                                <c:forEach items="${sessionScope.ListeGroupe}" var="groupe">
+                                    <option>${groupe.libelle} </option> 
+                                </c:forEach>
+                            </select>
+
+                            
+                            <h3>Hostname:</h3>                            
+                            <input type="text" name="hostname" class="form-control input-lg">
+                            
+                            
+                            <h3>Mot de passe:</h3>
+                            <input type="password" name="passwordDefault" class="form-control input-lg" placeholder="Password">
+                        <center> <input type="submit" name="actionAdd" value="CreerContainer"></center>
+                    </form>
+
                 </div>
-                                
+                                    
                 <div class="container four dark" id="status">
-                        <c:if test="${InfoDelete && RequestDelete}">
-                            <div class="container alert alert-success">${InfoVM} a été supprimé. Actualisez la page pour voir la changement</div>
+                        <c:if test="${InfoCreation && RequestCreation}">
+                            <div class="container alert alert-success">La création est réussie. </div>
                         </c:if>                                  
 
-                        <c:if test="${ (not InfoDelete) && RequestDelete}">
-                            <div class="container alert alert-danger">Problème avec la suppresion de ${InfoVM} .</div>
+                        <c:if test="${ (not InfoCreation) && RequestCreation}">
+                            <div class="container alert alert-danger">Problème avec la création .</div>
                         </c:if>     
-                    
                 </div>
             </section>
 
-
         </div>
 
-
+        
 
 
         <!-- Footer -->

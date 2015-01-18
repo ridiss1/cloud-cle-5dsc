@@ -49,9 +49,10 @@ public class Iaas {
   */
     /*
      //Server Local INSA
-    final  private String address="10.32.3.140"; 
+    final  private String address="192.168.100.10"; 
     private String user="root";
     private String password="admin";*/
+
     public  Iaas(){
         
         /**

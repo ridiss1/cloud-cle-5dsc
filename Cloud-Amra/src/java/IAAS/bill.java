@@ -21,8 +21,10 @@ public class bill {
         /*Container container = new Container("ubuntu-10.04-standard_10.04-4_i386.tar.gz",
         "105","1","1","test2","512","test");
         ias.creerContainer(container, 19);*/
-        
-       System.out.println(ias.getContainer(12).toString());
+                                
+        Container container = new Container("11","1","1","1024");
+        ias.UpdateContainer(container);
+       System.out.println(ias.getContainer(10).toString());
         
         //System.outprintln(ias.deleteContainer(100));
         
@@ -31,6 +33,7 @@ public class bill {
         //System.out.println(ias.getStatistics(101,"hour"));
         
         //System.out.println(System.getProperty("java.home"));
+       
         
     }
     

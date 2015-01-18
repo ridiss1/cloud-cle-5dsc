@@ -68,7 +68,7 @@
         </div>
         <!-- Main -->
         <div id="main">
-
+            
             <section id="list_vm" class="vm">
                 <div class="container">
                     <h1 >Modify VM ${InfoContainer.hostname}</h1>
@@ -96,18 +96,26 @@
                             </select>
                                  <input type="hidden" name="VMid" value="${InfoContainer.vmid}">                      
                         <center> <input type="submit" name="actionUpdate" value="UpdateContainer"></center>
-                        <center> <input type="submit" name="actionDelete" value="SupprimerContainer"></center>
                     </form>
-
+                        
                 </div>
+                                
+                <div class="container four dark" id="status">
+                        <c:if test="${InfoUpdate && RequestUpdate}">
+                            <div class="container alert alert-success">La mis à jour est réussie. Actualisez la page pour voir la changement.</div>
+                        </c:if>                                  
+
+                        <c:if test="${ (not InfoCreation) && RequestUpdate}">
+                            <div class="container alert alert-danger">Problème avec la mis à jour .</div>
+                        </c:if>     
+                    
+                </div>        
             </section>
 
             
             <section id="content" class="one dark cover">
 
-                <div class="container">
-                    <h1>Hello</h1>
-                                            
+                <div class="container">    
                     <table class="table table-hover">
                             <caption>Info VM </caption>
                             <thead>
@@ -133,8 +141,15 @@
                                         </tr>
                             </tbody>
                         
-                    </table> 
+                    </table>
+                                        
+                    <form method="post" action="vmProfModify">
+                        <input type="hidden" name="VMid" value="${InfoContainer.vmid}">
+                        <center> <input type="submit" name="actionDelete" value="SupprimerContainer"></center>                    
+                    </form>
+                                        
                 </div>
+                                                
             </section>
 
 

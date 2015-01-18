@@ -190,10 +190,14 @@ public class Factory {
     }
 
     public boolean vmDelete(int idVM) {
-        Vm vm = new Vm();
-        String req = "DELETE v FROM Vm v WHERE v.id = :id";
+        /*String req = "DELETE v FROM Vm v WHERE v.id = :id";
         Query query = em.createQuery(req);
         query.setParameter("id", idVM);
+         */       
+        Vm vm = new Vm();
+        vm.setId(idVM);
+        em.remove(em.merge(vm));
+        
         return true;
     }
 

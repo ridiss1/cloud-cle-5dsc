@@ -490,6 +490,7 @@ public class Pve2Api {
                 LoginException, IOException{
                 System.out.println("++++++++id="+container.getVmid());
                 Map<String, String> data = container.getUpdateParams();
+                System.out.println("id " + container.getVmid());
 		pve_action("/nodes/" +node +"/openvz/"+container.getVmid()+"/config", RestClient.RequestMethod.PUT, data);       
         }
         
