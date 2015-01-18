@@ -72,7 +72,7 @@
             <section id="list_vm" class="vm">
                 <div class="container">
                     <h1 >Modify VM ${InfoContainer.hostname}</h1>
-                    <form method="post" action="vmProfModify">
+                    <form method="post" action="vmProf">
                             <h3>RAM:</h3>
                             <select name="ram">    
                                 <option>256</option>

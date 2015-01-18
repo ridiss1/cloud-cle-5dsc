@@ -12,7 +12,10 @@
         <servlet-name>VmProfServlet</servlet-name>
         <servlet-class>PAAS.Servlets.VmProfServlet</servlet-class>
     </servlet>
-        
+    <servlet>
+        <servlet-name>VmProfUpdateServlet</servlet-name>
+        <servlet-class>PAAS.Servlets.VmProfUpdateServlet</servlet-class>
+    </servlet>        
     <servlet>
         <servlet-name>VmProfCreationServlet</servlet-name>
         <servlet-class>PAAS.Servlets.VmProfCreationServlet</servlet-class>
@@ -42,7 +45,7 @@
         <url-pattern>/vmProfCreation</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>VmProfServlet</servlet-name>
+        <servlet-name>VmProfUpdateServlet</servlet-name>
         <url-pattern>/vmProfModify</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
