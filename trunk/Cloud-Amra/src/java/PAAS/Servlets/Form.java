@@ -409,7 +409,7 @@ public class Form {
             for (Container container : listContainer) {
                 String data = "ramdata" + container.getVmid();
                 String ramUsage = container.getMem_usage();
-                int ramTotal = container.getMemory();
+                String ramTotal = container.getMemory();
                 String memUsage = container.getDisk_usage();
                 String memTotal = container.getDisk();
                 String concav = "";
@@ -570,7 +570,7 @@ public class Form {
      * container******************************************************
      */
     public void createContainer(String template, String groupe, String cpu,
-            String disk, String hostname, int ram, String password, User prof) {
+            String disk, String hostname, String ram, String password, User prof) {
 
         System.out.println("****CREATION DES CONTAINERS*************************/n");
         System.out.println("*******************Parametres saisis**************");
@@ -676,7 +676,7 @@ public class Form {
         factory.close();
     }
 
-    public void createTemplate(int vmid, String libelle, int prof) {
+    public void createTemplate(int vmid, String libelle, int prof) throws IOException {
         
         System.out.println ("*************Creation template en cours*************************");
         System.out.println ("*************Vmid : "+vmid+"*************************");
@@ -687,8 +687,6 @@ public class Form {
             Iaas iaas = new Iaas();
             result = iaas.createCustomerTemplate(vmid, libelle);
         } catch (JSchException ex) {
-            Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (result) {
@@ -707,7 +705,7 @@ public class Form {
         System.out.println("+++++++++++++++++++++++++++++++++++++Vmid : " + result);
     }
 
-    public void deleteTemplate(String libelle,int idProf) {
+    public void deleteTemplate(String libelle,int idProf) throws IOException {
         boolean result = false;
         Template template = getTemplateByLibelle(libelle);
         String file= template.getFile();
@@ -715,8 +713,6 @@ public class Form {
             Iaas iaas = new Iaas();
             result=iaas.deleteTemplate(file);
         } catch (JSchException ex) {
-            Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }
         
