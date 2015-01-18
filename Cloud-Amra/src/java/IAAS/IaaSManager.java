@@ -194,7 +194,7 @@ public class IaaSManager {
         return result;
     }
     
-    public void run(){
+    /*public void run(){
         Pve2Api api = new Pve2Api("192.168.100.10","root","pam","pppppppp");
         //Iaas iaas = new Iaas();
         float percent;
@@ -229,7 +229,7 @@ public class IaaSManager {
 
         }
 
-    }
+    }*/
 
     /**
      * @param args the command line arguments

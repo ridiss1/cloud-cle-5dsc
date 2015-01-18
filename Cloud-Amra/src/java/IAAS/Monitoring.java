@@ -98,7 +98,7 @@ public class Monitoring extends Thread{
             Iterator<Container> it = list.iterator();
             while(it.hasNext()){
                 Container ct = it.next();
-                percent = (Float.parseFloat(ct.getMem_usage())*100)/ct.getMemory();
+                percent = (Float.parseFloat(ct.getMem_usage())*100)/Float.parseFloat(ct.getMemory());
                 System.out.println("vmID " +ct.getVmid());
                 System.out.println("Memory Usage " +ct.getMem_usage());
                 System.out.println("Memory " +ct.getMemory());
@@ -106,7 +106,7 @@ public class Monitoring extends Thread{
                 if (percent > 5){  
                     try {
                     //reale value 70
-                    var  = ct.getMemory()/1000000;
+                    var  = Integer.parseInt(ct.getMemory())/1000000;
                     System.out.println("var   " +var);
                     System.out.println("var +1  " +(++var));
                     //updateTemplate(int container, int ram , int cpu)

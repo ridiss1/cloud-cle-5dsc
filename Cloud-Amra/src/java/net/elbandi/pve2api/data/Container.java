@@ -49,14 +49,14 @@ public class Container {
     private String disk; // taille disque en GB 
     private String hostname; 
     private String ip_address;
-    private int memory; // mémoire en MB
+    private String memory; // mémoire en MB
     private String password;
     private String status; // état de la machine "running",...
     private String cpu_usage;
     private String mem_usage;
     private String disk_usage;
     
-    public Container (String id,String hostname, int ram, String ramUsage, String cpu, String cpuUsage,String mem, String memUsage) {
+    public Container (String id,String hostname, String ram, String ramUsage, String cpu, String cpuUsage,String mem, String memUsage) {
         this.vmid=id;
         this.memory=ram;
         this.mem_usage=ramUsage;
@@ -70,7 +70,7 @@ public class Container {
     
     //Upate
 
-    public Container(String vmid, String cpus, String disk, int memory) {
+    public Container(String vmid, String cpus, String disk, String memory) {
         this.vmid = vmid;
         this.cpus = cpus;
         this.disk = disk;
@@ -79,7 +79,7 @@ public class Container {
     
     
     // Création
-    public Container(String ostemplate, String vmid, String cpus, String disk, String hostname, int memory, String password) {
+    public Container(String ostemplate, String vmid, String cpus, String disk, String hostname, String memory, String password) {
         this.ostemplate = ostemplate;
         this.vmid = vmid;
         this.cpus = cpus;
@@ -94,7 +94,7 @@ public class Container {
 		cpus = data.getString("cpus");
 		disk = data.getString("maxdisk");
 		hostname = data.getString("name");
-		memory = data.getInt("maxmem");
+		memory = data.getString("maxmem");
 		ip_address = data.getString("ip");
                 status = data.getString("status");
                 cpu_usage=data.getString("cpu");
@@ -185,11 +185,11 @@ public class Container {
         this.ip_address = ip_address;
     }
 
-    public int getMemory() {
+    public String getMemory() {
         return memory;
     }
 
-    public void setMemory(int memory) {
+    public void setMemory(String memory) {
         this.memory = memory;
     }
 
