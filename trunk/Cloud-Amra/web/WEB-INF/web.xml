@@ -12,6 +12,11 @@
         <servlet-name>VmProfServlet</servlet-name>
         <servlet-class>PAAS.Servlets.VmProfServlet</servlet-class>
     </servlet>
+        
+    <servlet>
+        <servlet-name>VmProfCreationServlet</servlet-name>
+        <servlet-class>PAAS.Servlets.VmProfCreationServlet</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>DeconnexionStudentServlet</servlet-name>
         <servlet-class>PAAS.Servlets.DeconnexionStudentServlet</servlet-class>
@@ -31,6 +36,10 @@
     <servlet-mapping>
         <servlet-name>VmProfServlet</servlet-name>
         <url-pattern>/vmProf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VmProfCreationServlet</servlet-name>
+        <url-pattern>/vmProfCreation</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>VmProfServlet</servlet-name>
