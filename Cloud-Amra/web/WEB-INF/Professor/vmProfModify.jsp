@@ -105,7 +105,7 @@
                             <div class="container alert alert-success">La mis à jour est réussie. Actualisez la page pour voir la changement.</div>
                         </c:if>                                  
 
-                        <c:if test="${ (not InfoCreation) && RequestUpdate}">
+                        <c:if test="${ (not InfoUpdate) && RequestUpdate}">
                             <div class="container alert alert-danger">Problème avec la mis à jour .</div>
                         </c:if>     
                     

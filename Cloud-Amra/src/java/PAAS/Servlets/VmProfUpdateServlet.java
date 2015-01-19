@@ -36,11 +36,12 @@ public class VmProfUpdateServlet extends HttpServlet{
             Iaas ias = new Iaas();
             HttpSession session = request.getSession();
 
-            session.setAttribute("RequestUpdate", false);
-            
-            System.out.println("id====="+ request.getParameter("VMid"));
-            Container c = ias.getContainer(Integer.parseInt(request.getParameter("VMid")));
+            request.setAttribute("RequestUpdate", false); 
+            Container c = ias.getContainer(Integer.parseInt(request.getParameter("VMid")));  
             c.setVmid(request.getParameter("VMid"));
+            //System.out.println("id====="+ request.getParameter("VMid"));
+            
+            
             long disk=Long.parseLong(c.getDisk())/(1024*1024*1024);
             c.setDisk(Long.toString(disk));
             long ram=Long.parseLong(c.getMemory())/(1024*1024);

@@ -52,13 +52,13 @@ public class VmProfServlet extends HttpServlet {
         Form form =  new Form ();
         HttpSession session = request.getSession();
                     
-        session.setAttribute(ATTR_LISTE_TEMPLATE, form.getListTemplate());
-        session.setAttribute(ATTR_LISTE_GROUPE, form.getListGroupe());
+        //request.setAttribute(ATTR_LISTE_TEMPLATE, form.getListTemplate());
+        //request.setAttribute(ATTR_LISTE_GROUPE, form.getListGroupe());
 
         
         User prof = (User) session.getAttribute("sessionUser"); 
-        session.setAttribute("RequestDelete", false);
-        session.setAttribute("RequestUpdate", false);
+        request.setAttribute("RequestDelete", false);
+        //request.setAttribute("RequestUpdate", false);
         
         //Ajoute des containers
         if (request.getParameter("actionChange") == null){
@@ -73,14 +73,14 @@ public class VmProfServlet extends HttpServlet {
                     c.setVmid(vm.getId().toString());
                     listContainer.add(c);
                 }
-                session.setAttribute(ATTR_LISTE_CONTAINER, listContainer);
+                request.setAttribute(ATTR_LISTE_CONTAINER, listContainer);
             }
 
             this.getServletContext().getRequestDispatcher(VUE_VM_PROF).forward(request, response); 
         }
         
         //Modification des containers (Update/Delete)
-        else{
+        /*else{
             
             System.out.println("id====="+ request.getParameter("VMid"));
             Container c = ias.getContainer(Integer.parseInt(request.getParameter("VMid")));
@@ -89,10 +89,10 @@ public class VmProfServlet extends HttpServlet {
             c.setDisk(Long.toString(disk));
             long ram=Long.parseLong(c.getMemory())/(1024*1024);
             c.setMemory(Long.toString(ram));
-            session.setAttribute(ATTR_INFO_CONTAINER, c);
+            request.setAttribute(ATTR_INFO_CONTAINER, c);
             System.out.println("test=" + c.toString());
             this.getServletContext().getRequestDispatcher(VUE_VM_PROF_MODIFY).forward(request, response); 
-        }
+        }*/
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -111,7 +111,7 @@ public class VmProfServlet extends HttpServlet {
                 && (request.getParameter(ATTR_DISK) != null)
                 && (request.getParameter(ATTR_PASSWORD) != null)) {
           
-            session.setAttribute("RequestCreation", true);    
+            request.setAttribute("RequestCreation", true);    
             //String template = request.getParameter(ATTR_TEMPLATE).trim();
             String template = form.getTemplateByLibelle(request.getParameter("template")).getFile().trim();
             String groupe = request.getParameter(ATTR_GROUPE).trim();
@@ -122,13 +122,14 @@ public class VmProfServlet extends HttpServlet {
             String password = request.getParameter(ATTR_PASSWORD).trim();
 
             boolean resultat = form.createContainer(template, groupe, cpu, disk, hostname, ram, password, prof);
-            session.setAttribute("InfoCreation", resultat);
+            request.setAttribute("InfoCreation", resultat);
             this.getServletContext().getRequestDispatcher(VUE_VM_PROF_CREATION).forward(request, response);
         }
 
     //Mettre à jour les paramètres du container
         if (request.getParameter("actionUpdate") != null) {
-            session.setAttribute("RequestUpdate", true);
+            request.setAttribute("RequestUpdate", true);
+            boolean resultat = false;
             System.out.println("RAM=" + request.getParameter("ram"));
             System.out.println("CPUS=" + request.getParameter("cpus"));
             System.out.println("DISK=" + request.getParameter("disk"));
@@ -136,13 +137,24 @@ public class VmProfServlet extends HttpServlet {
             Container c = new Container(request.getParameter("VMid"), request.getParameter("cpus"), request.getParameter("disk"), request.getParameter("ram"));
             ias.UpdateContainer(c);
             System.out.println("UPDATE OK pour VM " + request.getParameter("VMid"));
-            //session.setAttribute("InfoUpdate", resultat);
+            resultat= true;
+
+            //session.setAttribute("demandUpdate", request.getParameter("actionUpdate"));
+            request.setAttribute("InfoUpdate", resultat);
+            c = ias.getContainer(Integer.parseInt(request.getParameter("VMid")));
+            c.setVmid(request.getParameter("VMid"));          
+            long disk=Long.parseLong(c.getDisk())/(1024*1024*1024);
+            c.setDisk(Long.toString(disk));
+            long ram=Long.parseLong(c.getMemory())/(1024*1024);
+            c.setMemory(Long.toString(ram));
+            request.setAttribute(ATTR_INFO_CONTAINER, c);
+            
             this.getServletContext().getRequestDispatcher(VUE_VM_PROF_MODIFY).forward(request, response);
         } 
    //Supprimer un container
         
         if (request.getParameter("actionDelete") != null) {
-            session.setAttribute("RequestDelete", true);
+            request.setAttribute("RequestDelete", true);
             String test = ias.deleteContainer(Integer.parseInt(request.getParameter("VMid")));
             System.out.println("test==" + test);
             boolean result = form.removeVM(Integer.parseInt(request.getParameter("VMid")));
@@ -155,8 +167,8 @@ public class VmProfServlet extends HttpServlet {
                 System.out.println("Problem DELETE pour VM " + request.getParameter("VMid"));
             }
                             
-            session.setAttribute("InfoDelete", result);
-            session.setAttribute("InfoVM", request.getParameter("VMid"));
+            request.setAttribute("InfoDelete", result);
+            request.setAttribute("InfoVM", request.getParameter("VMid"));
             this.getServletContext().getRequestDispatcher(VUE_VM_PROF).forward(request, response);
         }
 

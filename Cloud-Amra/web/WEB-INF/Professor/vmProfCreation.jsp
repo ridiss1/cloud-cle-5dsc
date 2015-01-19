@@ -93,7 +93,7 @@
                             <h3>RAM:</h3>
                             <select name="ram">
                                 <option style="color:red">256</option>
-                                <option style="color:red"512</option>
+                                <option style="color:red">512</option>
                                 <option style="color:red">1000</option>
                             </select>
                             
@@ -115,7 +115,7 @@
                             
                             <h3>Template:</h3>
                             <select name="template">
-                                <c:forEach items="${sessionScopeListeTemplate}" var="template">
+                                <c:forEach items="${ListeTemplate}" var="template">
                                     <option style="color:red">${template.libelle} </option> 
                                 </c:forEach>
                             </select>
@@ -123,7 +123,7 @@
                             
                             <h3>Groupe:</h3>
                             <select name="groupe">
-                                <c:forEach items="${sessionScope.ListeGroupe}" var="groupe">
+                                <c:forEach items="${ListeGroupe}" var="groupe">
                                     <option style="color:red">${groupe.libelle} </option> 
                                 </c:forEach>
                             </select>

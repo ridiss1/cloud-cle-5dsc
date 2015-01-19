@@ -193,10 +193,13 @@ public class Factory {
         /*String req = "DELETE v FROM Vm v WHERE v.id = :id";
         Query query = em.createQuery(req);
         query.setParameter("id", idVM);
-         */       
+         */
         Vm vm = new Vm();
-        vm.setId(idVM);
-        em.remove(em.merge(vm));
+        Query query = em.createNamedQuery("Vm.findById");
+        query.setParameter("id", idVM);
+        vm = (Vm) query.getSingleResult();
+
+        em.remove(vm);
         
         return true;
     }
