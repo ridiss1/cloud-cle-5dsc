@@ -703,6 +703,7 @@ public class Form {
             TemplateProf templateProf = new TemplateProf(id, prof);
             addTemplateProf(templateProf);*/
             System.out.println ("*************Enregistrement du template dans la base reussi****************");
+            this.template=true;
 
         }
         else {
