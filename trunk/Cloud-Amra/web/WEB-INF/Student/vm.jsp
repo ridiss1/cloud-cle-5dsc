@@ -90,8 +90,7 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a class="btn btn-danger" href="vm?stop=${container.vmid}" role="button"><span class="icon fa-power-off">&nbsp;&nbsp;Stop</span></a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a class="btn btn-info " href="#" role="button"><span class="icon fa-desktop">&nbsp;&nbsp;Console</span></a>
-
+                                <a class="btn btn-info " target="_blank" href="${container.console}" role="button"><span class="icon fa-desktop">&nbsp;&nbsp;Console</span></a>
 
                             </div>
 

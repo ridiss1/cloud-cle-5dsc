@@ -523,6 +523,7 @@ public class Form {
         for (Vm vm : listVm) {
             container = iaas.getContainer(vm.getId());
             container.setVmid(vm.getId().toString());
+            container.setConsole(iaas.getConsole(vm.getId()));
             /* long disk=Long.parseLong(container.getDisk())/(1024*1024*1024);
              long disk_usage=Long.parseLong(container.getDisk_usage())/(1024*1024*1024);
              long ram2=Long.parseLong(container.getMemory())/(1024*1024);
@@ -692,7 +693,7 @@ public class Form {
         boolean result = false;
         try {
             Iaas iaas = new Iaas();
-            result = iaas.createCustomerTemplate(vmid, libelle);
+            result = iaas.createCustomerTemplate(vmid, libelle,prof);
         } catch (JSchException ex) {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }
