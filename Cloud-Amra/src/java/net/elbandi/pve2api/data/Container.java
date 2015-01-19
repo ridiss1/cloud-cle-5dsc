@@ -22,6 +22,7 @@ public class Container {
     private String storage;
     private String vmid; // id du container 
     private String cpus; // nombre de cpu
+    private String console;
 
     public String getCpu_usage() {
         return cpu_usage;
@@ -213,4 +214,12 @@ public class Container {
         this.status = status;
     }
 
+    public String getConsole() {
+        return console;
+    }
+
+    public void setConsole(String console) {
+        this.console = console;
+    }
+    
 }

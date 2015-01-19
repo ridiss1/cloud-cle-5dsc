@@ -220,13 +220,13 @@ public class Iaas {
      * @throws JSchException
      * @throws IOException
      */
-    public boolean createCustomerTemplate(int containerID, String comments) throws JSchException, IOException {
+    public boolean createCustomerTemplate(int containerID, String comments , int idUser) throws JSchException, IOException {
 
         //boolean result=false;
         String text = "";
         String pattern = ".*Backup job finished successfully.*";
         JSch jsch = new JSch();
-        String command = "/root/scripts/createtemplateprof.sh " + containerID + " " + "\"" + comments + "\"";
+        String command = "/root/scripts/createtemplateprof.sh " + containerID + " " + "\"" + comments + "\""+" "+idUser;
         Session session = jsch.getSession(this.user, this.address, this.port);
         session.setConfig("StrictHostKeyChecking", "no");
         session.setPassword(this.password);
