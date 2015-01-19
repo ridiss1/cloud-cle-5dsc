@@ -40,6 +40,9 @@ public class TemplateDeleteServlet extends HttpServlet{
              request.setAttribute("deleteTemplate", form.isDeletetemplate());
              request.setAttribute("requete", true);
           }
+         else {
+             request.setAttribute("requete", false);
+         }
          
          
          this.getServletContext().getRequestDispatcher(VUE_VM_PROF).forward(request, response);
