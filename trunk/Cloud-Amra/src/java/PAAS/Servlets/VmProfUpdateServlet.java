@@ -37,8 +37,8 @@ public class VmProfUpdateServlet extends HttpServlet{
             HttpSession session = request.getSession();
 
             request.setAttribute("RequestUpdate", false); 
-            Container c = ias.getContainer(Integer.parseInt(request.getParameter("VMid")));  
-            c.setVmid(request.getParameter("VMid"));
+            Container c = ias.getContainer(Integer.parseInt(request.getParameter("actionChange")));  
+            c.setVmid(request.getParameter("actionChange"));
             //System.out.println("id====="+ request.getParameter("VMid"));
             
             

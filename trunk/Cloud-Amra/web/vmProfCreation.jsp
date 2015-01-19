@@ -85,7 +85,6 @@
             <section id="creation_vm" >
                 <div class="container">
                     <header> <h1>Creation d'un container</h1></header>
-                   
                     <form method="post" action="vmProf" class="form-horizontal" role="form" >
                         <div class="form-group">
                            
