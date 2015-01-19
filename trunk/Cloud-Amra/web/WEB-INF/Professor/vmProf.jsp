@@ -99,7 +99,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${sessionScope.ListeContainer}" var="Container">
+                                <c:forEach items="${ListeContainer}" var="Container">
                                 
                                     <form method="get" action="vmProfModify">
                                         <tr>
