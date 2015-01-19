@@ -122,7 +122,7 @@
                                 
                 <div class="container four dark" id="status">
                         <c:if test="${InfoDelete && RequestDelete}">
-                            <div class="container alert alert-success">${InfoVM} a été supprimé. Actualisez la page pour voir la changement</div>
+                            <div class="container alert alert-success">${InfoVM} a été supprimé. Actualisez la page pour voir le changement</div>
                         </c:if>                                  
 
                         <c:if test="${ (not InfoDelete) && RequestDelete}">
