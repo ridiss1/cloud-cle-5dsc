@@ -92,31 +92,31 @@
                     <form method="post" action="vmProf">
                             <h3>RAM:</h3>
                             <select name="ram">
-                                <option>256</option>
-                                <option>512</option>
-                                <option>1000</option>
+                                <option style="color:red">256</option>
+                                <option style="color:red"512</option>
+                                <option style="color:red">1000</option>
                             </select>
                             
                             <h3>CPU:</h3>
                             <select name="cpus">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
+                                <option style="color:red">1</option>
+                                <option style="color:red">2</option>
+                                <option style="color:red" >3</option>
                             </select>
                                                         
                             
                             <h3>DISK:</h3>
                             <select name="disk">
-                                <option>5</option>
-                                <option>10</option>
-                                <option>15</option>
+                                <option style="color:red">5</option>
+                                <option style="color:red">10</option>
+                                <option style="color:red">15</option>
                             </select>
                                                         
                             
                             <h3>Template:</h3>
                             <select name="template">
                                 <c:forEach items="${sessionScopeListeTemplate}" var="template">
-                                    <option>${template.libelle} </option> 
+                                    <option style="color:red">${template.libelle} </option> 
                                 </c:forEach>
                             </select>
                             
@@ -124,7 +124,7 @@
                             <h3>Groupe:</h3>
                             <select name="groupe">
                                 <c:forEach items="${sessionScope.ListeGroupe}" var="groupe">
-                                    <option>${groupe.libelle} </option> 
+                                    <option style="color:red">${groupe.libelle} </option> 
                                 </c:forEach>
                             </select>
 
