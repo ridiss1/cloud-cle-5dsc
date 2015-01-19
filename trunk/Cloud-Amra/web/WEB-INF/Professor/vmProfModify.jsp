@@ -75,24 +75,24 @@
                     <form method="post" action="vmProf">
                             <h3>RAM:</h3>
                             <select name="ram">    
-                                <option>256</option>
-                                <option>512</option>
-                                <option>1000</option>
+                                <option style="color:red">256</option>
+                                <option style="color:red">512</option>
+                                <option style="color:red">1000</option>
                             </select>
                             <br/>
                             <h3>CPU:</h3>
                             <select name="cpus">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
+                                <option style="color:red">1</option>
+                                <option style="color:red">2</option>
+                                <option style="color:red">3</option>
                             </select>
                                                         
                             <br/>
                             <h3>DISK:</h3>
                             <select name="disk">
-                                <option>5</option>
-                                <option>10</option>
-                                <option>15</option>
+                                <option style="color:red">5</option>
+                                <option style="color:red">10</option>
+                                <option style="color:red">15</option>
                             </select>
                                  <input type="hidden" name="VMid" value="${InfoContainer.vmid}">                      
                         <center> <input type="submit" name="actionUpdate" value="UpdateContainer"></center>
@@ -143,7 +143,7 @@
                         
                     </table>
                                         
-                    <form method="post" action="vmProfModify">
+                    <form method="post" action="vmProf">
                         <input type="hidden" name="VMid" value="${InfoContainer.vmid}">
                         <center> <input type="submit" name="actionDelete" value="SupprimerContainer"></center>                    
                     </form>
