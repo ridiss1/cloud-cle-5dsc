@@ -82,60 +82,94 @@
                     </ul>
                 </div>
             </section>
-            <section id="content" class="one dark cover">
+            <section id="creation_vm" >
                 <div class="container">
                     <!-- <a href="#" class="list-group-item">24*7 support</a>
                     <a href="#" class="list-group-item">Free Window Space hosting</a>
                     <a href="#" class="list-group-item">Number of Images</a>
                     <a href="#" class="list-group-item">Renewal cost per year</a> -->
                     <h1>Creation d'un VM</h1>
-                    <form method="post" action="vmProf">
-                            <h3>RAM:</h3>
-                            <select name="ram">
-                                <option style="color:red">256</option>
-                                <option style="color:red">512</option>
-                                <option style="color:red">1000</option>
-                            </select>
-                            
-                            <h3>CPU:</h3>
-                            <select name="cpus">
-                                <option style="color:red">1</option>
-                                <option style="color:red">2</option>
-                                <option style="color:red" >3</option>
-                            </select>
-                                                        
-                            
-                            <h3>DISK:</h3>
-                            <select name="disk">
-                                <option style="color:red">5</option>
-                                <option style="color:red">10</option>
-                                <option style="color:red">15</option>
-                            </select>
-                                                        
-                            
-                            <h3>Template:</h3>
-                            <select name="template">
-                                <c:forEach items="${ListeTemplate}" var="template">
-                                    <option style="color:red">${template.libelle} </option> 
-                                </c:forEach>
-                            </select>
-                            
-                            
-                            <h3>Groupe:</h3>
-                            <select name="groupe">
-                                <c:forEach items="${ListeGroupe}" var="groupe">
-                                    <option style="color:red">${groupe.libelle} </option> 
-                                </c:forEach>
-                            </select>
+                    <form method="post" action="vmProf" class="form-horizontal" role="form" >
+                        <div class="form-group">
+                            <label for="vm" class="col-sm-2 control-label">Ram</label>
+                            <div class="col-sm-5">
+                                <select class="form-control" name="vm" id="vm">
+                                    <option >256</option>
+                                    <option >512</option>
+                                    <option >1000</option>
+                                </select>
+                            </div>  
 
-                            
-                            <h3>Hostname:</h3>                            
-                            <input type="text" name="hostname" class="form-control input-lg">
-                            
-                            
-                            <h3>Mot de passe:</h3>
-                            <input type="password" name="passwordDefault" class="form-control input-lg" placeholder="Password">
-                        <center> <input type="submit" name="actionAdd" value="CreerContainer"></center>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="vm" class="col-sm-2 control-label">Cpu</label>
+                            <div class="col-sm-5">
+                                <select class="form-control" name="vm" id="vm">
+                                    <option >1</option>
+                                    <option >2</option>
+                                    <option >3</option>
+                                </select>
+                            </div>  
+
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="vm" class="col-sm-2 control-label">Disk</label>
+                            <div class="col-sm-5">
+                                <select class="form-control" name="vm" id="vm">
+                                    <option >5</option>
+                                    <option >10</option>
+                                    <option >15</option>
+                                </select>
+                            </div>  
+
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="vm" class="col-sm-2 control-label">Template</label>
+                            <div class="col-sm-5">
+                                <select class="form-control" name="vm" id="vm">
+                                    <c:forEach items="${ListeTemplate}" var="template">
+                                    <option >${template.libelle} </option> 
+                                </c:forEach>
+                                </select>
+                            </div>  
+
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="vm" class="col-sm-2 control-label">Groupe</label>
+                            <div class="col-sm-5">
+                                <c:forEach items="${ListeGroupe}" var="groupe">
+                                    <option >${groupe.libelle} </option> 
+                                </c:forEach>
+                            </div>  
+
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="libelle" class="col-sm-2 control-label">Hostname</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="libelle" name="hostname"
+                                       placeholder="Entrez le nom de la machine">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="libelle" class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="libelle" name="passwordDefault"
+                                       placeholder="Entrez le mot de passe">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default" name="actionAdd" value="CreerContainer">Valider</button>
+                            </div>
+                        </div>
+
                     </form>
 
                 </div>
