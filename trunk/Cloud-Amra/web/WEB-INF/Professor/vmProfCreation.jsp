@@ -115,7 +115,7 @@
                             
                             <h3>Template:</h3>
                             <select name="template">
-                                <c:forEach items="${sessionScope.ListeTemplate}" var="template">
+                                <c:forEach items="${sessionScopeListeTemplate}" var="template">
                                     <option>${template.libelle} </option> 
                                 </c:forEach>
                             </select>

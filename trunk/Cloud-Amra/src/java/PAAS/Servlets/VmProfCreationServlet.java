@@ -32,29 +32,7 @@ public class VmProfCreationServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User prof = null;
         prof = (User) session.getAttribute(ATT_SESSION_USER);
-
-        List<Vm> listVmByProf = new ArrayList<Vm>();
-        List<Vm> listVmRunByProf = new ArrayList<Vm>();
-        if (form.getListVmByProf(prof).size() == 0) {
-            listVmByProf = null;
-        } else {
-            listVmByProf = form.getListVmByProf(prof);
-        }
-
-        if (listVmByProf != null) {
-            listVmRunByProf = form.getListListVmRunning(listVmByProf);
-        } else {
-            listVmRunByProf = null;
-
-        }
-
-       // if (listVmByProf != null) {
-            request.setAttribute("ListVm", listVmByProf);
-      //  }
-
-        //if (listVmRunByProf != null) {
-            request.setAttribute("ListVmRun", listVmRunByProf);
-       // }
+        
 
         request.setAttribute(ATTR_LISTE_TEMPLATE, form.getListTemplate());
         request.setAttribute(ATTR_LISTE_GROUPE, form.getListGroupe());
