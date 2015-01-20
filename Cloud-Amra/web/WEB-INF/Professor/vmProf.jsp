@@ -86,9 +86,12 @@
             <section id="content">
 
                 <div class="container">
+                    <a href="#" class="list-group-item active">
+                        Liste des machines virtuelles
+                    </a>
                     
-                        <table class="table table-hover">
-                            <caption>Liste des Vms créés</caption>
+                        <table class="table table-bordered">
+                            
                             <thead>
                                 <tr>
                                     <th>VMid</th>

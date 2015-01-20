@@ -71,38 +71,62 @@
             
             <section id="list_vm" class="vm">
                 <div class="container">
-                    <h1 >Modify VM ${InfoContainer.hostname}</h1>
-                    <form method="post" action="vmProf">
-                            <h3>RAM:</h3>
-                            <select name="ram">    
-                                <option style="color:red">256</option>
-                                <option style="color:red">512</option>
-                                <option style="color:red">1000</option>
-                            </select>
-                            <br/>
-                            <h3>CPU:</h3>
-                            <select name="cpus">
-                                <option style="color:red">1</option>
-                                <option style="color:red">2</option>
-                                <option style="color:red">3</option>
-                            </select>
-                                                        
-                            <br/>
-                            <h3>DISK:</h3>
-                            <select name="disk">
-                                <option style="color:red">5</option>
-                                <option style="color:red">10</option>
-                                <option style="color:red">15</option>
-                            </select>
-                                 <input type="hidden" name="VMid" value="${InfoContainer.vmid}">                      
-                        <center> <input type="submit" name="actionUpdate" value="UpdateContainer"></center>
+                    <header> <h1>Modification du container ${InfoContainer.hostname}</h1></header>
+                    
+                    <form method="post" action="vmProf" class="form-horizontal" role="form">
+                            
+                        <div class="form-group">
+                           
+                            <label for="ram" class="col-sm-2 control-label">Ram</label>
+                            <div class="col-sm-5">
+                                <select class="form-control" name="ram" id="ram">
+                                    <option >256</option>
+                                    <option >512</option>
+                                    <option >1000</option>
+                                </select>
+                            </div>  
+
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cpus" class="col-sm-2 control-label">Cpu</label>
+                            <div class="col-sm-5">
+                                <select class="form-control" name="cpus" id="cpus">
+                                    <option >1</option>
+                                    <option >2</option>
+                                    <option >3</option>
+                                </select>
+                            </div>  
+
+                        </div>
+                           
+                        <div class="form-group">
+                            <label for="disk" class="col-sm-2 control-label">Disk</label>
+                            <div class="col-sm-5">
+                                <select class="form-control" name="disk" id="disk">
+                                    <option >5</option>
+                                    <option >10</option>
+                                    <option >15</option>
+                                </select>
+                            </div>  
+
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default" name="actionUpdate" value="UpdateContainer">Valider</button>
+                            </div>
+                        </div>
+                            
+                        <input type="hidden" name="VMid" value="${InfoContainer.vmid}">                      
+                       
                     </form>
                         
                 </div>
                                 
                 <div class="container four dark" id="status">
                         <c:if test="${InfoUpdate && RequestUpdate}">
-                            <div class="container alert alert-success">La mis à jour est réussie. Actualisez la page pour voir la changement.</div>
+                            <div class="container alert alert-success">Succes modify.</div>
                         </c:if>                                  
 
                         <c:if test="${ (not InfoUpdate) && RequestUpdate}">
@@ -113,11 +137,14 @@
             </section>
 
             
-            <section id="content" class="one dark cover">
-
+            <section id="content">
+     
                 <div class="container">    
+                    <a href="#" class="list-group-item active">
+                        Information Vm
+                    </a>
                     <table class="table table-hover">
-                            <caption>Info VM </caption>
+                           
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -144,6 +171,7 @@
                     </table>
                                         
                     <form method="post" action="vmProf">
+                        
                         <input type="hidden" name="VMid" value="${InfoContainer.vmid}">
                         <center> <input type="submit" name="actionDelete" value="SupprimerContainer"></center>                    
                     </form>
